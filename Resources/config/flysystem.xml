@@ -4,8 +4,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
            <services>
-               <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Adapter\Local" abstract="true" public="false">
-                   <argument /><!-- Directory -->
+               <service id="oneup_flysystem.filesystem" class="League\Flysystem\Filesystem" abstract="true" public="true">
+                   <argument /><!-- Adapter -->
                </service>
            </services>
 
