@@ -6,6 +6,7 @@
            <services>
                <service id="oneup_flysystem.filesystem" class="League\Flysystem\Filesystem" abstract="true" public="true">
                    <argument /><!-- Adapter -->
+                   <argument /><!-- Cache -->
                </service>
            </services>
 

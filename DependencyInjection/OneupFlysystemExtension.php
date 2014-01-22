@@ -59,9 +59,15 @@ class OneupFlysystemExtension extends Extension
         $adapter = $adapters[$config['adapter']];
         $id = sprintf('oneup_flysystem.%s_filesystem', $name);
 
+        $cache = null;
+        if (!is_null($config['cache'])) {
+            $cache = new Reference($config['cache']);
+        }
+
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
+            ->replaceArgument(1, $cache)
         ;
 
         if (!empty($config['alias'])) {
