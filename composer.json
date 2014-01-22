@@ -1,0 +1,36 @@
+{
+    "name": "oneup/flysystem-bundle",
+    "type": "symfony-bundle",
+    "description": "Integrates Flysystem filesystem abstraction library to your Symfony2 project.",
+    "keywords": ["symfony2", "flysystem", "filesystem", "abstraction"],
+    "homepage": "http://1up.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jim Schmid",
+            "email": "js@1up.io",
+            "homepage": "http://1up.io",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "symfony/framework-bundle": ">=2.2",
+        "league/flysystem": "~0.2"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "symfony/finder": ">=2.2",
+        "symfony/browser-kit": ">=2.2"
+    },
+
+    "suggest": {
+    },
+
+    "autoload": {
+        "psr-0": { "Oneup\\FlysystemBundle": "" }
+    },
+
+    "target-dir": "Oneup/FlysystemBundle"
+}
