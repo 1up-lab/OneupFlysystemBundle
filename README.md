@@ -5,6 +5,13 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 
 > Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one.
 
+Documentation
+-------------
+
+The entry point of the documentation can be found in the file `Resources/docs/index.md`
+
+[Read the documentation for master](https://github.com/1up-lab/OneupFlysystemBundle/blob/master/Resources/doc/index.md)
+
 
 Credit where credit is due
 --------------------------
