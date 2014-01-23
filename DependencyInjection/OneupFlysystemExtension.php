@@ -24,6 +24,7 @@ class OneupFlysystemExtension extends Extension
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
 
+        $map = $container->getDefinition('oneup_flysystem.filesystem_map');
         $adapters = [];
         $filesystems = [];
 
@@ -33,6 +34,11 @@ class OneupFlysystemExtension extends Extension
 
         foreach ($config['filesystems'] as $name => $filesystem) {
             $filesystems[$name] = $this->createFilesystem($name, $filesystem, $container, $adapters);
+        }
+
+        // create filesystem map
+        foreach ($filesystems as $name => $filesystem) {
+            $map->addMethodCall('add', [$name, $filesystem]);
         }
     }
 
