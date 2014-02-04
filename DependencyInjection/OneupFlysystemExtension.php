@@ -45,7 +45,7 @@ class OneupFlysystemExtension extends Extension
 
         // create filesystem map
         foreach ($filesystems as $name => $filesystem) {
-            $map->addMethodCall('add', [$name, $filesystem]);
+            $map->addMethodCall('add', array($name, $filesystem));
         }
     }
 
