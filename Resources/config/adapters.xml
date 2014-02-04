@@ -23,6 +23,9 @@
                <service id="oneup_flysystem.adapter.rackspace" class="League\Flysystem\Adapter\Rackspace" abstract="true" public="false">
                    <argument /><!-- Container -->
                </service>
+               <service id="oneup_flysystem.adapter.webdav" class="League\Flysystem\Adapter\WebDav" abstract="true" public="false">
+                   <argument /><!-- Client -->
+               </service>
            </services>
 
 </container>
