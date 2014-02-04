@@ -11,10 +11,17 @@
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
                </service>
-               <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\Adapter\AwsS3" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.awss3" class="League\Flysystem\Adapter\AwsS3" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Bucket -->
                    <argument /><!-- Prefix -->
+               </service>
+               <service id="oneup_flysystem.adapter.dropbox" class="League\Flysystem\Adapter\Dropbox" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Prefix -->
+               </service>
+               <service id="oneup_flysystem.adapter.rackspace" class="League\Flysystem\Adapter\Rackspace" abstract="true" public="false">
+                   <argument /><!-- Container -->
                </service>
            </services>
 

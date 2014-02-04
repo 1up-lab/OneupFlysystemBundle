@@ -18,10 +18,8 @@ oneup_flysystem:
 
     adapters:
         myadapter:
-            awss3:
-                client: meep
-                bucket: foo
-                prefix: ~
+            rackspace:
+                container: meep
 
     filesystems:
         myfilesystem:
