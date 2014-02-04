@@ -5,6 +5,7 @@
 
            <services>
                <service id="oneup_flysystem.cache.memory" class="League\Flysystem\Cache\Memory" abstract="true" public="false" />
+               <service id="oneup_flysystem.cache.noop" class="League\Flysystem\Cache\Noop" abstract="true" public="false" />
            </services>
 
 </container>
