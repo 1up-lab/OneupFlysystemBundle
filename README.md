@@ -1,11 +1,19 @@
 OneupFlysystemBundle
 ====================
 
-The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/flysystem) integration for your Symfony2 projects.
+The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/flysystem) integration for your Symfony2 projects. Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one. Currently you can configure the following adapters to use in your Symfony2 project.
 
-> Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one.
+* AwsS3
+* Dropbox
+* Ftp
+* Local filesystem
+* Rackspace
+* Sftp
+* WebDav
+* ZipArchive
 
 [![Build Status](https://travis-ci.org/1up-lab/OneupFlysystemBundle.png)](https://travis-ci.org/1up-lab/OneupFlysystemBundle)
+[![Total Downloads](https://poser.pugx.org/oneup/flysystem-bundle/d/total.png)](https://packagist.org/packages/oneup/flysystem-bundle)
 
 Documentation
 -------------
