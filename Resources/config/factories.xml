@@ -23,6 +23,12 @@
                <service id="oneup_flysystem.adapter_factory.webdav" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\WebDavFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
+               <service id="oneup_flysystem.adapter_factory.ftp" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\FtpFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
+               <service id="oneup_flysystem.adapter_factory.sftp" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\SftpFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
 
                <!-- Cache factories -->
                <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
