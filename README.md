@@ -5,6 +5,8 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 
 > Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one.
 
+[![Build Status](https://travis-ci.org/1up-lab/OneupFlysystemBundle.png)](https://travis-ci.org/1up-lab/OneupFlysystemBundle)
+
 Documentation
 -------------
 
