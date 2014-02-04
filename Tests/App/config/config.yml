@@ -14,13 +14,12 @@ framework:
 oneup_flysystem:
     cache:
         mycache:
-            memory:
-                client: memory
+            memory: ~
 
     adapters:
         myadapter:
-            local:
-                directory: %kernel.root_dir%/cache
+            zip:
+                location: %kernel.root_dir%/cache
 
     filesystems:
         myfilesystem:
