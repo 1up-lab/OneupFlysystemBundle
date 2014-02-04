@@ -4,8 +4,14 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
            <services>
-               <service id="oneup_flysystem.adapter_factory.local" class="Oneup\FlysystemBundle\DependencyInjection\Factory\LocalFactory">
+               <!-- Adapter factories -->
+               <service id="oneup_flysystem.adapter_factory.local" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\LocalFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
+               </service>
+
+               <!-- Cache factories -->
+               <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
+                   <tag name="oneup_flysystem.cache_factory" />
                </service>
            </services>
 

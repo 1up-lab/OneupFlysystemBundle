@@ -25,6 +25,7 @@ class FilesystemMap implements \IteratorAggregate
     public function add($name, Filesystem $filesystem)
     {
         $this->map[$name] = $filesystem;
+
         return $this;
     }
 

@@ -8,11 +8,13 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    protected $factories;
+    protected $adapterFactories;
+    protected $cacheFactories;
 
-    public function __construct(array $factories)
+    public function __construct(array $adapterFactories, array $cacheFactories)
     {
-        $this->factories = $factories;
+        $this->adapterFactories = $adapterFactories;
+        $this->cacheFactories = $cacheFactories;
     }
 
     public function getConfigTreeBuilder()
@@ -20,6 +22,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('oneup_flysystem');
 
+        $this->addCacheSection($rootNode);
         $this->addAdapterSection($rootNode);
         $this->addFilesystemSection($rootNode);
 
@@ -29,6 +32,25 @@ class Configuration implements ConfigurationInterface
         ;
 
         return $treeBuilder;
+    }
+
+    private function addCacheSection(ArrayNodeDefinition $node)
+    {
+        $cacheNodeBuilder = $node
+            ->fixXmlConfig('adapter')
+            ->children()
+                ->arrayNode('cache')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                    ->performNoDeepMerging()
+                    ->children()
+        ;
+
+        foreach ($this->cacheFactories as $name => $factory) {
+            $factoryNode = $cacheNodeBuilder->arrayNode($name)->canBeUnset();
+
+            $factory->addConfiguration($factoryNode);
+        }
     }
 
     private function addAdapterSection(ArrayNodeDefinition $node)
@@ -43,7 +65,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
         ;
 
-        foreach ($this->factories as $name => $factory) {
+        foreach ($this->adapterFactories as $name => $factory) {
             $factoryNode = $adapterNodeBuilder->arrayNode($name)->canBeUnset();
 
             $factory->addConfiguration($factoryNode);
@@ -60,8 +82,8 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                     ->children()
                         ->scalarNode('adapter')->isRequired()->end()
-                        ->scalarNode('alias')->defaultNull()->end()
                         ->scalarNode('cache')->defaultNull()->end()
+                        ->scalarNode('alias')->defaultNull()->end()
                     ->end()
                 ->end()
             ->end()

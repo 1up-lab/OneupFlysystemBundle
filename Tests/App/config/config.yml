@@ -12,11 +12,16 @@ framework:
     trusted_hosts: ~
 
 oneup_flysystem:
+    cache:
+        mycache:
+            memory: ~
+
     adapters:
-        test_local:
+        myadapter:
             local:
                 directory: %kernel.root_dir%/cache
 
     filesystems:
-        test_local:
-            adapter: test_local
+        myfilesystem:
+            adapter: myadapter
+            cache:   mycache

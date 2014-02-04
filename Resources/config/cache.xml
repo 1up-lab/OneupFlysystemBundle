@@ -4,9 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
            <services>
-               <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Adapter\Local" abstract="true" public="false">
-                   <argument /><!-- Directory -->
-               </service>
+               <service id="oneup_flysystem.cache.memory" class="League\Flysystem\Cache\Memory" abstract="true" public="false" />
            </services>
 
 </container>
