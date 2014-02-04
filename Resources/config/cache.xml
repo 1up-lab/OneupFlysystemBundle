@@ -6,6 +6,16 @@
            <services>
                <service id="oneup_flysystem.cache.memory" class="League\Flysystem\Cache\Memory" abstract="true" public="false" />
                <service id="oneup_flysystem.cache.noop" class="League\Flysystem\Cache\Noop" abstract="true" public="false" />
+               <service id="oneup_flysystem.cache.memcached" class="League\Flysystem\Cache\Memcached" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Key -->
+                   <argument /><!-- Expires -->
+               </service>
+               <service id="oneup_flysystem.cache.predis" class="League\Flysystem\Cache\Predis" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Key -->
+                   <argument /><!-- Expires -->
+               </service>
            </services>
 
 </container>
