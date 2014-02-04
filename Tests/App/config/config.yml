@@ -14,7 +14,8 @@ framework:
 oneup_flysystem:
     cache:
         mycache:
-            noop: ~
+            memory:
+                client: memory
 
     adapters:
         myadapter:

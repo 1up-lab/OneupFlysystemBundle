@@ -5,6 +5,7 @@ namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Cache;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\DependencyInjection\Reference;
 
 use Oneup\FlysystemBundle\DependencyInjection\Factory\CacheFactoryInterface;
 
@@ -19,7 +20,7 @@ class PredisFactory implements CacheFactoryInterface
     {
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.cache.predis'))
-            ->replaceArgument(0, $config['client'])
+            ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['key'])
             ->replaceArgument(2, $config['expires'])
         ;
