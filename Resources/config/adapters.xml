@@ -11,6 +11,11 @@
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
                </service>
+               <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\Adapter\AwsS3" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Bucket -->
+                   <argument /><!-- Prefix -->
+               </service>
            </services>
 
 </container>
