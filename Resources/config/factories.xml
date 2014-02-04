@@ -13,6 +13,9 @@
                <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
                    <tag name="oneup_flysystem.cache_factory" />
                </service>
+               <service id="oneup_flysystem.cache_factory.noop" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\NoopFactory">
+                   <tag name="oneup_flysystem.cache_factory" />
+               </service>
            </services>
 
 </container>
