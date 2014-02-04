@@ -35,7 +35,7 @@ class FlysystemMapTest extends ContainerAwareTestCase
     {
         $map = new FilesystemMap();
 
-        foreach (['foo', 'bar', 'baz'] as $name) {
+        foreach (array('foo', 'bar', 'baz') as $name) {
             $mock = $this->getMockBuilder('League\Flysystem\Filesystem')
                 ->disableOriginalConstructor()
                 ->getMock()

@@ -10,7 +10,7 @@ class FilesystemMap implements \IteratorAggregate
 
     public function __construct()
     {
-        $this->map = [];
+        $this->map = array();
     }
 
     public function get($name)

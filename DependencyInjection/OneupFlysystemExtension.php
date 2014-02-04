@@ -27,9 +27,9 @@ class OneupFlysystemExtension extends Extension
         $loader->load('cache.xml');
 
         $map = $container->getDefinition('oneup_flysystem.filesystem_map');
-        $adapters = [];
-        $filesystems = [];
-        $caches = [];
+        $adapters = array();
+        $filesystems = array();
+        $caches = array();
 
         foreach ($config['adapters'] as $name => $adapter) {
             $adapters[$name] = $this->createAdapter($name, $adapter, $container, $adapterFactories);
@@ -124,7 +124,7 @@ class OneupFlysystemExtension extends Extension
             return $this->adapterFactories;
         }
 
-        $factories = [];
+        $factories = array();
         $services  = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
 
         foreach (array_keys($services) as $id) {
@@ -141,7 +141,7 @@ class OneupFlysystemExtension extends Extension
             return $this->cacheFactories;
         }
 
-        $factories = [];
+        $factories = array();
         $services  = $container->findTaggedServiceIds('oneup_flysystem.cache_factory');
 
         foreach (array_keys($services) as $id) {
