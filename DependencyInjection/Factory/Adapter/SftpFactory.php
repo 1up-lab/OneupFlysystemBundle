@@ -30,10 +30,10 @@ class SftpFactory implements AdapterFactoryInterface
             ->children()
                 ->scalarNode('host')->isRequired()->end()
 
-                ->integerNode('port')->defaultValue(22)->end()
+                ->scalarNode('port')->defaultValue(22)->end()
                 ->scalarNode('username')->defaultNull()->end()
                 ->scalarNode('password')->defaultNull()->end()
-                ->integerNode('timeout')->defaultValue(90)->end()
+                ->scalarNode('timeout')->defaultValue(90)->end()
                 ->scalarNode('root')->defaultNull()->end()
                 ->scalarNode('privateKey')->defaultNull()->end()
                 ->scalarNode('permPrivate')->defaultValue(0000)->end()
