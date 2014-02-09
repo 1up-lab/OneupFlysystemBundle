@@ -63,14 +63,14 @@ oneup_flysystem:
 
 There are a bunch of adapters for you to use:
 
-* AwsS3
-* Dropbox
-* Ftp
-* Local filesystem
-* Rackspace
-* Sftp
-* WebDav
-* ZipArchive
+* [AwsS3](adapter_awss3.md)
+* [Dropbox](adapter_dropbox.md)
+* [Ftp](adapter_ftp.md)
+* [Local filesystem](adapter_local.md)
+* [Rackspace](adapter_rackspace.md)
+* [Sftp](adapter_sftp.md)
+* [WebDav](adapter_webdav.md)
+* [ZipArchive](adapter_ziparchive.md)
 
 ### Step 4: Next steps
 
