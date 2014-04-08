@@ -23,7 +23,7 @@ Add OneupFlysystemBundle to your composer.json using the following construct:
 Now tell composer to download the bundle by running the following command:
 
 ```
-$> php composer.phar update oneup/uploader-bundle
+$> php composer.phar update oneup/flysystem-bundle
 ```
 
 Composer will now fetch and install this bundle in the vendor directory `vendor/oneup`
