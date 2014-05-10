@@ -1,12 +1,14 @@
 # Use the SFTP adapter
 
+You have to provide at least a value for the `host` key.
+
 ```yml
 # app/config/config.yml
 oneup_flysystem:
     adapters:
         my_adapter:
             sftp:
-                host: ~
+                host: ftp.domain.com
                 port: ~
                 username: ~
                 password: ~
