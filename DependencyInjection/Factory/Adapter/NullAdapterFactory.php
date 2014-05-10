@@ -20,7 +20,6 @@ class NullAdapterFactory implements AdapterFactoryInterface
     {
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.nulladapter'))
-            ->replaceArgument(0, $config)
         ;
     }
 
