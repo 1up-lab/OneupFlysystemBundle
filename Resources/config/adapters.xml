@@ -7,6 +7,7 @@
                <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Adapter\Local" abstract="true" public="false">
                    <argument /><!-- Directory -->
                </service>
+               <service id="oneup_flysystem.adapter.nulladapter" class="League\Flysystem\Adapter\NullAdapter" abstract="true" public="false" />
                <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\Adapter\Zip" abstract="true" public="false">
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
