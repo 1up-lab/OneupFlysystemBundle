@@ -1,5 +1,8 @@
 # Use the FTP adapter
 
+This adapter works with the standard PHP FTP implementation which is documented in [the manual](http://www.php.net/manual/de/book.ftp.php).
+You have to provide at least a value for the `host` key.
+
 ```yml
 # app/config/config.yml
 oneup_flysystem:
