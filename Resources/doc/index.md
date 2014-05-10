@@ -67,7 +67,7 @@ There are a bunch of adapters for you to use:
 * [Dropbox](adapter_dropbox.md)
 * [Ftp](adapter_ftp.md)
 * [Local filesystem](adapter_local.md)
-* [NullAdapter][adapater_nulladapter.md]
+* [NullAdapter](adapater_nulladapter.md)
 * [Rackspace](adapter_rackspace.md)
 * [Sftp](adapter_sftp.md)
 * [WebDav](adapter_webdav.md)
