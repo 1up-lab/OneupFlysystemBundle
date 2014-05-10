@@ -37,7 +37,6 @@ class Configuration implements ConfigurationInterface
     private function addCacheSection(ArrayNodeDefinition $node)
     {
         $cacheNodeBuilder = $node
-            ->fixXmlConfig('adapter')
             ->children()
                 ->arrayNode('cache')
                     ->useAttributeAsKey('name')
