@@ -9,3 +9,7 @@ oneup_flysystem:
                 location: ~
                 archive: ~
 ```
+
+## More to know
+* [Create and use your filesystem](filesystem_create.md)
+* [Add a cache](filesystem_cache.md)

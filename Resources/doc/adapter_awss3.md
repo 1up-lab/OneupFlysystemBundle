@@ -28,7 +28,6 @@ oneup_flysystem:
 
 For more details on the other paramters, take a look at the [Flysystem documentation](https://github.com/thephpleague/flysystem#aws-s3-setup).
 
-
 ## More to know
 * [Create and use your filesystem](filesystem_create.md)
 * [Add a cache](filesystem_cache.md)
