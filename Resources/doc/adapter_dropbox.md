@@ -8,7 +8,8 @@ services:
     acme.dropbox_client:
         class: Dropbox\Client
         arguments:
-            - ["access-token", "client-identifier"]
+            - "access-token",
+            - "client-identifier"
 ```
 
 Set this service as the value of the client key in the oneup_flysystem configuration.
