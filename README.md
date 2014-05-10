@@ -23,12 +23,6 @@ The entry point of the documentation can be found in the file `Resources/docs/in
 [Read the documentation for master](https://github.com/1up-lab/OneupFlysystemBundle/blob/master/Resources/doc/index.md)
 
 
-Credit where credit is due
---------------------------
-
-Due to the similiarities between Flysystem and Gaufrette, this bundle is *heavily* inspired by the beautifully crafted [GaufretteBundle](https://github.com/KnpLabs/KnpGaufretteBundle). Props to the devs at [KnpLab](http://knplabs.com/)!
-
-
 License
 -------
 
@@ -46,3 +40,8 @@ When reporting a bug, it may be a good idea to reproduce it in a basic project
 built using the [Symfony Standard Edition](https://github.com/symfony/symfony-standard)
 to allow developers of the bundle to reproduce the issue by simply cloning it
 and following some steps.
+
+Credit where credit is due
+--------------------------
+
+Due to the similiarities between Flysystem and Gaufrette, this bundle is *heavily* inspired by the beautifully crafted [GaufretteBundle](https://github.com/KnpLabs/KnpGaufretteBundle). Props to the devs at [KnpLab](http://knplabs.com/)!

@@ -15,7 +15,7 @@ Add OneupFlysystemBundle to your composer.json using the following construct:
 ```json
 {
     "require": {
-        "oneup/flysystem-bundle": "dev-master"
+        "oneup/flysystem-bundle": "~0.1"
     }
 }
 ```
