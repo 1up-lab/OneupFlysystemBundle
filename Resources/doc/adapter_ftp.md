@@ -9,7 +9,7 @@ oneup_flysystem:
     adapters:
         my_adapter:
             ftp:
-                host: ~
+                host: ftp.domain.com
                 port: ~
                 username: ~
                 password: ~
