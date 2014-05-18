@@ -77,6 +77,6 @@ There are a bunch of adapters for you to use:
 
 After installing and setting up the basic functionality of this bundle you can move on and integrate some more advanced features.
 
-* Cache your filesystems
+* [Cache your filesystems](filesystem_cache.md)
 * Create an alias for your filesystems
 * Running the tests
