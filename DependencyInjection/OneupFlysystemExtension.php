@@ -91,11 +91,18 @@ class OneupFlysystemExtension extends Extension
             $cache = new Reference($caches[$config['cache']]);
         }
 
-        $container
+        $definition = $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
             ->replaceArgument(1, $cache)
         ;
+
+        $options = array();
+        if (isset($config['visibility'])) {
+            $options['visibility'] = $config['visibility'];
+        }
+
+        $definition->replaceArgument(2, $options);
 
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
