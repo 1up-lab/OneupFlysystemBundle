@@ -16,7 +16,7 @@
 
     "require": {
         "symfony/framework-bundle": ">=2.0",
-        "pae23/flysystem": "~0.5"
+        "pae23/flysystem": "dev-master"
     },
 
     "require-dev": {
