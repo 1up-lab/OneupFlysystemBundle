@@ -11,3 +11,8 @@ This implementation add your plugin to all the filesystems.
                ...
            </services>
 '''
+
+After you can call your plugin like this:
+'''
+$fs = $filesystemMap->get("fs_name");
+echo $inputTotal->getDown();
