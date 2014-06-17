@@ -43,9 +43,15 @@ class OneupFlysystemExtension extends Extension
             $filesystems[$name] = $this->createFilesystem($name, $filesystem, $container, $adapters, $caches);
         }
 
+        $filesystemPluginServices = $container->findTaggedServiceIds('oneup_flysystem.filesystem_plugin');
+        
         // create filesystem map
         foreach ($filesystems as $name => $filesystem) {
             $map->addMethodCall('add', array($name, $filesystem));
+            foreach ($filesystemPluginServices as $filesystemPluginName => $filesystemPluginService)
+            {
+                $container->getDefinition($filesystem)->addMethodCall('addPlugin', array(new Reference($filesystemPluginName)));
+            }
         }
     }
 
