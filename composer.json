@@ -1,5 +1,5 @@
 {
-    "name": "pae23/flysystem-bundle",
+    "name": "oneup/flysystem-bundle",
     "type": "symfony-bundle",
     "description": "Integrates Flysystem filesystem abstraction library to your Symfony2 project.",
     "keywords": ["symfony2", "flysystem", "filesystem", "abstraction"],
@@ -16,7 +16,7 @@
 
     "require": {
         "symfony/framework-bundle": ">=2.0",
-        "pae23/flysystem": "dev-master"
+        "league/flysystem": "~0.4"
     },
 
     "require-dev": {
