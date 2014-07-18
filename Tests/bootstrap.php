@@ -10,6 +10,7 @@ EOT
     );
 }
 
+passthru(sprintf('rm -rf %s/App/cache', __DIR__));
 spl_autoload_register(function($class) {
     if (0 === strpos($class, 'Oneup\\FlysystemBundle\\')) {
         $path = __DIR__.'/../'.implode('/', array_slice(explode('\\', $class), 2)).'.php';

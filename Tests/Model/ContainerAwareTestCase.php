@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ContainerAwareTestCase extends WebTestCase
 {
+    protected $client;
+    protected $container;
+
     public function setUp()
     {
         $this->client = static::createClient();

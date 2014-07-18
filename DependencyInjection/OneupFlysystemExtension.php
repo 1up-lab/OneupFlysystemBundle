@@ -42,11 +42,6 @@ class OneupFlysystemExtension extends Extension
         foreach ($config['filesystems'] as $name => $filesystem) {
             $filesystems[$name] = $this->createFilesystem($name, $filesystem, $container, $adapters, $caches);
         }
-
-        // create filesystem map
-        foreach ($filesystems as $name => $filesystem) {
-            $map->addMethodCall('add', array($name, $filesystem));
-        }
     }
 
     private function createCache($name, array $config, ContainerBuilder $container, array $factories)
@@ -95,6 +90,7 @@ class OneupFlysystemExtension extends Extension
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
             ->replaceArgument(1, $cache)
+            ->addTag('oneup_flysystem.filesystem', array('key' => $name))
         ;
 
         if (!empty($config['alias'])) {

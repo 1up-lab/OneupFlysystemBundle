@@ -25,3 +25,28 @@ oneup_flysystem:
         myfilesystem:
             adapter: myadapter
             cache:   mycache
+
+        myfilesystem2:
+            adapter: myadapter
+            cache:   mycache
+
+        myfilesystem3:
+            adapter: myadapter
+            cache:   mycache
+
+services:
+    local_plugin:
+        class: Oneup\FlysystemBundle\Tests\Model\Plugin
+        tags:
+            - { name: oneup_flysystem.plugin, filesystem: myfilesystem }
+
+    global_plugin:
+        class: Oneup\FlysystemBundle\Tests\Model\Plugin
+        tags:
+            - { name: oneup_flysystem.plugin }
+
+    multiple_plugin:
+        class: Oneup\FlysystemBundle\Tests\Model\Plugin
+        tags:
+            - { name: oneup_flysystem.plugin, filesystem: myfilesystem  }
+            - { name: oneup_flysystem.plugin, filesystem: myfilesystem2 }
