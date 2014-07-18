@@ -24,6 +24,7 @@ class ZipFactory implements AdapterFactoryInterface
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.zip'))
             ->replaceArgument(0, $config['location'])
             ->replaceArgument(1, $archive)
+            ->replaceArgument(2, $config['prefix'])
         ;
     }
 
@@ -33,6 +34,7 @@ class ZipFactory implements AdapterFactoryInterface
             ->children()
                 ->scalarNode('location')->isRequired()->end()
                 ->scalarNode('archive')->defaultNull()->end()
+                ->scalarNode('prefix')->defaultNull()->end()
             ->end()
         ;
     }

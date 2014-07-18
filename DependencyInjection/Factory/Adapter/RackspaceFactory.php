@@ -21,6 +21,7 @@ class RackspaceFactory implements AdapterFactoryInterface
         $definition = $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.rackspace'))
             ->replaceArgument(0, new Reference($config['container']))
+            ->replaceArgument(1, $config['prefix'])
         ;
     }
 
@@ -29,6 +30,7 @@ class RackspaceFactory implements AdapterFactoryInterface
         $node
             ->children()
                 ->scalarNode('container')->isRequired()->end()
+                ->scalarNode('prefix')->defaultNull()->end()
             ->end()
         ;
     }

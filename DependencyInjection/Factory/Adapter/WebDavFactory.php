@@ -21,6 +21,7 @@ class WebDavFactory implements AdapterFactoryInterface
         $definition = $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.webdav'))
             ->replaceArgument(0, new Reference($config['client']))
+            ->replaceArgument(1, $config['prefix'])
         ;
     }
 
@@ -29,6 +30,7 @@ class WebDavFactory implements AdapterFactoryInterface
         $node
             ->children()
                 ->scalarNode('client')->isRequired()->end()
+                ->scalarNode('prefix')->defaultNull()->end()
             ->end()
         ;
     }
