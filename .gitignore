@@ -14,7 +14,9 @@ app/config/parameters.yml
 
 composer.lock
 
-cov
 Tests/App/cache
 Tests/App/logs
 phpunit.xml
+
+# IDE
+.idea
