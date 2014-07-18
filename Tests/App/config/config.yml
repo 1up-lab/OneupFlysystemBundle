@@ -25,6 +25,7 @@ oneup_flysystem:
         myfilesystem:
             adapter: myadapter
             cache:   mycache
+            mount:   prefix
 
         myfilesystem2:
             adapter: myadapter

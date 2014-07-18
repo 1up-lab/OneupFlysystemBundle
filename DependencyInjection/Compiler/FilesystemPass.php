@@ -11,24 +11,26 @@ class FilesystemPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('oneup_flysystem.filesystem_map')) {
+        if (!$container->hasDefinition('oneup_flysystem.mount_manager')) {
             return;
         }
 
-        $map = $container->getDefinition('oneup_flysystem.filesystem_map');
+        $mountManager = $container->getDefinition('oneup_flysystem.mount_manager');
         $filesystems = $container->findTaggedServiceIds('oneup_flysystem.filesystem');
 
         foreach ($filesystems as $id => $attributes) {
-            // a filesystem which should be managed by this bundle
-            // must provide a name with its tag
-            if (!isset($attributes['name'])) {
-                continue;
+            foreach ($attributes as $attribute) {
+                // a filesystem which should be managed by this bundle
+                // must provide a name with its tag
+                if (!isset($attribute['mount'])) {
+                    continue;
+                }
+
+                $prefix = $attribute['mount'];
+
+                // add filesystem to the map
+                $mountManager->addMethodCall('mountFilesystem', array($prefix, new Reference($id)));
             }
-
-            $name = $attributes['name'];
-
-            // add filesystem to the map
-            $map->addMethodCall('add', array($name, new Reference($id)));
         }
     }
 }

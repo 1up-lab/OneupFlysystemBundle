@@ -83,6 +83,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('adapter')->isRequired()->end()
                         ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()
+                        ->scalarNode('mount')->defaultNull()->end()
                     ->end()
                 ->end()
             ->end()

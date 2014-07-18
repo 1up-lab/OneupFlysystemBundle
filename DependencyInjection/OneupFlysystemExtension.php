@@ -26,7 +26,6 @@ class OneupFlysystemExtension extends Extension
         $loader->load('flysystem.xml');
         $loader->load('cache.xml');
 
-        $map = $container->getDefinition('oneup_flysystem.filesystem_map');
         $adapters = array();
         $filesystems = array();
         $caches = array();
@@ -86,11 +85,17 @@ class OneupFlysystemExtension extends Extension
             $cache = new Reference($caches[$config['cache']]);
         }
 
+        $tagParams = array('key' => $name);
+
+        if ($config['mount']) {
+            $tagParams['mount'] = $config['mount'];
+        }
+
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
             ->replaceArgument(1, $cache)
-            ->addTag('oneup_flysystem.filesystem', array('key' => $name))
+            ->addTag('oneup_flysystem.filesystem', $tagParams);
         ;
 
         if (!empty($config['alias'])) {
