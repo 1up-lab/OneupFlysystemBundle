@@ -14,7 +14,7 @@ oneup_flysystem:
                 password: ~
                 root: ~
                 timeout: ~
-                publicKey: ~
+                privateKey: ~
                 permPrivate: ~
                 permPublic: ~
 ```
