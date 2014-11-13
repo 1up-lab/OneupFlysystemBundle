@@ -63,7 +63,7 @@ services:
 oneup_flysystem:
     cache:
         my_cache:
-            memcached:
+            predis:
                 client: cache.redis
                 key: ~
                 expires: ~
