@@ -72,6 +72,7 @@ There are a bunch of adapters for you to use:
 * [Sftp](adapter_sftp.md)
 * [WebDav](adapter_webdav.md)
 * [ZipArchive](adapter_ziparchive.md)
+* [GridFS](adapter_gridfs.md)
 
 ### Step 4: Next steps
 
