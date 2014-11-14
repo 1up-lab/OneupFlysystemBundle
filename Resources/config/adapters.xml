@@ -33,6 +33,9 @@
                <service id="oneup_flysystem.adapter.sftp" class="League\Flysystem\Adapter\Sftp" abstract="true" public="false">
                    <argument /><!-- Options -->
                </service>
+               <service id="oneup_flysystem.adapter.gridfs" class="League\Flysystem\Adapter\GridFS" abstract="true" public="false">
+                   <argument /><!-- Client -->
+               </service>
            </services>
 
 </container>
