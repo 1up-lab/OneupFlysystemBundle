@@ -37,7 +37,7 @@ class PluginPass implements CompilerPassInterface
                     }
 
                     $filesystem = $container->getDefinition($byName[$name]);
-                    $filesystem->addMethodCall('addPlugin', array(new Reference($pluginId)));
+                    $filesystem->addMethodCall('addPlugin', array($container->findDefinition($pluginId)));
 
                     continue;
                 }
@@ -45,7 +45,7 @@ class PluginPass implements CompilerPassInterface
                 // otherwise attach it to all available filesystems
                 foreach ($byName as $filesystemId) {
                     $filesystem = $container->getDefinition($filesystemId);
-                    $filesystem->addMethodCall('addPlugin', array(new Reference($pluginId)));
+                    $filesystem->addMethodCall('addPlugin', array($container->findDefinition($pluginId)));
                 }
             }
         }
