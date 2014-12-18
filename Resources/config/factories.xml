@@ -32,6 +32,9 @@
                <service id="oneup_flysystem.adapter_factory.sftp" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\SftpFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
+               <service id="oneup_flysystem.adapter_factory.awss3" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GridFSFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
 
                <!-- Cache factories -->
                <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
