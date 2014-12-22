@@ -5,7 +5,7 @@ After successfully configured the adapters, create a filesystem and inject an ad
 ```
 oneup_flysystem:
     adapter: ~
-    filesystem:
+    filesystems:
         acme:
             adapter: my_adapter
             cache: ~
