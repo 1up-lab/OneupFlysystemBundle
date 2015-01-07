@@ -29,4 +29,4 @@ $filesystem = $container->get('oneup_flysystem.mount_manager')->getFilesystem('p
 Details on the usage of the MountManager can be found in the [Flysystem documentation](https://github.com/thephpleague/flysystem#mount-manager).
 
 The `$filesystem` variable is of the type [`League\Filesystem`](https://github.com/thephpleague/flysystem/blob/master/src/Filesystem.php).
-Please refer to the [*General Usage* section](https://github.com/thephpleague/flysystem#general-usage) in the official documention for details.
+Please refer to the [*General Usage* section](https://github.com/thephpleague/flysystem#general-usage) in the official documentation for details.
