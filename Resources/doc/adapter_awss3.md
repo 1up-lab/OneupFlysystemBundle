@@ -11,7 +11,9 @@ services:
         factory_class: Aws\S3\S3Client
         factory_method: factory
         arguments:
-            - ["s3-key", "s3-secret"]
+            -
+                key: "s3-key"
+                secret: "s3-secret"
 ```
 
 Set this service as the value of the `client` key in the `oneup_flysystem` configuration.
