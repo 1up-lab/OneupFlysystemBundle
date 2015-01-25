@@ -8,32 +8,37 @@
                    <argument /><!-- Directory -->
                </service>
                <service id="oneup_flysystem.adapter.nulladapter" class="League\Flysystem\Adapter\NullAdapter" abstract="true" public="false" />
-               <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\Adapter\Zip" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\ZipArchive\ZipArchiveAdapter" abstract="true" public="false">
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
                </service>
-               <service id="oneup_flysystem.adapter.awss3" class="League\Flysystem\Adapter\AwsS3" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.awss3v2" class="League\Flysystem\AwsS3v2\AwsS3Adapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Bucket -->
                    <argument /><!-- Prefix -->
                </service>
-               <service id="oneup_flysystem.adapter.dropbox" class="League\Flysystem\Adapter\Dropbox" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.awss3v3" class="League\Flysystem\AwsS3v3\AwsS3Adapter" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Bucket -->
+                   <argument /><!-- Prefix -->
+               </service>
+               <service id="oneup_flysystem.adapter.dropbox" class="League\Flysystem\Dropbox\DropboxAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Prefix -->
                </service>
-               <service id="oneup_flysystem.adapter.rackspace" class="League\Flysystem\Adapter\Rackspace" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.rackspace" class="League\Flysystem\Rackspace\RackspaceAdapter" abstract="true" public="false">
                    <argument /><!-- Container -->
                </service>
-               <service id="oneup_flysystem.adapter.webdav" class="League\Flysystem\Adapter\WebDav" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.webdav" class="League\Flysystem\WebDAV\WebDAVAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                </service>
                <service id="oneup_flysystem.adapter.ftp" class="League\Flysystem\Adapter\Ftp" abstract="true" public="false">
                    <argument /><!-- Options -->
                </service>
-               <service id="oneup_flysystem.adapter.sftp" class="League\Flysystem\Adapter\Sftp" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.sftp" class="League\Flysystem\Sftp\SftpAdapter" abstract="true" public="false">
                    <argument /><!-- Options -->
                </service>
-               <service id="oneup_flysystem.adapter.gridfs" class="League\Flysystem\Adapter\GridFS" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.gridfs" class="League\Flysystem\GridFS\GridFSAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                </service>
            </services>

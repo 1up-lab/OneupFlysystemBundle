@@ -4,15 +4,20 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
            <services>
-               <service id="oneup_flysystem.cache.memory" class="League\Flysystem\Cache\Memory" abstract="true" public="false" />
-               <service id="oneup_flysystem.cache.noop" class="League\Flysystem\Cache\Noop" abstract="true" public="false" />
-               <service id="oneup_flysystem.cache.memcached" class="League\Flysystem\Cache\Memcached" abstract="true" public="false">
+               <service id="oneup_flysystem.cache.memory" class="League\Flysystem\Cached\Storage\Memory" abstract="true" public="false" />
+               <service id="oneup_flysystem.cache.noop" class="League\Flysystem\Cached\Storage\Noop" abstract="true" public="false" />
+               <service id="oneup_flysystem.cache.memcached" class="League\Flysystem\Cached\Storage\Memcached" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Key -->
                    <argument /><!-- Expires -->
                </service>
-               <service id="oneup_flysystem.cache.predis" class="League\Flysystem\Cache\Predis" abstract="true" public="false">
+               <service id="oneup_flysystem.cache.predis" class="League\Flysystem\Cached\Storage\Predis" abstract="true" public="false">
                    <argument /><!-- Client -->
+                   <argument /><!-- Key -->
+                   <argument /><!-- Expires -->
+               </service>
+               <service id="oneup_flysystem.cache.stash" class="League\Flysystem\Cached\Storage\Stash" abstract="true" public="false">
+                   <argument /><!-- Pool -->
                    <argument /><!-- Key -->
                    <argument /><!-- Expires -->
                </service>
