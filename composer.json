@@ -16,7 +16,10 @@
 
     "require": {
         "symfony/framework-bundle": ">=2.0",
-        "league/flysystem": "~1.0",
+        "league/flysystem": "~1.0"
+    },
+
+    "require-dev": {
         "league/flysystem-rackspace": "1.0.0",
         "league/flysystem-webdav": "1.0.0",
         "league/flysystem-aws-s3-v2": "1.0.0",
@@ -24,10 +27,7 @@
         "league/flysystem-dropbox": "1.0.0",
         "league/flysystem-cached-adapter": "1.0.0",
         "league/flysystem-sftp": "1.0.0",
-        "league/flysystem-ziparchive": "1.0.0"
-    },
-
-    "require-dev": {
+        "league/flysystem-ziparchive": "1.0.0",
         "phpunit/phpunit": "4.4.*",
         "symfony/finder": ">=2.0",
         "symfony/browser-kit": ">=2.0"
