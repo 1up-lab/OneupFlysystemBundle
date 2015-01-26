@@ -73,6 +73,7 @@ There are a bunch of adapters for you to use:
 * [WebDav](adapter_webdav.md)
 * [ZipArchive](adapter_ziparchive.md)
 * [GridFS](adapter_gridfs.md)
+* [Copy.com](https://github.com/copy-app/php-client-library)
 
 ### Step 4: Next steps
 
