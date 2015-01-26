@@ -18,8 +18,8 @@ oneup_flysystem:
 
     adapters:
         myadapter:
-            sftp:
-                host: myhost.com
+            local:
+                directory: %kernel.root_dir%/cache
 
     filesystems:
         myfilesystem:
@@ -30,10 +30,12 @@ oneup_flysystem:
         myfilesystem2:
             adapter: myadapter
             cache:   mycache
+            visibility: public
 
         myfilesystem3:
             adapter: myadapter
             cache:   mycache
+            visibility: private
 
 services:
     local_plugin:

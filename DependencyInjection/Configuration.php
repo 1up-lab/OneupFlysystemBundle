@@ -2,6 +2,7 @@
 
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
+use League\Flysystem\AdapterInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -73,6 +74,11 @@ class Configuration implements ConfigurationInterface
 
     private function addFilesystemSection(ArrayNodeDefinition $node)
     {
+        $supportedVisibilities = array(
+            AdapterInterface::VISIBILITY_PRIVATE,
+            AdapterInterface::VISIBILITY_PUBLIC,
+        );
+
         $node
             ->fixXmlConfig('filesystem')
             ->children()
@@ -84,6 +90,11 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()
                         ->scalarNode('mount')->defaultNull()->end()
+                        ->scalarNode('visibility')
+                            ->validate()
+                            ->ifNotInArray($supportedVisibilities)
+                            ->thenInvalid('The visibility %s is not supported.')
+                        ->end()
                     ->end()
                 ->end()
             ->end()

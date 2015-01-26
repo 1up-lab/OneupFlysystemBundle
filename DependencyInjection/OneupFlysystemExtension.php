@@ -82,7 +82,13 @@ class OneupFlysystemExtension extends Extension
 
         $cache = null;
         if (array_key_exists($config['cache'], $caches)) {
-            $cache = new Reference($caches[$config['cache']]);
+            $cache = $caches[$config['cache']];
+
+            $container
+                ->setDefinition($adapter.'_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
+                ->replaceArgument(0, new Reference($adapter))
+                ->replaceArgument(1, new Reference($cache))
+             ;
         }
 
         $tagParams = array('key' => $name);
@@ -91,13 +97,16 @@ class OneupFlysystemExtension extends Extension
             $tagParams['mount'] = $config['mount'];
         }
 
+        $options = [];
+        if (array_key_exists('visibility', $config)) {
+            $options['visibility'] = $config['visibility'];
+        }
+
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
-            ->replaceArgument(1, $cache)
+            ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
-        ;
-
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
             $container->setAlias($config['alias'], $id);
@@ -115,7 +124,7 @@ class OneupFlysystemExtension extends Extension
 
         return array(
             $this->getAdapterFactories($container),
-            $this->getCacheFactories($container)
+            $this->getCacheFactories($container),
         );
     }
 
