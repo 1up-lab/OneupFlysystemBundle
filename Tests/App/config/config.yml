@@ -18,8 +18,8 @@ oneup_flysystem:
 
     adapters:
         myadapter:
-            sftp:
-                host: myhost.com
+            local:
+                directory: %kernel.root_dir%/cache
 
     filesystems:
         myfilesystem:
