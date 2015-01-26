@@ -6,7 +6,6 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
-
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 
 class AwsS3V3Factory implements AdapterFactoryInterface

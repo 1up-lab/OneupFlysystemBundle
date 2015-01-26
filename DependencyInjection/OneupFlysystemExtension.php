@@ -85,7 +85,7 @@ class OneupFlysystemExtension extends Extension
             $cache = $caches[$config['cache']];
 
             $container
-                ->setDefinition($adapter . '_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
+                ->setDefinition($adapter.'_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
                 ->replaceArgument(0, new Reference($adapter))
                 ->replaceArgument(1, new Reference($cache))
              ;
@@ -107,8 +107,6 @@ class OneupFlysystemExtension extends Extension
             ->replaceArgument(0, new Reference($adapter))
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
-        ;
-
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
             $container->setAlias($config['alias'], $id);
@@ -126,7 +124,7 @@ class OneupFlysystemExtension extends Extension
 
         return array(
             $this->getAdapterFactories($container),
-            $this->getCacheFactories($container)
+            $this->getCacheFactories($container),
         );
     }
 

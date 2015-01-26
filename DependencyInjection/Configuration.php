@@ -76,7 +76,7 @@ class Configuration implements ConfigurationInterface
     {
         $supportedVisibilities = array(
             AdapterInterface::VISIBILITY_PRIVATE,
-            AdapterInterface::VISIBILITY_PUBLIC
+            AdapterInterface::VISIBILITY_PUBLIC,
         );
 
         $node
