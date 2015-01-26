@@ -69,9 +69,29 @@ oneup_flysystem:
                 expires: ~
 ```
 
+### [Stash](https://github.com/tedious/Stash)
+
+> Stash makes it easy to speed up your code by caching the results of expensive functions or code. Certain actions, like database queries or calls to external APIs, take a lot of time to run but tend to have the same results over short periods of time. This makes it much more efficient to store the results and call them back up later.
+
+To learn more about available drivers, check out http://www.stashphp.com/.
+
+```yml
+services:
+    cache.stash:
+        class: Stash\Pool
+
+oneup_flysystem:
+    cache:
+        my_cache:
+            stash:
+                pool: cache.stash
+                key: ~ # defaults to "flysystem"
+                expires: ~ # defaults to "300"
+```
+
 ### Noop
 
-> This strategy prevents any kind of caching, even in the current request. Use with caution!
+This strategy prevents any kind of caching, even in the current request. Use with caution!
 
 ```yml
 oneup_flysystem:
