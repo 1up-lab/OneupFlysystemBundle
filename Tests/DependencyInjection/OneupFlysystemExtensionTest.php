@@ -65,4 +65,24 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('prefix2'));
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('unrelated'));
     }
+
+    public function testAdapterAvailability()
+    {
+        /** @var \SimpleXMLElement $adapters */
+        $adapters = simplexml_load_file(__DIR__.'/../../Resources/config/adapters.xml');
+
+        foreach ($adapters->children()->children() as $service) {
+            foreach ($service->attributes() as $key => $attribute) {
+
+                // skip awss3v2 test - it's still BETA
+                if ('id' === (string)$key && 'oneup_flysystem.adapter.awss3v3' === (string)$attribute) {
+                    break;
+                }
+
+                if ('class' === (string)$key) {
+                    $this->assertTrue(class_exists((string)$attribute), 'Could not load class: ' . (string)$attribute);
+                }
+            }
+        }
+    }
 }
