@@ -24,6 +24,22 @@ The naming scheme follows a simple rule: `oneup_flysystem.%s_filesystem` whereas
 The `$filesystem` variable is of the type [`League\Filesystem`](https://github.com/thephpleague/flysystem/blob/master/src/Filesystem.php).
 Please refer to the [*General Usage* section](https://github.com/thephpleague/flysystem#general-usage) in the official documentation for details.
 
+You can alias your filesystem by providing an `alias` key.
+
+```
+oneup_flysystem:
+    adapter: ~
+    filesystems:
+        acme:
+            adapter: my_adapter
+            alias: acme_filesystem
+```
+Afterwards, the filesystem service is aliased with the provided value and can be retrieved like this:
+
+```php
+$filesystem = $container->get('acme_filesystem');
+```
+
 ## Use the Mount Manager
 
 If you provided a mount prefix, you can also access the filesystem through the [MountManager](https://github.com/thephpleague/flysystem/blob/master/src/MountManager.php).
