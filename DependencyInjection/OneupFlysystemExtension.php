@@ -82,7 +82,13 @@ class OneupFlysystemExtension extends Extension
 
         $cache = null;
         if (array_key_exists($config['cache'], $caches)) {
-            $cache = new Reference($caches[$config['cache']]);
+            $cache = $caches[$config['cache']];
+
+            $container
+                ->setDefinition($adapter . '_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
+                ->replaceArgument(0, new Reference($adapter))
+                ->replaceArgument(1, new Reference($cache))
+             ;
         }
 
         $tagParams = array('key' => $name);
@@ -94,7 +100,6 @@ class OneupFlysystemExtension extends Extension
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
-            ->replaceArgument(1, $cache)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
         ;
 
