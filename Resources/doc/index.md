@@ -81,4 +81,4 @@ After installing and setting up the basic functionality of this bundle you can m
 * [Create and use your filesystems](filesystem_create.md)
 * [Cache your filesystems](filesystem_cache.md)
 * [Plugin filesystems](filesystem_plugin.md)
-* Running the tests
+* [Running the tests](tests.md)
