@@ -9,17 +9,17 @@ use Symfony\Component\DependencyInjection\Reference;
 
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 
-class AwsS3Factory implements AdapterFactoryInterface
+class AwsS3V2Factory implements AdapterFactoryInterface
 {
     public function getKey()
     {
-        return 'awss3';
+        return 'awss3v2';
     }
 
     public function create(ContainerBuilder $container, $id, array $config)
     {
         $definition = $container
-            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.awss3'))
+            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.awss3v2'))
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['bucket'])
             ->replaceArgument(2, $config['prefix'])
