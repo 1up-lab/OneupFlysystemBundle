@@ -2,6 +2,8 @@
 
 namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 
+use League\Flysystem\AdapterInterface;
+use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 
@@ -10,6 +12,38 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     public function testIfTestSuiteLoads()
     {
         $this->assertTrue(true);
+    }
+
+    public function testVisibilitySettings()
+    {
+        /**
+         * No visibility flag set.
+         *
+         * @var Filesystem $filesystem1
+         */
+        $filesystem1 = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+
+        /**
+         * Visibility flag is set to "public"
+         *
+         * @var Filesystem $filesystem1
+         */
+        $filesystem2 = $this->container->get('oneup_flysystem.myfilesystem2_filesystem');
+
+        /**
+         * Visibility flag ist set to "private"
+         *
+         * @var Filesystem $filesystem1
+         */
+        $filesystem3 = $this->container->get('oneup_flysystem.myfilesystem3_filesystem');
+
+        $filesystem1->write('1/meep', 'meep\'s content');
+        $filesystem2->write('2/meep', 'meep\'s content');
+        $filesystem3->write('3/meep', 'meep\'s content');
+
+        $this->assertEquals(AdapterInterface::VISIBILITY_PUBLIC, $filesystem1->getVisibility('1/meep'));
+        $this->assertEquals(AdapterInterface::VISIBILITY_PUBLIC, $filesystem2->getVisibility('2/meep'));
+        $this->assertEquals(AdapterInterface::VISIBILITY_PRIVATE, $filesystem3->getVisibility('3/meep'));
     }
 
     public function testIfMountManagerIsFilled()

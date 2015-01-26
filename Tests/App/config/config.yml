@@ -30,10 +30,12 @@ oneup_flysystem:
         myfilesystem2:
             adapter: myadapter
             cache:   mycache
+            visibility: public
 
         myfilesystem3:
             adapter: myadapter
             cache:   mycache
+            visibility: private
 
 services:
     local_plugin:

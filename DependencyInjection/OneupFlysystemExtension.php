@@ -97,9 +97,15 @@ class OneupFlysystemExtension extends Extension
             $tagParams['mount'] = $config['mount'];
         }
 
+        $options = [];
+        if (array_key_exists('visibility', $config)) {
+            $options['visibility'] = $config['visibility'];
+        }
+
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($adapter))
+            ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
         ;
 
