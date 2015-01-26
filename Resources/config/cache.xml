@@ -4,6 +4,11 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
            <services>
+               <service id="oneup_flysystem.cache.adapter" class="League\Flysystem\Cached\Storage\Adapter" abstract="true" public="false">
+                   <argument /><!-- Adapter -->
+                   <argument /><!-- Key -->
+                   <argument /><!-- Expires -->
+               </service>
                <service id="oneup_flysystem.cache.memory" class="League\Flysystem\Cached\Storage\Memory" abstract="true" public="false" />
                <service id="oneup_flysystem.cache.noop" class="League\Flysystem\Cached\Storage\Noop" abstract="true" public="false" />
                <service id="oneup_flysystem.cache.memcached" class="League\Flysystem\Cached\Storage\Memcached" abstract="true" public="false">
