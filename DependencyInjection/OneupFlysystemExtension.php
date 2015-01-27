@@ -104,9 +104,11 @@ class OneupFlysystemExtension extends Extension
 
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
-            ->replaceArgument(0, new Reference($adapter))
+            ->replaceArgument(0, new Reference($cache ? $adapter . '_cached' : $adapter))
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
+
+
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
             $container->setAlias($config['alias'], $id);

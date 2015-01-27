@@ -43,6 +43,9 @@
                </service>
 
                <!-- Cache factories -->
+               <service id="oneup_flysystem.cache_factory.adapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\AdapterFactory">
+                   <tag name="oneup_flysystem.cache_factory" />
+               </service>
                <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
                    <tag name="oneup_flysystem.cache_factory" />
                </service>
