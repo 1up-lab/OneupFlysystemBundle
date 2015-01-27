@@ -21,7 +21,7 @@ class OneupFlysystemExtension extends Extension
         $configuration = new Configuration($adapterFactories, $cacheFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
         $loader->load('cache.xml');
@@ -85,10 +85,9 @@ class OneupFlysystemExtension extends Extension
             $cache = $caches[$config['cache']];
 
             $container
-                ->setDefinition($adapter.'_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
+                ->setDefinition($adapter . '_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
                 ->replaceArgument(0, new Reference($adapter))
-                ->replaceArgument(1, new Reference($cache))
-             ;
+                ->replaceArgument(1, new Reference($cache));
         }
 
         $tagParams = array('key' => $name);
@@ -114,6 +113,13 @@ class OneupFlysystemExtension extends Extension
             $container->setAlias($config['alias'], $id);
         }
 
+        // add plugins
+        if (isset($config['plugins']) && is_array($config['plugins'])) {
+            foreach ($config['plugins'] as $pluginId) {
+                $container->getDefinition($id)->addMethodCall('addPlugin', array(new Reference($pluginId)));
+            }
+        }
+
         return new Reference($id);
     }
 
@@ -121,7 +127,7 @@ class OneupFlysystemExtension extends Extension
     {
         // load bundled factories
         $container = new ContainerBuilder();
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
         return array(
@@ -137,7 +143,7 @@ class OneupFlysystemExtension extends Extension
         }
 
         $factories = array();
-        $services  = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
+        $services = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
 
         foreach (array_keys($services) as $id) {
             $factory = $container->get($id);
@@ -154,7 +160,7 @@ class OneupFlysystemExtension extends Extension
         }
 
         $factories = array();
-        $services  = $container->findTaggedServiceIds('oneup_flysystem.cache_factory');
+        $services = $container->findTaggedServiceIds('oneup_flysystem.cache_factory');
 
         foreach (array_keys($services) as $id) {
             $factory = $container->get($id);

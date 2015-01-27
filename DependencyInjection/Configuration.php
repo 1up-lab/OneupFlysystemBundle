@@ -86,6 +86,7 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                     ->children()
+                        ->arrayNode('plugins')->treatNullLike(array())->prototype('scalar')->end()->end()
                         ->scalarNode('adapter')->isRequired()->end()
                         ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()
