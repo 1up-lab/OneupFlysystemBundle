@@ -28,6 +28,20 @@ $> php composer.phar update oneup/flysystem-bundle
 
 Composer will now fetch and install this bundle in the vendor directory `vendor/oneup`
 
+**Note**: There are some additional dependencies you will need to install for some of the features:
+
+* The AwsS3 adapter requires `"league/flysystem-aws-s3-v2"`
+* The Azure adapter requires `"league/flysystem-azure"`
+* The Copy adapter requires `"league/flysystem-copy"`
+* The Dropbox adapter requires `"league/flysystem-dropbox"`
+* The GridFS adapter requires `"league/flysystem-gridfs"`
+* The Rackspace adapter requires `"league/flysystem-rackspace"`
+* The Sftp adapter requires `"league/flysystem-sftp"`
+* The WebDav adapter requires `"league/flysystem-webdav"`
+* The ZipAdapter adapter requires `"league/flysystem-ziparchive"`
+* The adapter caching support requires `"league/flysystem-cached-adapter"`
+* The eventable filesystem support requires `"league/flysystem-eventable-filesystem"`
+
 ### Step 2: Enable the bundle
 Enable the bundle in the kernel:
 
