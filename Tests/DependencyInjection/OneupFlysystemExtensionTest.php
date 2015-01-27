@@ -84,4 +84,15 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
             }
         }
     }
+
+    /**
+     * Checks if a filesystem with configured cached is from type CachedAdapter.
+     */
+    public function testIfCachedAdapterAreCached()
+    {
+        $filesystem = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+        $adapter = $filesystem->getAdapter();
+
+        $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $adapter);
+    }
 }
