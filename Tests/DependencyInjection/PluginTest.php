@@ -1,12 +1,12 @@
 <?php
 
-namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
+namespace Oneup\FlysystemBundle\Tests;
 
 use League\Flysystem\FilesystemInterface;
 use League\Flysystem\PluginInterface;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 
-class PluginPassTest extends ContainerAwareTestCase
+class PluginTest extends ContainerAwareTestCase
 {
     public function testIfSinglePluginIsAttached()
     {

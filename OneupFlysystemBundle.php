@@ -12,6 +12,5 @@ class OneupFlysystemBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new FilesystemPass());
-        $container->addCompilerPass(new PluginPass());
     }
 }

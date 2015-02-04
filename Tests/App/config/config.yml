@@ -26,30 +26,31 @@ oneup_flysystem:
             adapter: myadapter
             cache:   mycache
             mount:   prefix
+            plugins:
+                - local_plugin
+                - global_plugin
 
         myfilesystem2:
             adapter: myadapter
             cache:   mycache
             visibility: public
+            plugins:
+                - global_plugin
+                - multiple_plugin
 
         myfilesystem3:
             adapter: myadapter
             cache:   mycache
             visibility: private
+            plugins:
+                - global_plugin
 
 services:
     local_plugin:
         class: Oneup\FlysystemBundle\Tests\Model\Plugin
-        tags:
-            - { name: oneup_flysystem.plugin, filesystem: myfilesystem }
 
     global_plugin:
         class: Oneup\FlysystemBundle\Tests\Model\Plugin
-        tags:
-            - { name: oneup_flysystem.plugin }
 
     multiple_plugin:
         class: Oneup\FlysystemBundle\Tests\Model\Plugin
-        tags:
-            - { name: oneup_flysystem.plugin, filesystem: myfilesystem  }
-            - { name: oneup_flysystem.plugin, filesystem: myfilesystem2 }
