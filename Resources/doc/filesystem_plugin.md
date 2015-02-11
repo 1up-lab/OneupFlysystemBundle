@@ -1,21 +1,47 @@
 # Create a filesystem plugin
 
-The only thing you have to do is to respect the Flysystem plugin API and to add your class as a non-abstract service tagged with "oneup_flysystem.filesystem_plugin"
-You can provide the filesystem property to attach the plugin to a specific plugin. If you leave it empty, it will be attached to all filesystems defined within the configuration of this bundle.
+The only thing you have to do is to respect the Flysystem plugin API as all the plugins must implement the [PluginInterface](https://github.com/thephpleague/flysystem/blob/master/src/PluginInterface.php) provided by the flysystem library.
 
-```xml
-<services>
-    <!-- A global plugin -->
-    <service id="myname_bundle.first_plugin" class="MyName\Bundle\MyAwesomePlugin">
-       <tag name="oneup_flysystem.filesystem_plugin" />
-    </service>
+```php
 
-    <!-- A local plugin -->
-    <service id="myname_bundle.second_plugin" class="MyName\Bundle\MyAwesomePlugin">
-       <tag name="oneup_flysystem.filesystem_plugin" filesystem="foobar" />
-    </service>
-   ...
-</services>
+<?php
+
+namespace Acme\WebBundle\Services;
+
+use League\Flysystem\Plugin\AbstractPlugin;
+
+class ExamplePlugin extends AbstractPlugin
+{
+    public function getMethod()
+    {
+        return 'performThisMethod';
+    }
+
+    public function handle($dirname)
+    {
+        $filesystem = $this->filesystem;
+
+        // Do something meaningfull.
+    }
+}
+
 ```
 
-While `first_plugin` is availabe in all the filesystems, the plugin `second_plugin` will only be attached to the filesystem with the name `foobar`.
+Register your plugin by creating a service:
+
+```xml
+<service id="acme_web.example_plugin" class="Acme\WebBundle\Services\ExamplePlugin" />
+```
+
+And configure your filesystem to use this plugin:
+
+```yml
+oneup_flysystem:
+    filesystems:
+        my_filesystem:
+            adapter: #
+            plugins:
+                - acme_web.example_plugin
+```
+
+Afterwards, the plugin is registered on the configured filesystem and you should be able to call the `performThisMethod` method on that particular object.

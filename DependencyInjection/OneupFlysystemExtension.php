@@ -25,6 +25,7 @@ class OneupFlysystemExtension extends Extension
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
         $loader->load('cache.xml');
+        $loader->load('plugins.xml');
 
         $adapters = array();
         $filesystems = array();
@@ -113,10 +114,12 @@ class OneupFlysystemExtension extends Extension
             $container->setAlias($config['alias'], $id);
         }
 
-        // add plugins
+        // Attach Plugins
+        $defFilesystem = $container->getDefinition($id);
+
         if (isset($config['plugins']) && is_array($config['plugins'])) {
             foreach ($config['plugins'] as $pluginId) {
-                $container->getDefinition($id)->addMethodCall('addPlugin', array(new Reference($pluginId)));
+                $defFilesystem->addMethodCall('addPlugin', array(new Reference($pluginId)));
             }
         }
 

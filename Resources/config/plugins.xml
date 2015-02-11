@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="oneup_flysystem.plugin.empty_dir" class="League\Flysystem\Plugin\EmptyDir" />
+        <service id="oneup_flysystem.plugin.get_with_metadata" class="League\Flysystem\Plugin\GetWithMetadata" />
+        <service id="oneup_flysystem.plugin.list_files" class="League\Flysystem\Plugin\ListFiles" />
+        <service id="oneup_flysystem.plugin.list_paths" class="League\Flysystem\Plugin\ListPaths" />
+        <service id="oneup_flysystem.plugin.list_with" class="League\Flysystem\Plugin\ListWith" />
+    </services>
+
+</container>
