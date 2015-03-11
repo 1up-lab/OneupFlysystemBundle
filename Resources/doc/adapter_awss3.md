@@ -22,7 +22,7 @@ Set this service as the value of the `client` key in the `oneup_flysystem` confi
 oneup_flysystem:
     adapters:
         acme.flysystem_adapter:
-            awss3:
+            awss3v2:
                 client: acme.s3_client
                 bucket: ~
                 prefix: ~
