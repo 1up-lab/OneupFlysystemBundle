@@ -31,7 +31,7 @@ oneup_flysystem:
     adapters:
         acme.flysystem_adapter:
             gridfs:
-                client: acme.gridfs_client
+                client: acme_test.gridfs_client
 ```
 
 ## More to know
