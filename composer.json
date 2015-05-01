@@ -29,8 +29,6 @@
     },
 
     "autoload": {
-        "psr-0": { "Oneup\\FlysystemBundle": "" }
-    },
-
-    "target-dir": "Oneup/FlysystemBundle"
+        "psr-4": { "Oneup\\FlysystemBundle\\": "" }
+    }
 }
