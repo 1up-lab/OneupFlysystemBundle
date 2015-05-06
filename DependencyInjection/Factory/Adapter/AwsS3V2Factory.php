@@ -22,6 +22,7 @@ class AwsS3V2Factory implements AdapterFactoryInterface
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['bucket'])
             ->replaceArgument(2, $config['prefix'])
+            ->addArgument((array)$config['options'])
         ;
     }
 
@@ -29,9 +30,10 @@ class AwsS3V2Factory implements AdapterFactoryInterface
     {
         $node
             ->children()
-                ->scalarNode('client')->isRequired()->end()
-                ->scalarNode('bucket')->isRequired()->end()
-                ->scalarNode('prefix')->defaultNull()->end()
+            ->scalarNode('client')->isRequired()->end()
+            ->scalarNode('bucket')->isRequired()->end()
+            ->scalarNode('prefix')->defaultNull()->end()
+            ->arrayNode('options')->prototype('scalar')->end()
             ->end()
         ;
     }
