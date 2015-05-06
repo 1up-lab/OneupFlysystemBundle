@@ -22,7 +22,7 @@ $filesystem = $container->get('oneup_flysystem.acme_filesystem');
 The naming scheme follows a simple rule: `oneup_flysystem.%s_filesystem` whereas `%s` is the name (config key) of your filesystem.
 
 The `$filesystem` variable is of the type [`League\Filesystem`](https://github.com/thephpleague/flysystem/blob/master/src/Filesystem.php).
-Please refer to the [*General Usage* section](https://github.com/thephpleague/flysystem#general-usage) in the official documentation for details.
+Please refer to the [*General Usage* section](http://flysystem.thephpleague.com/api/#general-usage) in the official documentation for details.
 
 You can alias your filesystem by providing an `alias` key.
 
