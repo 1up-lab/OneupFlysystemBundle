@@ -30,10 +30,10 @@ class AwsS3V2Factory implements AdapterFactoryInterface
     {
         $node
             ->children()
-            ->scalarNode('client')->isRequired()->end()
-            ->scalarNode('bucket')->isRequired()->end()
-            ->scalarNode('prefix')->defaultNull()->end()
-            ->arrayNode('options')->prototype('scalar')->end()
+                ->scalarNode('client')->isRequired()->end()
+                ->scalarNode('bucket')->isRequired()->end()
+                ->scalarNode('prefix')->defaultNull()->end()
+                ->arrayNode('options')->prototype('scalar')->end()
             ->end()
         ;
     }
