@@ -114,6 +114,17 @@ class OneupFlysystemExtension extends Extension
             $container->setAlias($config['alias'], $id);
         }
 
+        // Enable stream wrapper if needed
+        if (null !== $config['stream_wrapper']) {
+            // Check if twistor/flysystem-stream-wrapper is installed, otherwise this feature can
+            // not be used.
+            if (!class_exists('Twistor\FlysystemStreamWrapper')) {
+                throw new InvalidConfigurationException('twistor/flysystem-stream-wrapper must be installed to use the stream wrapper feature.');
+            }
+
+            // Register event handler
+        }
+
         // Attach Plugins
         $defFilesystem = $container->getDefinition($id);
 

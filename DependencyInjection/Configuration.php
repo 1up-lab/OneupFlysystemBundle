@@ -91,6 +91,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()
                         ->scalarNode('mount')->defaultNull()->end()
+                        ->scalarNode('stream_wrapper')->defaultNull()->end()
                         ->scalarNode('visibility')
                             ->validate()
                             ->ifNotInArray($supportedVisibilities)
