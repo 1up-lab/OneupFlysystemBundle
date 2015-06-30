@@ -58,6 +58,9 @@
                <service id="oneup_flysystem.cache_factory.predis" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\PredisFactory">
                    <tag name="oneup_flysystem.cache_factory" />
                </service>
+               <service id="oneup_flysystem.cache_factory.stash" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\StashFactory">
+                   <tag name="oneup_flysystem.cache_factory" />
+               </service>
            </services>
 
 </container>
