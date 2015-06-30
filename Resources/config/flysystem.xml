@@ -7,7 +7,7 @@
                <service id="oneup_flysystem.mount_manager" class="League\Flysystem\MountManager" />
                <service id="oneup_flysystem.filesystem" class="League\Flysystem\Filesystem" abstract="true" public="true">
                    <argument /><!-- Adapter -->
-                   <argument /><!-- Cache -->
+                   <argument /><!-- Config -->
                </service>
            </services>
 

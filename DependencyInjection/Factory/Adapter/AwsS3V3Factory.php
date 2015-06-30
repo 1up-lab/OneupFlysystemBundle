@@ -8,19 +8,20 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 
-class RackspaceFactory implements AdapterFactoryInterface
+class AwsS3V3Factory implements AdapterFactoryInterface
 {
     public function getKey()
     {
-        return 'rackspace';
+        return 'awss3v3';
     }
 
     public function create(ContainerBuilder $container, $id, array $config)
     {
         $definition = $container
-            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.rackspace'))
-            ->replaceArgument(0, new Reference($config['container']))
-            ->replaceArgument(1, $config['prefix'])
+            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.awss3v3'))
+            ->replaceArgument(0, new Reference($config['client']))
+            ->replaceArgument(1, $config['bucket'])
+            ->replaceArgument(2, $config['prefix'])
         ;
     }
 
@@ -28,7 +29,8 @@ class RackspaceFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
-                ->scalarNode('container')->isRequired()->end()
+                ->scalarNode('client')->isRequired()->end()
+                ->scalarNode('bucket')->isRequired()->end()
                 ->scalarNode('prefix')->defaultNull()->end()
             ->end()
         ;

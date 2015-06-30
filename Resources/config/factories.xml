@@ -14,10 +14,13 @@
                <service id="oneup_flysystem.adapter_factory.zip" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\ZipFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
-               <service id="oneup_flysystem.adapter_factory.awss3v2" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3Factory">
+               <service id="oneup_flysystem.adapter_factory.awss3v2" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V2Factory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
-               <service id="oneup_flysystem.adapter_factory.awss3v3" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3Factory">
+               <service id="oneup_flysystem.adapter_factory.awss3v3" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V3Factory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
+               <service id="oneup_flysystem.adapter_factory.copy" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CopyFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
                <service id="oneup_flysystem.adapter_factory.dropbox" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\DropboxFactory">
@@ -40,6 +43,9 @@
                </service>
 
                <!-- Cache factories -->
+               <service id="oneup_flysystem.cache_factory.adapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\AdapterFactory">
+                   <tag name="oneup_flysystem.cache_factory" />
+               </service>
                <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
                    <tag name="oneup_flysystem.cache_factory" />
                </service>

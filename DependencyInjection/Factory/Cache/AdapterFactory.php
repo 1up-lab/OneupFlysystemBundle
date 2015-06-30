@@ -8,18 +8,18 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\CacheFactoryInterface;
 
-class MemcachedFactory implements CacheFactoryInterface
+class AdapterFactory implements CacheFactoryInterface
 {
     public function getKey()
     {
-        return 'memcached';
+        return 'adapter';
     }
 
     public function create(ContainerBuilder $container, $id, array $config)
     {
         $container
-            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.cache.memcached'))
-            ->replaceArgument(0, new Reference($config['client']))
+            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.cache.adapter'))
+            ->replaceArgument(0, new Reference(sprintf('oneup_flysystem.%s_adapter', $config['adapter'])))
             ->replaceArgument(1, $config['key'])
             ->replaceArgument(2, $config['expires'])
         ;
@@ -29,7 +29,7 @@ class MemcachedFactory implements CacheFactoryInterface
     {
         $node
             ->children()
-                ->scalarNode('client')->isRequired()->end()
+                ->scalarNode('adapter')->isRequired()->end()
                 ->scalarNode('key')->defaultValue('flysystem')->end()
                 ->scalarNode('expires')->defaultNull()->end()
             ->end()

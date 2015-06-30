@@ -5,8 +5,6 @@ namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
-use Symfony\Component\DependencyInjection\Reference;
-
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 
 class FtpFactory implements AdapterFactoryInterface
