@@ -16,6 +16,10 @@
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
                </service>
+               <service id="oneup_flysystem.adapter.azure" class="League\Flysystem\Azure\AzureAdapter" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Container -->
+               </service>
                <service id="oneup_flysystem.adapter.awss3v2" class="League\Flysystem\AwsS3v2\AwsS3Adapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Bucket -->
