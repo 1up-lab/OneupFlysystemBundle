@@ -6,6 +6,8 @@
            <services>
                <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Adapter\Local" abstract="true" public="false">
                    <argument /><!-- Directory -->
+                   <argument /><!-- WriteFlags -->
+                   <argument /><!-- LinkHandling -->
                </service>
                <service id="oneup_flysystem.adapter.cached" class="League\Flysystem\Cached\CachedAdapter" abstract="true" public="false">
                    <argument /><!-- Adapter -->

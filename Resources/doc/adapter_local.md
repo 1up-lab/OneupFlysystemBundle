@@ -10,7 +10,11 @@ oneup_flysystem:
         my_adapter:
             local:
                 directory: %kernel.root_dir%/../uploads
+                writeFlags: ~
+                linkHandling: ~
 ```
+
+For more details on the other parameters, take a look at the [Flysystem documentation](http://flysystem.thephpleague.com/adapter/local/).
 
 ## More to know
 * [Create and use your filesystem](filesystem_create.md)
