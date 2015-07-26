@@ -31,6 +31,7 @@ class AzureFactory implements AdapterFactoryInterface
             ->children()
                 ->scalarNode('client')->isRequired()->end()
                 ->scalarNode('container')->isRequired()->end()
+                ->scalarNode('prefix')->defaultNull()->end()
             ->end()
         ;
     }
