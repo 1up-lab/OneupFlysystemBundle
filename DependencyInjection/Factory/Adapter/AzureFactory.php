@@ -21,6 +21,7 @@ class AzureFactory implements AdapterFactoryInterface
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.azure'))
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['container'])
+            ->replaceArgument(2, $config['prefix'])
         ;
     }
 
