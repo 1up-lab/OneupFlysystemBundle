@@ -49,7 +49,13 @@
         "league/flysystem-webdav": "Allows you to use WebDAV storage",
         "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
     },
-
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.php.net"
+        }
+    ],
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": { "Oneup\\FlysystemBundle\\": "" }
     }
