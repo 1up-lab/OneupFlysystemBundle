@@ -17,6 +17,7 @@
                <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\ZipArchive\ZipArchiveAdapter" abstract="true" public="false">
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
+                   <argument /><!-- Prefix -->
                </service>
                <service id="oneup_flysystem.adapter.awss3v2" class="League\Flysystem\AwsS3v2\AwsS3Adapter" abstract="true" public="false">
                    <argument /><!-- Client -->
