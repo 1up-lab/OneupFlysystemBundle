@@ -88,6 +88,7 @@ There are a bunch of adapters for you to use:
 * [ZipArchive](adapter_ziparchive.md)
 * [GridFS](adapter_gridfs.md)
 * [Copy.com](https://github.com/copy-app/php-client-library)
+* [Custom](adapter_custom.md)
 
 ### Step 4: Next steps
 
@@ -97,3 +98,4 @@ After installing and setting up the basic functionality of this bundle you can m
 * [Cache your filesystems](filesystem_cache.md)
 * [Plugin filesystems](filesystem_plugin.md)
 * [Running the tests](tests.md)
+* [Use your own flysystem adapters](adapter_custom.md)
