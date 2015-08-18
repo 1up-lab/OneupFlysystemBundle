@@ -16,6 +16,24 @@ services:
                 secret: "s3-secret"
 ```
 
+For the China (Beijing) and EU (Frankfurt) regions, Amazon S3 supports only Signature Version 4, and AWS SDKs use this signature version to authenticate requests. [aws doc] (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html)
+
+You should add some extras configs options :
+
+```yml
+services:
+    acme.s3_client:
+        class: Aws\S3\S3Client
+        factory_class: Aws\S3\S3Client
+        factory_method: factory
+        arguments:
+            -
+                key: "s3-key"
+                secret: "s3-secret"
+                signature: "v4"
+                region: "region-id" // 'eu-central-1' for example
+```
+
 Set this service as the value of the `client` key in the `oneup_flysystem` configuration.
 
 ```yml
