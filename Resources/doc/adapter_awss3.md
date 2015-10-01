@@ -18,7 +18,7 @@ services:
         arguments:
             -
                 version: '2006-03-01' # or 'latest'
-                region: "region-id" // 'eu-central-1' for example
+                region: "region-id" # 'eu-central-1' for example
                 credentials:
                     key: "s3-key"
                     secret: "s3-secret"
@@ -71,7 +71,7 @@ services:
                 key: "s3-key"
                 secret: "s3-secret"
                 signature: "v4"
-                region: "region-id" // 'eu-central-1' for example
+                region: "region-id" # 'eu-central-1' for example
 ```
 
 Set this service as the value of the `client` key in the `oneup_flysystem` configuration.
