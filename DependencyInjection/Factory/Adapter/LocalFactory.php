@@ -22,6 +22,7 @@ class LocalFactory implements AdapterFactoryInterface
             ->replaceArgument(0, $config['directory'])
             ->replaceArgument(1, $config['writeFlags'])
             ->replaceArgument(2, $config['linkHandling'])
+            ->replaceArgument(3, $config['permissions'])
         ;
     }
 
@@ -32,6 +33,10 @@ class LocalFactory implements AdapterFactoryInterface
                 ->scalarNode('directory')->isRequired()->end()
                 ->scalarNode('writeFlags')->defaultValue(LOCK_EX)->end()
                 ->scalarNode('linkHandling')->defaultValue(Local::DISALLOW_LINKS)->end()
+                ->variableNode('permissions')
+                    ->defaultValue([])
+                    ->treatNullLike([])
+                ->end()
             ->end()
         ;
     }

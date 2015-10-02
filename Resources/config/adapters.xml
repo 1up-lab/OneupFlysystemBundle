@@ -8,6 +8,7 @@
                    <argument /><!-- Directory -->
                    <argument /><!-- WriteFlags -->
                    <argument /><!-- LinkHandling -->
+                   <argument /><!-- Permissions -->
                </service>
                <service id="oneup_flysystem.adapter.cached" class="League\Flysystem\Cached\CachedAdapter" abstract="true" public="false">
                    <argument /><!-- Adapter -->
