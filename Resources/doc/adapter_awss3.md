@@ -1,6 +1,6 @@
 # Use the AwsS3 adapter
 
-There are two AwsS3 adapters that yuo can use with this bundle. Below is the configuration for AwsS3v3 and AwsS3v2 adapters.
+There are two AwsS3 adapters that you can use with this bundle. Below is the configuration for AwsS3v3 and AwsS3v2 adapters.
 
 ## AwsS3v3
 
