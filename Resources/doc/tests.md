@@ -7,7 +7,7 @@ In order to run the UnitTests of this bundle, clone it first
 
 After the cloning process, install all vendors by running the corresponding composer command.
 
-    $> php composer.phar udpate --dev
+    $> php composer.phar update --dev
 
 ## Run UnitTests
 You can run the unit tests by simply performing the follwowing command.
