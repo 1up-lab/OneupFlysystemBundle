@@ -9,6 +9,12 @@ php:
 
 env:
   - SYMFONY_VERSION=2.3.*
+  - SYMFONY_VERSION=2.7.*
+  - SYMFONY_VERSION=2.8.*
+
+cache:
+  directories:
+    - $COMPOSER_CACHE_DIR
 
 matrix:
   allow_failures:
