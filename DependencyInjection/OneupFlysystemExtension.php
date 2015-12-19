@@ -87,7 +87,7 @@ class OneupFlysystemExtension extends Extension
             $cache = $caches[$config['cache']];
 
             $container
-                ->setDefinition($adapter . '_cached', new DefinitionDecorator('oneup_flystem_adapter.cached'))
+                ->setDefinition($adapter . '_cached', new DefinitionDecorator('oneup_flysystem.adapter.cached'))
                 ->replaceArgument(0, new Reference($adapter))
                 ->replaceArgument(1, new Reference($cache));
         }

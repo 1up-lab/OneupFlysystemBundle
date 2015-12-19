@@ -4,25 +4,36 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
   - hhvm
 
 env:
   - SYMFONY_VERSION=2.3.*
+  - SYMFONY_VERSION=2.7.*
+  - SYMFONY_VERSION=2.8.*
+
+cache:
+  directories:
+    - $COMPOSER_CACHE_DIR
 
 matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
     - php: hhvm
   include:
-    - php: 5.5
+    - php: 5.6
       env: SYMFONY_VERSION=2.4.*
-    - php: 5.5
+    - php: 5.6
       env: SYMFONY_VERSION=2.5.*
-    - php: 5.5
+    - php: 5.6
       env: SYMFONY_VERSION=2.6.*
-    - php: 5.5
+    - php: 5.6
       env: SYMFONY_VERSION=2.7.*
-    - php: 5.5
+    - php: 5.6
+      env: SYMFONY_VERSION=2.8.*
+    - php: 5.6
+      env: SYMFONY_VERSION=3.0.*
+    - php: 5.6
       env: SYMFONY_VERSION=dev-master
 
 before_script:

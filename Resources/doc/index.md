@@ -30,7 +30,8 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 
 **Note**: There are some additional dependencies you will need to install for some of the features:
 
-* The AwsS3 adapter requires `"league/flysystem-aws-s3-v2"`
+* The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
+* The AwsS3v2 adapter requires `"league/flysystem-aws-s3-v2"`
 * The Azure adapter requires `"league/flysystem-azure"`
 * The Copy adapter requires `"league/flysystem-copy"`
 * The Dropbox adapter requires `"league/flysystem-dropbox"`

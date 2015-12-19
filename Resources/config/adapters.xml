@@ -6,8 +6,10 @@
            <services>
                <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Adapter\Local" abstract="true" public="false">
                    <argument /><!-- Directory -->
+                   <argument /><!-- WriteFlags -->
+                   <argument /><!-- LinkHandling -->
                </service>
-               <service id="oneup_flystem_adapter.cached" class="League\Flysystem\Cached\CachedAdapter" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.cached" class="League\Flysystem\Cached\CachedAdapter" abstract="true" public="false">
                    <argument /><!-- Adapter -->
                    <argument /><!-- CacheAdapter -->
                </service>
@@ -15,6 +17,7 @@
                <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\ZipArchive\ZipArchiveAdapter" abstract="true" public="false">
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
+                   <argument /><!-- Prefix -->
                </service>
                <service id="oneup_flysystem.adapter.awss3v2" class="League\Flysystem\AwsS3v2\AwsS3Adapter" abstract="true" public="false">
                    <argument /><!-- Client -->
@@ -39,6 +42,7 @@
                </service>
                <service id="oneup_flysystem.adapter.webdav" class="League\Flysystem\WebDAV\WebDAVAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
+                   <argument /><!-- Prefix -->
                </service>
                <service id="oneup_flysystem.adapter.ftp" class="League\Flysystem\Adapter\Ftp" abstract="true" public="false">
                    <argument /><!-- Options -->
