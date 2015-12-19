@@ -14,6 +14,9 @@
                <service id="oneup_flysystem.adapter_factory.zip" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\ZipFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
+               <service id="oneup_flysystem.adapter_factory.azure" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AzureFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
                <service id="oneup_flysystem.adapter_factory.awss3v2" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V2Factory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
@@ -56,6 +59,9 @@
                    <tag name="oneup_flysystem.cache_factory" />
                </service>
                <service id="oneup_flysystem.cache_factory.predis" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\PredisFactory">
+                   <tag name="oneup_flysystem.cache_factory" />
+               </service>
+               <service id="oneup_flysystem.cache_factory.phpredis" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\PhpRedisFactory">
                    <tag name="oneup_flysystem.cache_factory" />
                </service>
                <service id="oneup_flysystem.cache_factory.stash" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\StashFactory">

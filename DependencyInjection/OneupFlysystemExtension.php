@@ -192,6 +192,27 @@ class OneupFlysystemExtension extends Extension
             $factories[str_replace('-', '_', $factory->getKey())] = $factory;
         }
 
+        // load external factory
+        foreach ($configs[0]['cache'] as $cache => $options) {
+            $key = array_keys($options)[0];
+            if (!array_key_exists($key, $factories) && isset($options[$key]['factory'])) {
+                $factory = $options[$key]['factory'];
+
+                if (false !== strpos($factory, '@')) {
+                    $factoryService = $container->get(substr($factory, 1));
+                } else {
+                    $definition = new Definition($factory);
+                    $factoryId = sprintf('oneup_flysystem.cache_factory.%s', $key);
+                    $container->setDefinition($factoryId, $definition);
+                    $factoryService = $container->get($factoryId);
+                }
+
+                unset($configs[0]['cache'][$cache][$key]['factory']);
+
+                $factories[str_replace('-', '_', $factoryService->getKey())] = $factoryService;
+            }
+        }
+
         return $this->cacheFactories = $factories;
     }
 }

@@ -75,6 +75,26 @@ oneup_flysystem:
                 expires: ~
 ```
 
+### Redis (through PhpRedis)
+
+The Redis cache implementation also works with the PhpRedis library. You can find more in-depth configuration options in the [corresponding documentation](https://github.com/phpredis/phpredis).
+
+```yml
+# note that you have to define and configure the phpredis service yourself
+# you can also use snc_redis for easier configuration  
+services:
+    cache.phpredis:
+        class: Redis
+
+oneup_flysystem:
+    cache:
+        my_cache:
+            phpredis:
+                client: cache.phpredis
+                key: ~
+                expires: ~
+```
+
 ### [Stash](https://github.com/tedious/Stash)
 
 > Stash makes it easy to speed up your code by caching the results of expensive functions or code. Certain actions, like database queries or calls to external APIs, take a lot of time to run but tend to have the same results over short periods of time. This makes it much more efficient to store the results and call them back up later.
