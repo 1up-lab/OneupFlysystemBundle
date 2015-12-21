@@ -24,7 +24,6 @@
         "phpunit/phpunit": "4.4.*",
         "symfony/finder": ">=2.0|~3.0",
         "symfony/browser-kit": ">=2.0|~3.0",
-        "league/flysystem-azure": "~1.0",
         "league/flysystem-aws-s3-v2": "~1.0",
         "league/flysystem-cached-adapter": "~1.0",
         "league/flysystem-copy": "~1.0",
