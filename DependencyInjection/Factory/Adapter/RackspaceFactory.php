@@ -18,8 +18,8 @@ class RackspaceFactory implements AdapterFactoryInterface
     public function create(ContainerBuilder $container, $id, array $config)
     {
         $definition = $container
-            ->setLazy($config['lazy'])
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.rackspace'))
+            ->setLazy($config['lazy'])
             ->replaceArgument(0, new Reference($config['container']))
             ->replaceArgument(1, $config['prefix'])
         ;
