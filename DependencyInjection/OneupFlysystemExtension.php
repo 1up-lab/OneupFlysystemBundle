@@ -44,6 +44,13 @@ class OneupFlysystemExtension extends Extension
         }
     }
 
+    public function getConfiguration(array $config, ContainerBuilder $container)
+    {
+        list($adapterFactories, $cacheFactories) = $this->getFactories();
+
+        return new Configuration($adapterFactories, $cacheFactories);
+    }
+
     private function createCache($name, array $config, ContainerBuilder $container, array $factories)
     {
         foreach ($config as $key => $adapter) {

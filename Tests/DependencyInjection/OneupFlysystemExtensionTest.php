@@ -6,6 +6,8 @@ use League\Flysystem\AdapterInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
+use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 {
@@ -94,5 +96,12 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $adapter = $filesystem->getAdapter();
 
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $adapter);
+    }
+
+    public function testGetConfiguration()
+    {
+        $extension = new OneupFlysystemExtension();
+        $configuration = $extension->getConfiguration([], new ContainerBuilder());
+        $this->assertInstanceOf('Oneup\FlysystemBundle\DependencyInjection\Configuration', $configuration);
     }
 }
