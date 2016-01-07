@@ -19,6 +19,7 @@ class LocalFactory implements AdapterFactoryInterface
     {
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.local'))
+            ->setLazy($config['lazy'])
             ->replaceArgument(0, $config['directory'])
             ->replaceArgument(1, $config['writeFlags'])
             ->replaceArgument(2, $config['linkHandling'])
@@ -29,6 +30,7 @@ class LocalFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
+                ->booleanNode('lazy')->defaultValue(false)->end()
                 ->scalarNode('directory')->isRequired()->end()
                 ->scalarNode('writeFlags')->defaultValue(LOCK_EX)->end()
                 ->scalarNode('linkHandling')->defaultValue(Local::DISALLOW_LINKS)->end()
