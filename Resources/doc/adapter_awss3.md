@@ -13,8 +13,6 @@ This version requires you to use the "v4" of the signature.
 services:
     acme.s3_client:
         class: Aws\S3\S3Client
-        factory_class: Aws\S3\S3Client
-        factory_method: factory
         arguments:
             -
                 version: '2006-03-01' # or 'latest'
