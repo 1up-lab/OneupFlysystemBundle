@@ -38,7 +38,9 @@
                    <argument /><!-- Prefix -->
                </service>
                <service id="oneup_flysystem.adapter.rackspace" class="League\Flysystem\Rackspace\RackspaceAdapter" abstract="true" public="false">
+                   <argument /><!-- Lazy -->
                    <argument /><!-- Container -->
+                   <argument /><!-- Prefix -->
                </service>
                <service id="oneup_flysystem.adapter.webdav" class="League\Flysystem\WebDAV\WebDAVAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->

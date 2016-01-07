@@ -22,6 +22,7 @@ oneup_flysystem:
     adapters:
         my_adapter:
             rackspace:
+                lazy: ~ # boolean (default "false")
                 container: acme.rackspace_client
 ```
 
