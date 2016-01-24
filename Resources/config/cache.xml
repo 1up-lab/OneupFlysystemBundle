@@ -21,6 +21,11 @@
                    <argument /><!-- Key -->
                    <argument /><!-- Expires -->
                </service>
+               <service id="oneup_flysystem.cache.phpredis" class="League\Flysystem\Cached\Storage\PhpRedis" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Key -->
+                   <argument /><!-- Expires -->
+               </service>
                <service id="oneup_flysystem.cache.stash" class="League\Flysystem\Cached\Storage\Stash" abstract="true" public="false">
                    <argument /><!-- Pool -->
                    <argument /><!-- Key -->

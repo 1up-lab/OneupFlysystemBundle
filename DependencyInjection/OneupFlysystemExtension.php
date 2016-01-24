@@ -3,6 +3,7 @@
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
@@ -16,7 +17,7 @@ class OneupFlysystemExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container)
     {
-        list($adapterFactories, $cacheFactories) = $this->getFactories();
+        list($adapterFactories, $cacheFactories) = $this->getFactories($configs);
 
         $configuration = new Configuration($adapterFactories, $cacheFactories);
         $config = $this->processConfiguration($configuration, $configs);
@@ -126,7 +127,7 @@ class OneupFlysystemExtension extends Extension
         return new Reference($id);
     }
 
-    private function getFactories()
+    private function getFactories(&$configs)
     {
         // load bundled factories
         $container = new ContainerBuilder();
@@ -134,12 +135,12 @@ class OneupFlysystemExtension extends Extension
         $loader->load('factories.xml');
 
         return array(
-            $this->getAdapterFactories($container),
-            $this->getCacheFactories($container),
+            $this->getAdapterFactories($container, $configs),
+            $this->getCacheFactories($container, $configs),
         );
     }
 
-    private function getAdapterFactories(ContainerBuilder $container)
+    private function getAdapterFactories(ContainerBuilder $container, &$configs)
     {
         if (null !== $this->adapterFactories) {
             return $this->adapterFactories;
@@ -153,10 +154,31 @@ class OneupFlysystemExtension extends Extension
             $factories[str_replace('-', '_', $factory->getKey())] = $factory;
         }
 
+        // load external factory
+        foreach ($configs[0]['adapters'] as $adapter => $options) {
+            $key = array_keys($options)[0];
+            if (!array_key_exists($key, $factories) && isset($options[$key]['factory'])) {
+                $factory = $options[$key]['factory'];
+
+                if (false !== strpos($factory, '@')) {
+                    $factoryService = $container->get(substr($factory, 1));
+                } else {
+                    $definition = new Definition($factory);
+                    $factoryId = sprintf('oneup_flysystem.adapter_factory.%s', $key);
+                    $container->setDefinition($factoryId, $definition);
+                    $factoryService = $container->get($factoryId);
+                }
+
+                unset($configs[0]['adapters'][$adapter][$key]['factory']);
+
+                $factories[str_replace('-', '_', $factoryService->getKey())] = $factoryService;
+            }
+        }
+
         return $this->adapterFactories = $factories;
     }
 
-    private function getCacheFactories(ContainerBuilder $container)
+    private function getCacheFactories(ContainerBuilder $container, &$configs)
     {
         if (null !== $this->cacheFactories) {
             return $this->cacheFactories;
@@ -168,6 +190,27 @@ class OneupFlysystemExtension extends Extension
         foreach (array_keys($services) as $id) {
             $factory = $container->get($id);
             $factories[str_replace('-', '_', $factory->getKey())] = $factory;
+        }
+
+        // load external factory
+        foreach ($configs[0]['cache'] as $cache => $options) {
+            $key = array_keys($options)[0];
+            if (!array_key_exists($key, $factories) && isset($options[$key]['factory'])) {
+                $factory = $options[$key]['factory'];
+
+                if (false !== strpos($factory, '@')) {
+                    $factoryService = $container->get(substr($factory, 1));
+                } else {
+                    $definition = new Definition($factory);
+                    $factoryId = sprintf('oneup_flysystem.cache_factory.%s', $key);
+                    $container->setDefinition($factoryId, $definition);
+                    $factoryService = $container->get($factoryId);
+                }
+
+                unset($configs[0]['cache'][$cache][$key]['factory']);
+
+                $factories[str_replace('-', '_', $factoryService->getKey())] = $factoryService;
+            }
         }
 
         return $this->cacheFactories = $factories;
