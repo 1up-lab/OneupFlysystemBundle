@@ -10,20 +10,11 @@ Perform the following steps to install and use the basic functionality of the On
 * Configure your filesystems
 
 ### Step 1: Download the bundle
-Add OneupFlysystemBundle to your composer.json using the following construct:
 
-```json
-{
-    "require": {
-        "oneup/flysystem-bundle": "@stable"
-    }
-}
-```
-
-Now tell composer to download the bundle by running the following command:
+Download the bundle via composer:
 
 ```
-$> php composer.phar update oneup/flysystem-bundle
+$> php composer.phar require oneup/flysystem-bundle
 ```
 
 Composer will now fetch and install this bundle in the vendor directory `vendor/oneup`
