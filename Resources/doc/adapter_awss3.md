@@ -34,7 +34,7 @@ oneup_flysystem:
                 prefix: ~
 ```
 
-For more details on the other paramters, take a look at the [Flysystem documentation](http://flysystem.thephpleague.com/adapter/aws-s3-v3/).
+For more details on the other parameters, take a look at the [Flysystem documentation](http://flysystem.thephpleague.com/adapter/aws-s3-v3/).
 
 ## AwsS3v2
 
