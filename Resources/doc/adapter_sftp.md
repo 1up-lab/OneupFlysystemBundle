@@ -17,6 +17,7 @@ oneup_flysystem:
                 privateKey: ~
                 permPrivate: ~
                 permPublic: ~
+                directoryPerm: ~
 ```
 
 ## More to know
