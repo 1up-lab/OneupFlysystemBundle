@@ -13,6 +13,7 @@ oneup_flysystem:
                 lazy: ~ # boolean (default "false")
                 writeFlags: ~
                 linkHandling: ~
+                permissions: ~
 ```
 
 For more details on the `lazy` parameter, take a look at the [Symfony documentation](http://symfony.com/doc/current/components/dependency_injection/lazy_services.html).
