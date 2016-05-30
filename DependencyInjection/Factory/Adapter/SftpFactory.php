@@ -36,6 +36,7 @@ class SftpFactory implements AdapterFactoryInterface
                 ->scalarNode('privateKey')->defaultNull()->end()
                 ->scalarNode('permPrivate')->defaultValue(0000)->end()
                 ->scalarNode('permPublic')->defaultNull(0744)->end()
+                ->scalarNode('directoryPerm')->defaultNull()->end()
             ->end()
         ;
     }
