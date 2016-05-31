@@ -15,6 +15,7 @@
                    <argument /><!-- CacheAdapter -->
                </service>
                <service id="oneup_flysystem.adapter.nulladapter" class="League\Flysystem\Adapter\NullAdapter" abstract="true" public="false" />
+               <service id="oneup_flysystem.adapter.memory" class="League\Flysystem\Memory\MemoryAdapter" abstract="true" public="false" />
                <service id="oneup_flysystem.adapter.zip" class="League\Flysystem\ZipArchive\ZipArchiveAdapter" abstract="true" public="false">
                    <argument /><!-- Location -->
                    <argument /><!-- Archive -->
