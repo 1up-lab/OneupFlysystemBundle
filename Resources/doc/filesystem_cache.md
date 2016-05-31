@@ -30,7 +30,7 @@ This configuration creates a new filesystem based on the [`NullAdapter`](https:/
 
 ### Memory
 
-If you don't append a cache, a `Cache\Memory` [will be used](https://github.com/thephpleague/flysystem/blob/master/src/Filesystem.php#L40) implicitly.
+If you don't append a cache, a `Cache\Memory` [will be used](https://github.com/thephpleague/flysystem/blob/master/src/Filesystem.php#L40) implicitly. This cache is not persisted across different requests.
 
 ```yml
 oneup_flysystem:
