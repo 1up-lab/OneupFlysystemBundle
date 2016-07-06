@@ -25,10 +25,15 @@ class StreamWrapperTest extends ContainerAwareTestCase
         $this->assertEquals($content, stream_get_contents($filesystem->readStream($path)));
     }
 
-    public function testStreamWrapperUnregistration()
+    public function tearDown()
     {
         $this->assertContains('myfilesystem', stream_get_wrappers());
-        $this->ensureKernelShutdown();
+
+        // shutdown kernel
+        parent::tearDown();
+
         $this->assertNotContains('myfilesystem', stream_get_wrappers());
     }
+
+
 }

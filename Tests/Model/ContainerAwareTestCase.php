@@ -21,6 +21,8 @@ class ContainerAwareTestCase extends WebTestCase
 
     public function tearDown()
     {
+        parent::tearDown();
+
         unset($this->client);
         unset($this->container);
     }
