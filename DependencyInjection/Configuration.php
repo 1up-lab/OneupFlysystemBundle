@@ -91,6 +91,16 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()
                         ->scalarNode('mount')->defaultNull()->end()
+                        ->arrayNode('stream_wrapper')
+                            ->beforeNormalization()
+                                ->ifString()->then(function ($protocol) {
+                                    return ['protocol' => $protocol];
+                                })
+                            ->end()
+                            ->children()
+                                ->scalarNode('protocol')->isRequired()->end()
+                            ->end()
+                        ->end()
                         ->scalarNode('visibility')
                             ->validate()
                             ->ifNotInArray($supportedVisibilities)

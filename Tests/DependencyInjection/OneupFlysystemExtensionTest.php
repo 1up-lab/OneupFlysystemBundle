@@ -5,6 +5,7 @@ namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
+use Oneup\FlysystemBundle\StreamWrapper\ProtocolMap;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -103,5 +104,24 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $extension = new OneupFlysystemExtension();
         $configuration = $extension->getConfiguration([], new ContainerBuilder());
         $this->assertInstanceOf('Oneup\FlysystemBundle\DependencyInjection\Configuration', $configuration);
+    }
+
+    public function testIfNoStreamWrappersConfiguration()
+    {
+        $extension = new OneupFlysystemExtension();
+        $extension->load([], $container = new ContainerBuilder());
+
+        $this->assertFalse($container->hasDefinition('oneup_flysystem.stream_wrapper.manager'));
+    }
+
+    public function testStreamWrapperSettings()
+    {
+        /* @var ProtocolMap $protocolMap */
+        $protocolMap = $this->container->get('oneup_flysystem.stream_wrapper.protocol_map');
+
+        $this->assertTrue($protocolMap->has('myfilesystem'));
+        $this->assertInstanceOf('League\Flysystem\FilesystemInterface', $protocolMap->get('myfilesystem'));
+        $this->assertFalse($protocolMap->has('myfilesystem2'));
+        $this->assertFalse($protocolMap->has('myfilesystem3'));
     }
 }

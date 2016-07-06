@@ -2,6 +2,7 @@
 
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -42,6 +43,8 @@ class OneupFlysystemExtension extends Extension
         foreach ($config['filesystems'] as $name => $filesystem) {
             $filesystems[$name] = $this->createFilesystem($name, $filesystem, $container, $adapters, $caches);
         }
+
+        $this->loadStreamWrappers($config['filesystems'], $filesystems, $loader, $container);
     }
 
     public function getConfiguration(array $config, ContainerBuilder $container)
@@ -178,5 +181,49 @@ class OneupFlysystemExtension extends Extension
         }
 
         return $this->cacheFactories = $factories;
+    }
+
+    /**
+     * @param array                $configs
+     * @param Reference[]          $filesystems
+     * @param Loader\XmlFileLoader $loader
+     * @param ContainerBuilder     $container
+     */
+    private function loadStreamWrappers(array $configs, array $filesystems, Loader\XmlFileLoader $loader, ContainerBuilder $container)
+    {
+        if (!$this->hasStreamWrapperConfiguration($configs)) {
+            return;
+        }
+
+        if (!class_exists('Twistor\FlysystemStreamWrapper')) {
+            throw new InvalidConfigurationException('twistor/flysystem-stream-wrapper must be installed to use the stream wrapper feature.');
+        }
+
+        $loader->load('stream_wrappers.xml');
+
+        $protocolMap = [];
+        foreach ($configs as $name => $filesystem) {
+            if (isset($filesystem['stream_wrapper'])) {
+                $protocolMap[$filesystem['stream_wrapper']['protocol']] = $filesystems[$name];
+            }
+        }
+
+        $container->getDefinition('oneup_flysystem.stream_wrapper.protocol_map')->replaceArgument(0, $protocolMap);
+    }
+
+    /**
+     * @param array $configs
+     *
+     * @return bool
+     */
+    private function hasStreamWrapperConfiguration(array $configs)
+    {
+        foreach ($configs as $name => $filesystem) {
+            if (!empty($filesystem['stream_wrapper'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
