@@ -5,10 +5,12 @@
 
     <services>
         <service id="oneup_flysystem.stream_wrapper.manager" class="Oneup\FlysystemBundle\StreamWrapper\StreamWrapperManager">
-            <argument id="oneup_flysystem.stream_wrapper.protocol_map" type="service"/>
+            <argument /><!-- configurations -->
         </service>
-        <service id="oneup_flysystem.stream_wrapper.protocol_map" class="Oneup\FlysystemBundle\StreamWrapper\ProtocolMap">
-            <argument /><!-- Mappings -->
+        <service id="oneup_flysystem.stream_wrapper.configuration.def" class="Oneup\FlysystemBundle\StreamWrapper\Configuration" abstract="true">
+            <argument /><!-- Protocol -->
+            <argument /><!-- Filesystem -->
+            <argument /><!-- configuration -->
         </service>
     </services>
 

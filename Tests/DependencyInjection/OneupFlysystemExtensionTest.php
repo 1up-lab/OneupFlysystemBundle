@@ -6,9 +6,12 @@ use League\Flysystem\AdapterInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
 use Oneup\FlysystemBundle\StreamWrapper\ProtocolMap;
+use Oneup\FlysystemBundle\StreamWrapper\StreamWrapperManager;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 
 class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 {
@@ -108,20 +111,138 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 
     public function testIfNoStreamWrappersConfiguration()
     {
-        $extension = new OneupFlysystemExtension();
-        $extension->load([], $container = new ContainerBuilder());
+        $container = $this->loadExtension([]);
 
         $this->assertFalse($container->hasDefinition('oneup_flysystem.stream_wrapper.manager'));
     }
 
+    /**
+     * @dataProvider provideDefectiveStreamWrapperConfigurations
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     *
+     * @param array $streamWrapperConfig
+     */
+    public function testIfDefectiveStreamWrapperConfiguration(array $streamWrapperConfig)
+    {
+        $this->loadExtension([
+            'oneup_flysystem' => [
+                'adapters' => [
+                    'myadapter' => ['local' => ['directory' => '/path/to/mount-point']]
+                ],
+                'filesystems' => [
+                    'myfilesystem' => [
+                        'adapter' => 'myadapter',
+                        'stream_wrapper' => $streamWrapperConfig,
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function provideDefectiveStreamWrapperConfigurations()
+    {
+        $config = [
+            'permissions' => [
+                'dir' => [
+                    'private' => 0700,
+                    'public' => 0744
+                ],
+                'file' => [
+                    'private' => 0700,
+                    'public' => 0744,
+                ]
+            ],
+            'metadata' => ['visibility'],
+            'public_mask' => 0044,
+        ];
+
+        return [
+            // empty configuration
+            [['protocol' => 'myadapter', 'configuration' => null]],
+            [['protocol' => 'myadapter', 'configuration' => []]],
+            // missing permissions
+            [['protocol' => 'myadapter', 'configuration' => array_merge($config, ['permissions' => null])]],
+            // missing metadata
+            [['protocol' => 'myadapter', 'configuration' => array_merge($config, ['metadata' => null])]],
+            [['protocol' => 'myadapter', 'configuration' => array_merge($config, ['metadata' => []])]],
+            // missing public mask
+            [['protocol' => 'myadapter', 'configuration' => array_merge($config, ['public_mask' => null])]],
+        ];
+    }
+
+    /**
+     * @dataProvider provideStreamWrapperConfigurationTests
+     *
+     * @param       $protocol
+     * @param array $configuration
+     * @param       $streamWrapperConfig
+     */
+    public function testStreamWrapperConfiguration($protocol, array $configuration = null, $streamWrapperConfig)
+    {
+        $container = $this->loadExtension([
+            'oneup_flysystem' => [
+                'adapters' => [
+                    'myadapter' => ['local' => ['directory' => '/path/to/mount-point']]
+                ],
+                'filesystems' => [
+                    'myfilesystem' => [
+                        'adapter' => 'myadapter',
+                        'stream_wrapper' => $streamWrapperConfig,
+                    ]
+                ]
+            ]
+        ]);
+
+        $definition = $container->getDefinition('oneup_flysystem.stream_wrapper.configuration.myfilesystem');
+        $this->assertEquals($protocol, $definition->getArgument(0));
+        $this->assertEquals($configuration, $definition->getArgument(2));
+    }
+
+    public function provideStreamWrapperConfigurationTests()
+    {
+        $config = [
+            'permissions' => [
+                'dir' => [
+                    'private' => 0700,
+                    'public' => 0744
+                ],
+                'file' => [
+                    'private' => 0700,
+                    'public' => 0744,
+                ]
+            ],
+            'metadata' => ['visibility'],
+            'public_mask' => 0044,
+        ];
+
+        return [
+            ['myfilesystem', null, 'myfilesystem'],
+            ['myfilesystem', null, ['protocol' => 'myfilesystem']],
+            ['myfilesystem', $config, ['protocol' => 'myfilesystem', 'configuration' => $config]],
+        ];
+    }
+
     public function testStreamWrapperSettings()
     {
-        /* @var ProtocolMap $protocolMap */
-        $protocolMap = $this->container->get('oneup_flysystem.stream_wrapper.protocol_map');
+        /* @var StreamWrapperManager $manager */
+        $manager = $this->container->get('oneup_flysystem.stream_wrapper.manager');
 
-        $this->assertTrue($protocolMap->has('myfilesystem'));
-        $this->assertInstanceOf('League\Flysystem\FilesystemInterface', $protocolMap->get('myfilesystem'));
-        $this->assertFalse($protocolMap->has('myfilesystem2'));
-        $this->assertFalse($protocolMap->has('myfilesystem3'));
+        $this->assertTrue($manager->hasConfiguration('myfilesystem'));
+        $this->assertInstanceOf('Oneup\FlysystemBundle\StreamWrapper\Configuration', $configuration = $manager->getConfiguration('myfilesystem'));
+        $this->assertFalse($manager->hasConfiguration('myfilesystem2'));
+        $this->assertFalse($manager->hasConfiguration('myfilesystem3'));
+    }
+
+    /**
+     * @param array $config
+     *
+     * @return ContainerBuilder
+     */
+    private function loadExtension(array $config)
+    {
+        $extension = new OneupFlysystemExtension();
+        $extension->load($config, $container = new ContainerBuilder());
+
+        return $container;
     }
 }

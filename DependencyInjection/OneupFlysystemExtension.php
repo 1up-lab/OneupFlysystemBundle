@@ -201,14 +201,27 @@ class OneupFlysystemExtension extends Extension
 
         $loader->load('stream_wrappers.xml');
 
-        $protocolMap = [];
+        $configurations = [];
         foreach ($configs as $name => $filesystem) {
-            if (isset($filesystem['stream_wrapper'])) {
-                $protocolMap[$filesystem['stream_wrapper']['protocol']] = $filesystems[$name];
+            if (!isset($filesystem['stream_wrapper'])) {
+                continue;
             }
+
+            $streamWrapper = array_merge(['configuration' => null], $filesystem['stream_wrapper']);
+
+            $configuration = new DefinitionDecorator('oneup_flysystem.stream_wrapper.configuration.def');
+            $configuration
+                ->replaceArgument(0, $streamWrapper['protocol'])
+                ->replaceArgument(1, $filesystems[$name])
+                ->replaceArgument(2, $streamWrapper['configuration'])
+                ->setPublic(false);
+
+            $container->setDefinition('oneup_flysystem.stream_wrapper.configuration.'.$name, $configuration);
+
+            $configurations[$name] = new Reference('oneup_flysystem.stream_wrapper.configuration.'.$name);
         }
 
-        $container->getDefinition('oneup_flysystem.stream_wrapper.protocol_map')->replaceArgument(0, $protocolMap);
+        $container->getDefinition('oneup_flysystem.stream_wrapper.manager')->replaceArgument(0, $configurations);
     }
 
     /**
@@ -219,7 +232,7 @@ class OneupFlysystemExtension extends Extension
     private function hasStreamWrapperConfiguration(array $configs)
     {
         foreach ($configs as $name => $filesystem) {
-            if (!empty($filesystem['stream_wrapper'])) {
+            if (isset($filesystem['stream_wrapper'])) {
                 return true;
             }
         }

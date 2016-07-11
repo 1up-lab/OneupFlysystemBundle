@@ -9,18 +9,55 @@ use Twistor\FlysystemStreamWrapper;
 class StreamWrapperManager
 {
     /**
-     * @var ProtocolMap
+     * @var Configuration[]
      */
-    private $protocolMap;
+    private $configurations;
 
     /**
      * StreamWrapperManager constructor.
      *
-     * @param ProtocolMap $protocolMap
+     * @param Configuration[] $configurations
      */
-    public function __construct(ProtocolMap $protocolMap)
+    public function __construct(array $configurations = [])
     {
-        $this->protocolMap = $protocolMap;
+        $this->configurations = [];
+
+        foreach ($configurations as $name => $configuration) {
+            $this->addConfiguration($name, $configuration);
+        }
+    }
+
+    /**
+     * @param string        $filesystemName
+     * @param Configuration $configuration
+     */
+    public function addConfiguration($filesystemName, Configuration $configuration)
+    {
+        $this->configurations[$filesystemName] = $configuration;
+    }
+
+    /**
+     * @param string $filesystemName
+     *
+     * @return bool
+     */
+    public function hasConfiguration($filesystemName)
+    {
+        return isset($this->configurations[$filesystemName]);
+    }
+
+    /**
+     * @param string $filesystemName
+     *
+     * @return Configuration
+     */
+    public function getConfiguration($filesystemName)
+    {
+        if (!$this->hasConfiguration($filesystemName)) {
+            throw new \InvalidArgumentException(sprintf('The filesystem "%s" has no stream wrapper configuration', $filesystemName));
+        }
+
+        return $this->configurations[$filesystemName];
     }
 
     /**
@@ -28,9 +65,9 @@ class StreamWrapperManager
      */
     public function register()
     {
-        foreach ($this->protocolMap as $protocol => $filesystem) {
-            if (!FlysystemStreamWrapper::register($protocol, $filesystem)) {
-                throw new \Exception(sprintf('Unable to register stream wrapper protocol "%s://"', $protocol));
+        foreach ($this->configurations as $configuration) {
+            if (!FlysystemStreamWrapper::register($configuration->getProtocol(), $configuration->getFilesystem(), $configuration->getConfiguration())) {
+                throw new \Exception(sprintf('Unable to register stream wrapper protocol "%s://"', $configuration->getProtocol()));
             }
         }
     }
@@ -40,9 +77,9 @@ class StreamWrapperManager
      */
     public function unregister()
     {
-        foreach ($this->protocolMap as $protocol => $filesystem) {
-            if (!FlysystemStreamWrapper::unregister($protocol)) {
-                throw new \Exception(sprintf('Unable to unregister stream wrapper protocol "%s://"', $protocol));
+        foreach ($this->configurations as $configuration) {
+            if (!FlysystemStreamWrapper::unregister($configuration->getProtocol())) {
+                throw new \Exception(sprintf('Unable to unregister stream wrapper protocol "%s://"', $configuration->getProtocol()));
             }
         }
     }
