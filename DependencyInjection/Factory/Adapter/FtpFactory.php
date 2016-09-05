@@ -37,6 +37,10 @@ class FtpFactory implements AdapterFactoryInterface
                 ->scalarNode('permPrivate')->defaultValue(0000)->end()
                 ->scalarNode('permPublic')->defaultNull(0744)->end()
                 ->booleanNode('passive')->defaultTrue()->end()
+                ->booleanNode('transferMode')->defaultValue(FTP_BINARY)->end()
+                ->booleanNode('systemType')->defaultNull()->end()
+                ->booleanNode('ignorePassiveAddress')->defaultNull()->end()
+                ->booleanNode('recurseManually')->defaultFalse()->end()
             ->end()
         ;
     }
