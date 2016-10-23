@@ -66,6 +66,9 @@ class StreamWrapperManager
     public function register()
     {
         foreach ($this->configurations as $configuration) {
+            // Unregister stream wrapper first in case it was already registered.
+            FlysystemStreamWrapper::unregister($configuration->getProtocol());
+
             if (!FlysystemStreamWrapper::register($configuration->getProtocol(), $configuration->getFilesystem(), $configuration->getConfiguration())) {
                 throw new \Exception(sprintf('Unable to register stream wrapper protocol "%s://"', $configuration->getProtocol()));
             }
