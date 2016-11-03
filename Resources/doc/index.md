@@ -33,6 +33,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The ZipAdapter adapter requires `"league/flysystem-ziparchive"`
 * The adapter caching support requires `"league/flysystem-cached-adapter"`
 * The eventable filesystem support requires `"league/flysystem-eventable-filesystem"`
+* The StreamWrapper support requires `"twistor/flysystem-stream-wrapper"`
 
 ### Step 2: Enable the bundle
 Enable the bundle in the kernel:
@@ -91,3 +92,4 @@ After installing and setting up the basic functionality of this bundle you can m
 * [Plugin filesystems](filesystem_plugin.md)
 * [Running the tests](tests.md)
 * [Use your own flysystem adapters](adapter_custom.md)
+* [Configure stream wrapper for your filesystems](stream_wrapper.md)

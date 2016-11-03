@@ -2,10 +2,14 @@
 
 namespace Oneup\FlysystemBundle\Tests\Model;
 
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ContainerAwareTestCase extends WebTestCase
 {
+    /**
+     * @var Client
+     */
     protected $client;
     protected $container;
 
@@ -17,6 +21,8 @@ class ContainerAwareTestCase extends WebTestCase
 
     public function tearDown()
     {
+        parent::tearDown();
+
         unset($this->client);
         unset($this->container);
     }
