@@ -8,7 +8,7 @@ services:
     acme.dropbox_client:
         class: Dropbox\Client
         arguments:
-            - "access-token",
+            - "access-token"
             - "client-identifier"
 ```
 
