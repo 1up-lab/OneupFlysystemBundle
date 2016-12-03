@@ -27,6 +27,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The Copy adapter requires `"league/flysystem-copy"`
 * The Dropbox adapter requires `"league/flysystem-dropbox"`
 * The GridFS adapter requires `"league/flysystem-gridfs"`
+* The Memory adapter requires `"league/flysystem-memory"`
 * The Rackspace adapter requires `"league/flysystem-rackspace"`
 * The Sftp adapter requires `"league/flysystem-sftp"`
 * The WebDav adapter requires `"league/flysystem-webdav"`
@@ -71,16 +72,17 @@ oneup_flysystem:
 There are a bunch of adapters for you to use:
 
 * [AwsS3](adapter_awss3.md)
+* [Copy.com](https://github.com/copy-app/php-client-library)
 * [Dropbox](adapter_dropbox.md)
 * [Ftp](adapter_ftp.md)
+* [GridFS](adapter_gridfs.md)
 * [Local filesystem](adapter_local.md)
+* [MemoryAdapter](adapter_memory.md)
 * [NullAdapter](adapter_nulladapter.md)
 * [Rackspace](adapter_rackspace.md)
 * [Sftp](adapter_sftp.md)
 * [WebDav](adapter_webdav.md)
 * [ZipArchive](adapter_ziparchive.md)
-* [GridFS](adapter_gridfs.md)
-* [Copy.com](https://github.com/copy-app/php-client-library)
 * [Custom](adapter_custom.md)
 
 ### Step 4: Next steps

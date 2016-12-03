@@ -29,6 +29,7 @@
         "league/flysystem-copy": "~1.0",
         "league/flysystem-dropbox": "~1.0",
         "league/flysystem-gridfs": "~1.0",
+        "league/flysystem-memory": "~1.0",
         "league/flysystem-rackspace": "~1.0",
         "league/flysystem-sftp": "~1.0",
         "league/flysystem-webdav": "~1.0",
