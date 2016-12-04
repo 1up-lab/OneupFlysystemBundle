@@ -40,6 +40,7 @@
     "suggest": {
         "ext-fileinfo": "Required for MimeType",
         "league/flysystem-aws-s3-v2": "Use S3 storage with AWS SDK v2",
+        "league/flysystem-aws-s3-v3": "Use S3 storage with AWS SDK v3",
         "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
         "league/flysystem-copy": "Allows you to use Copy.com storage",
         "league/flysystem-dropbox": "Use Dropbox storage",
