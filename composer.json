@@ -34,7 +34,8 @@
         "league/flysystem-sftp": "~1.0",
         "league/flysystem-webdav": "~1.0",
         "league/flysystem-ziparchive": "~1.0",
-        "twistor/flysystem-stream-wrapper": "~1.0"
+        "twistor/flysystem-stream-wrapper": "~1.0",
+        "litipk/flysystem-fallback-adapter": "~0.1"
     },
 
     "suggest": {
@@ -49,7 +50,8 @@
         "league/flysystem-sftp": "Allows SFTP server storage via phpseclib",
         "league/flysystem-webdav": "Allows you to use WebDAV storage",
         "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
-        "twistor/flysystem-stream-wrapper": "Allows you to use stream wrapper"
+        "twistor/flysystem-stream-wrapper": "Allows you to use stream wrapper",
+        "litipk/flysystem-fallback-adapter": "Allows you to use a fallback filesystem"
     },
 
     "autoload": {
