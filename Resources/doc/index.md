@@ -26,6 +26,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The Azure adapter requires `"league/flysystem-azure"`
 * The Copy adapter requires `"league/flysystem-copy"`
 * The Dropbox adapter requires `"league/flysystem-dropbox"`
+* The Fallback adapter requires `"litipk/flysystem-fallback-adapter"`
 * The GridFS adapter requires `"league/flysystem-gridfs"`
 * The Memory adapter requires `"league/flysystem-memory"`
 * The Rackspace adapter requires `"league/flysystem-rackspace"`
@@ -83,6 +84,7 @@ There are a bunch of adapters for you to use:
 * [Sftp](adapter_sftp.md)
 * [WebDav](adapter_webdav.md)
 * [ZipArchive](adapter_ziparchive.md)
+* [Fallback](adapter_fallback.md)
 * [Custom](adapter_custom.md)
 
 ### Step 4: Next steps

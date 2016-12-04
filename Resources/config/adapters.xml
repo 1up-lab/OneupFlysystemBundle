@@ -57,6 +57,11 @@
                <service id="oneup_flysystem.adapter.gridfs" class="League\Flysystem\GridFS\GridFSAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                </service>
+               <service id="oneup_flysystem.adapter.fallback" class="Litipk\Flysystem\Fallback\FallbackAdapter" abstract="true" public="false">
+                   <argument /><!-- MainAdapter -->
+                   <argument /><!-- Fallback -->
+                   <argument /><!-- forceCopyOnMain -->
+               </service>
            </services>
 
 </container>
