@@ -12,6 +12,7 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 * [WebDav](https://github.com/fruux/sabre-dav)
 * [ZipArchive](http://php.net/manual/en/class.ziparchive.php)
 * [GridFS](http://php.net/manual/en/mongo.gridfs.php)
+* [Gaufrette](http://knplabs.github.io/Gaufrette/)
 
 [![Build Status](https://travis-ci.org/1up-lab/OneupFlysystemBundle.png)](https://travis-ci.org/1up-lab/OneupFlysystemBundle)
 [![Total Downloads](https://poser.pugx.org/oneup/flysystem-bundle/d/total.png)](https://packagist.org/packages/oneup/flysystem-bundle)

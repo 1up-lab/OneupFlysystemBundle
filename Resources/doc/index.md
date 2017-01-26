@@ -36,6 +36,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The adapter caching support requires `"league/flysystem-cached-adapter"`
 * The eventable filesystem support requires `"league/flysystem-eventable-filesystem"`
 * The StreamWrapper support requires `"twistor/flysystem-stream-wrapper"`
+* The Gaufrette adapter requires `"jenko/flysystem-gaufrette"`
 
 ### Step 2: Enable the bundle
 Enable the bundle in the kernel:
@@ -84,6 +85,7 @@ There are a bunch of adapters for you to use:
 * [Sftp](adapter_sftp.md)
 * [WebDav](adapter_webdav.md)
 * [ZipArchive](adapter_ziparchive.md)
+* [Gaufrette](adapter_gaufrette.md)
 * [Fallback](adapter_fallback.md)
 * [Custom](adapter_custom.md)
 

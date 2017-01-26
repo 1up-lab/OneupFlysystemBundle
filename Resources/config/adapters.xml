@@ -62,6 +62,9 @@
                    <argument /><!-- Fallback -->
                    <argument /><!-- forceCopyOnMain -->
                </service>
+               <service id="oneup_flysystem.adapter.gaufrette" class="Jenko\Flysystem\GaufretteAdapter" abstract="true" public="false">
+                   <argument /><!-- GaufretteAdapter -->
+               </service>
            </services>
 
 </container>
