@@ -5,7 +5,8 @@ This adapter keeps the filesystem solely in the memory.
 ```yml
 oneup_flysystem:
     adapters:
-        memory: ~
+        memory_adapter:
+            memory: ~
 ```
 
 ## More to know
