@@ -22,7 +22,7 @@ class AwsS3V3Factory implements AdapterFactoryInterface
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['bucket'])
             ->replaceArgument(2, $config['prefix'])
-            ->addArgument((array)$config['options'])
+            ->addArgument((array) $config['options'])
         ;
     }
 

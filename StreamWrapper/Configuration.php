@@ -3,7 +3,6 @@
 
 namespace Oneup\FlysystemBundle\StreamWrapper;
 
-
 use League\Flysystem\FilesystemInterface;
 
 class Configuration

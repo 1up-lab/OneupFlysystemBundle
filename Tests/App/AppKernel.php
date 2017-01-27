@@ -11,7 +11,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
 
             // Test this Bundle
-            new Oneup\FlysystemBundle\OneupFlysystemBundle()
+            new Oneup\FlysystemBundle\OneupFlysystemBundle(),
         );
 
         return $bundles;

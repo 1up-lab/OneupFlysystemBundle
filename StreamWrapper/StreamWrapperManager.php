@@ -3,7 +3,6 @@
 
 namespace Oneup\FlysystemBundle\StreamWrapper;
 
-
 use Twistor\FlysystemStreamWrapper;
 
 class StreamWrapperManager

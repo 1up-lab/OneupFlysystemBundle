@@ -5,7 +5,6 @@ namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
-use Oneup\FlysystemBundle\StreamWrapper\ProtocolMap;
 use Oneup\FlysystemBundle\StreamWrapper\StreamWrapperManager;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
@@ -127,15 +126,15 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->loadExtension([
             'oneup_flysystem' => [
                 'adapters' => [
-                    'myadapter' => ['local' => ['directory' => '/path/to/mount-point']]
+                    'myadapter' => ['local' => ['directory' => '/path/to/mount-point']],
                 ],
                 'filesystems' => [
                     'myfilesystem' => [
                         'adapter' => 'myadapter',
                         'stream_wrapper' => $streamWrapperConfig,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
     }
 
@@ -145,12 +144,12 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
             'permissions' => [
                 'dir' => [
                     'private' => 0700,
-                    'public' => 0744
+                    'public' => 0744,
                 ],
                 'file' => [
                     'private' => 0700,
                     'public' => 0744,
-                ]
+                ],
             ],
             'metadata' => ['visibility'],
             'public_mask' => 0044,
@@ -182,15 +181,15 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $container = $this->loadExtension([
             'oneup_flysystem' => [
                 'adapters' => [
-                    'myadapter' => ['local' => ['directory' => '/path/to/mount-point']]
+                    'myadapter' => ['local' => ['directory' => '/path/to/mount-point']],
                 ],
                 'filesystems' => [
                     'myfilesystem' => [
                         'adapter' => 'myadapter',
                         'stream_wrapper' => $streamWrapperConfig,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         $definition = $container->getDefinition('oneup_flysystem.stream_wrapper.configuration.myfilesystem');
@@ -204,12 +203,12 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
             'permissions' => [
                 'dir' => [
                     'private' => 0700,
-                    'public' => 0744
+                    'public' => 0744,
                 ],
                 'file' => [
                     'private' => 0700,
                     'public' => 0744,
-                ]
+                ],
             ],
             'metadata' => ['visibility'],
             'public_mask' => 0044,

@@ -22,7 +22,7 @@ class OneupFlysystemExtension extends Extension
         $configuration = new Configuration($adapterFactories, $cacheFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
         $loader->load('cache.xml');
@@ -96,7 +96,7 @@ class OneupFlysystemExtension extends Extension
             $cache = $caches[$config['cache']];
 
             $container
-                ->setDefinition($adapter . '_cached', new DefinitionDecorator('oneup_flysystem.adapter.cached'))
+                ->setDefinition($adapter.'_cached', new DefinitionDecorator('oneup_flysystem.adapter.cached'))
                 ->replaceArgument(0, new Reference($adapter))
                 ->replaceArgument(1, new Reference($cache));
         }
@@ -114,10 +114,9 @@ class OneupFlysystemExtension extends Extension
 
         $container
             ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
-            ->replaceArgument(0, new Reference($cache ? $adapter . '_cached' : $adapter))
+            ->replaceArgument(0, new Reference($cache ? $adapter.'_cached' : $adapter))
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
-
 
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
@@ -140,7 +139,7 @@ class OneupFlysystemExtension extends Extension
     {
         // load bundled factories
         $container = new ContainerBuilder();
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('factories.xml');
 
         return array(
