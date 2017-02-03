@@ -17,12 +17,14 @@ class OneupFlysystemExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container)
     {
-        list($adapterFactories, $cacheFactories) = $this->getFactories();
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('factories.xml');
+
+        list($adapterFactories, $cacheFactories) = $this->getFactories($container);
 
         $configuration = new Configuration($adapterFactories, $cacheFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
         $loader->load('cache.xml');
@@ -49,7 +51,7 @@ class OneupFlysystemExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container)
     {
-        list($adapterFactories, $cacheFactories) = $this->getFactories();
+        list($adapterFactories, $cacheFactories) = $this->getFactories($container);
 
         return new Configuration($adapterFactories, $cacheFactories);
     }
@@ -135,13 +137,8 @@ class OneupFlysystemExtension extends Extension
         return new Reference($id);
     }
 
-    private function getFactories()
+    private function getFactories(ContainerBuilder $container)
     {
-        // load bundled factories
-        $container = new ContainerBuilder();
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('factories.xml');
-
         return array(
             $this->getAdapterFactories($container),
             $this->getCacheFactories($container),
