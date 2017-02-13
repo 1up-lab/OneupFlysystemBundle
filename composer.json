@@ -41,6 +41,7 @@
 
     "suggest": {
         "ext-fileinfo": "Required for MimeType",
+        "ext-ftp": "Required for FTP and SFTP",
         "league/flysystem-aws-s3-v2": "Use S3 storage with AWS SDK v2",
         "league/flysystem-aws-s3-v3": "Use S3 storage with AWS SDK v3",
         "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
