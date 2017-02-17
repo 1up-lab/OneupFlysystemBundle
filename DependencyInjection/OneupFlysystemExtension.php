@@ -51,6 +51,9 @@ class OneupFlysystemExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container)
     {
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('factories.xml');
+
         list($adapterFactories, $cacheFactories) = $this->getFactories($container);
 
         return new Configuration($adapterFactories, $cacheFactories);
