@@ -5,6 +5,7 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
   - hhvm
 
 env:
@@ -22,12 +23,28 @@ matrix:
     - php: hhvm
   include:
     - php: 5.6
-      env: SYMFONY_VERSION=2.7.*
-    - php: 5.6
-      env: SYMFONY_VERSION=2.8.*
-    - php: 5.6
       env: SYMFONY_VERSION=3.0.*
     - php: 5.6
+      env: SYMFONY_VERSION=3.1.*
+    - php: 5.6
+      env: SYMFONY_VERSION=3.2.*
+    - php: 5.6
+      env: SYMFONY_VERSION=dev-master
+    - php: 7.0
+      env: SYMFONY_VERSION=3.0.*
+    - php: 7.0
+      env: SYMFONY_VERSION=3.1.*
+    - php: 7.0
+      env: SYMFONY_VERSION=3.2.*
+    - php: 7.0
+      env: SYMFONY_VERSION=dev-master
+    - php: 7.1
+      env: SYMFONY_VERSION=3.0.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.1.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.2.*
+    - php: 7.1
       env: SYMFONY_VERSION=dev-master
 
 before_script:
