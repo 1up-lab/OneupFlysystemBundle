@@ -6,7 +6,8 @@ Reading from it is never possible. Can be useful for writing tests.
 ```yml
 oneup_flysystem:
     adapters:
-        nulladapter: ~
+        my_adapter:
+            nulladapter: ~
 ```
 
 ## More to know
