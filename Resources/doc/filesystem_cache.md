@@ -105,3 +105,25 @@ oneup_flysystem:
         my_cache:
             noop: ~
 ```
+
+### PSR6
+
+```yml
+services:
+    cache.flysystem.psr6:
+        #...
+#or to use the symfony (v3.2+) cache component managed by the framework:
+framework:
+    cache:
+        pools:
+            cache.flysystem.psr6:
+                adapter: cache.app
+
+oneup_flysystem:
+    cache:
+        my_cache:
+            psr6:
+                client: cache.flysystem.psr6
+                key: ~
+                expires: ~
+```
