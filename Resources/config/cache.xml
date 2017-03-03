@@ -31,6 +31,11 @@
                    <argument /><!-- Key -->
                    <argument /><!-- Expires -->
                </service>
+               <service id="oneup_flysystem.cache.psr6" class="League\Flysystem\Cached\Storage\Psr6Cache" abstract="true" public="false">
+                   <argument /><!-- Pool -->
+                   <argument /><!-- Key -->
+                   <argument /><!-- Expires -->
+               </service>
            </services>
 
 </container>
