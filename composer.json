@@ -38,7 +38,8 @@
         "league/flysystem-ziparchive": "~1.0",
         "twistor/flysystem-stream-wrapper": "~1.0",
         "litipk/flysystem-fallback-adapter": "~0.1",
-        "jenko/flysystem-gaufrette": "^1.0"
+        "jenko/flysystem-gaufrette": "^1.0",
+        "superbalist/flysystem-google-storage": "~4.0"
     },
 
     "suggest": {
@@ -55,7 +56,8 @@
         "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
         "twistor/flysystem-stream-wrapper": "Allows you to use stream wrapper",
         "litipk/flysystem-fallback-adapter": "Allows you to use a fallback filesystem",
-        "jenko/flysystem-gaufrette": "Allows you to use gaufrette adapter"
+        "jenko/flysystem-gaufrette": "Allows you to use gaufrette adapter",
+        "superbalist/flysystem-google-storage": "Allows you to use Google Cloud Storage buckets"
     },
 
     "autoload": {

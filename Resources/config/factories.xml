@@ -23,6 +23,9 @@
                <service id="oneup_flysystem.adapter_factory.dropbox" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\DropboxFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
+               <service id="oneup_flysystem.adapter_factory.googlecloudstorage" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GoogleCloudStorageFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
                <service id="oneup_flysystem.adapter_factory.rackspace" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\RackspaceFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>

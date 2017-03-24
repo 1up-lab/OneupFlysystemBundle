@@ -27,6 +27,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The Copy adapter requires `"league/flysystem-copy"`
 * The Dropbox adapter requires `"league/flysystem-dropbox"`
 * The Fallback adapter requires `"litipk/flysystem-fallback-adapter"`
+* The Google Cloud Storage adapter requires `"superbalist/flysystem-google-storage"`
 * The GridFS adapter requires `"league/flysystem-gridfs"`
 * The Memory adapter requires `"league/flysystem-memory"`
 * The Rackspace adapter requires `"league/flysystem-rackspace"`
@@ -77,6 +78,7 @@ There are a bunch of adapters for you to use:
 * [Copy.com](https://github.com/copy-app/php-client-library)
 * [Dropbox](adapter_dropbox.md)
 * [Ftp](adapter_ftp.md)
+* [Google Cloud Storage](adapter_googlecloudstorage.md)
 * [GridFS](adapter_gridfs.md)
 * [Local filesystem](adapter_local.md)
 * [MemoryAdapter](adapter_memory.md)
