@@ -6,6 +6,7 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 * [AwsS3](http://aws.amazon.com/de/sdkforphp/)
 * [Dropbox](https://www.dropbox.com/developers/core/sdks/php)
 * [Ftp](http://php.net/manual/en/book.ftp.php)
+* [Google Cloud Storage](https://cloud.google.com/storage/)
 * [Local filesystem](http://php.net/manual/en/ref.filesystem.php)
 * [Rackspace](http://developer.rackspace.com/)
 * [Sftp](http://phpseclib.sourceforge.net/sftp/intro.html)
@@ -22,7 +23,7 @@ Documentation
 
 The entry point of the documentation can be found in the file `Resources/docs/index.md`
 
-[Read the documentation for master](https://github.com/1up-lab/OneupFlysystemBundle/blob/master/Resources/doc/index.md)
+[Read the documentation for master](Resources/doc/index.md)
 
 
 License
