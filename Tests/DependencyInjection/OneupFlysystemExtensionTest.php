@@ -31,14 +31,14 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         /**
          * Visibility flag is set to "public"
          *
-         * @var Filesystem $filesystem1
+         * @var Filesystem $filesystem2
          */
         $filesystem2 = $this->container->get('oneup_flysystem.myfilesystem2_filesystem');
 
         /**
          * Visibility flag ist set to "private"
          *
-         * @var Filesystem $filesystem1
+         * @var Filesystem $filesystem3
          */
         $filesystem3 = $this->container->get('oneup_flysystem.myfilesystem3_filesystem');
 
@@ -49,6 +49,26 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertEquals(AdapterInterface::VISIBILITY_PUBLIC, $filesystem1->getVisibility('1/meep'));
         $this->assertEquals(AdapterInterface::VISIBILITY_PUBLIC, $filesystem2->getVisibility('2/meep'));
         $this->assertEquals(AdapterInterface::VISIBILITY_PRIVATE, $filesystem3->getVisibility('3/meep'));
+    }
+
+    public function testDisableAssertsSetting()
+    {
+        /**
+         * Enabled asserts.
+         *
+         * @var Filesystem $filesystem1
+         */
+        $filesystem1 = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+
+        /**
+         * Disabled asserts
+         *
+         * @var Filesystem $filesystem2
+         */
+        $filesystem2 = $this->container->get('oneup_flysystem.myfilesystem2_filesystem');
+
+        $this->assertFalse($filesystem1->getConfig()->get('disable_asserts'));
+        $this->assertTrue($filesystem2->getConfig()->get('disable_asserts'));
     }
 
     public function testIfMountManagerIsFilled()

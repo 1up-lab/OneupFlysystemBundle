@@ -36,6 +36,7 @@ oneup_flysystem:
             adapter: myadapter
             cache:   mycache
             visibility: public
+            disable_asserts: true
             plugins:
                 - global_plugin
                 - multiple_plugin
