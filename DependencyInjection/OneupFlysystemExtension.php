@@ -113,8 +113,13 @@ class OneupFlysystemExtension extends Extension
         }
 
         $options = [];
+
         if (array_key_exists('visibility', $config)) {
             $options['visibility'] = $config['visibility'];
+        }
+
+        if (array_key_exists('disable_asserts', $config)) {
+            $options['disable_asserts'] = $config['disable_asserts'];
         }
 
         $container
