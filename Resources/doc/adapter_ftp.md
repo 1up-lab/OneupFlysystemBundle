@@ -1,6 +1,6 @@
 # Use the FTP adapter
 
-This adapter works with the standard PHP FTP implementation which is documented in [the manual](http://www.php.net/manual/de/book.ftp.php).
+This adapter works with the standard PHP FTP implementation which is documented in [the manual](http://www.php.net/manual/en/book.ftp.php).
 You have to provide at least a value for the `host` key.
 
 ```yml
