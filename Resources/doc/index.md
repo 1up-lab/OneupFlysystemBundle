@@ -89,6 +89,7 @@ There are a bunch of adapters for you to use:
 * [ZipArchive](adapter_ziparchive.md)
 * [Gaufrette](adapter_gaufrette.md)
 * [Fallback](adapter_fallback.md)
+* [Replicate](adapter_replicate.md)
 * [Custom](adapter_custom.md)
 
 ### Step 4: Next steps
