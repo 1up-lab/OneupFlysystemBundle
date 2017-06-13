@@ -36,6 +36,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The ZipAdapter adapter requires `"league/flysystem-ziparchive"`
 * The adapter caching support requires `"league/flysystem-cached-adapter"`
 * The eventable filesystem support requires `"league/flysystem-eventable-filesystem"`
+* The Replica adapter requires `"league/flysystem-replicate-adapter"`
 * The StreamWrapper support requires `"twistor/flysystem-stream-wrapper"`
 * The Gaufrette adapter requires `"jenko/flysystem-gaufrette"`
 
