@@ -39,7 +39,8 @@
         "twistor/flysystem-stream-wrapper": "^1.0",
         "litipk/flysystem-fallback-adapter": "^0.1",
         "jenko/flysystem-gaufrette": "^1.0",
-        "superbalist/flysystem-google-storage": "^4.0"
+        "superbalist/flysystem-google-storage": "^4.0",
+        "league/flysystem-replicate-adapter": "^1.0"
     },
 
     "suggest": {
@@ -54,6 +55,7 @@
         "league/flysystem-sftp": "Allows SFTP server storage via phpseclib",
         "league/flysystem-webdav": "Allows you to use WebDAV storage",
         "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
+        "league/flysystem-replicate-adapter": "Allows you to use the Replica adapter from Flysystem",
         "twistor/flysystem-stream-wrapper": "Allows you to use stream wrapper",
         "litipk/flysystem-fallback-adapter": "Allows you to use a fallback filesystem",
         "jenko/flysystem-gaufrette": "Allows you to use gaufrette adapter",

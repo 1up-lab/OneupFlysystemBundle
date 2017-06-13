@@ -53,6 +53,9 @@
                <service id="oneup_flysystem.adapter_factory.gaufrette" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GaufretteFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
+               <service id="oneup_flysystem.adapter_factory.replicate" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\ReplicateFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
 
                <!-- Cache factories -->
                <service id="oneup_flysystem.cache_factory.adapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\AdapterFactory">

@@ -67,6 +67,10 @@
                <service id="oneup_flysystem.adapter.gaufrette" class="Jenko\Flysystem\GaufretteAdapter" abstract="true" public="false">
                    <argument /><!-- GaufretteAdapter -->
                </service>
+               <service id="oneup_flysystem.adapter.replicate" class="League\Flysystem\Replicate\ReplicateAdapter" abstract="true" public="false">
+                   <argument /><!-- SourceAdapter -->
+                   <argument /><!-- ReplicaAdapter -->
+               </service>
            </services>
 
 </container>

@@ -8,9 +8,7 @@ use League\Flysystem\MountManager;
 use Oneup\FlysystemBundle\StreamWrapper\StreamWrapperManager;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
-use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 
 class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 {
