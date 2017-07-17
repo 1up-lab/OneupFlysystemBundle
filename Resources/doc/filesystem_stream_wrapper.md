@@ -28,7 +28,7 @@ The example below is how to configure same as the default configurations of `"tw
 ```yaml
 oneup_flysystem:
     filesystems:
-        my_filesystem:
+        my_filesystem:
             adapter: #
             stream_wrapper:
                 protocol: myfs
