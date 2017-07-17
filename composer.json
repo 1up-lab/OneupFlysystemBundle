@@ -21,7 +21,7 @@
     ],
 
     "require": {
-        "php": ">=5.4.0",
+        "php": "^7.0",
         "symfony/framework-bundle": "~2.0|~3.0",
         "league/flysystem": "^1.0.26"
     },
@@ -35,7 +35,7 @@
         "symfony/translation": "^2.0|^3.0",
         "league/flysystem-aws-s3-v2": "^1.0",
         "league/flysystem-cached-adapter": "^1.0",
-        "league/flysystem-dropbox": "^1.0",
+        "spatie/flysystem-dropbox": "^1.0",
         "league/flysystem-gridfs": "^1.0",
         "league/flysystem-memory": "^1.0",
         "league/flysystem-rackspace": "^1.0",
@@ -55,7 +55,7 @@
         "league/flysystem-aws-s3-v2": "Use S3 storage with AWS SDK v2",
         "league/flysystem-aws-s3-v3": "Use S3 storage with AWS SDK v3",
         "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
-        "league/flysystem-dropbox": "Use Dropbox storage",
+        "spatie/flysystem-dropbox": "Use Dropbox storage",
         "league/flysystem-gridfs": "Allows you to use GridFS adapter",
         "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
         "league/flysystem-sftp": "Allows SFTP server storage via phpseclib",

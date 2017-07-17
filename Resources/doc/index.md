@@ -25,7 +25,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The AwsS3v2 adapter requires `"league/flysystem-aws-s3-v2"`
 * The Azure adapter requires `"league/flysystem-azure"`
 * The Copy adapter requires `"league/flysystem-copy"`
-* The Dropbox adapter requires `"league/flysystem-dropbox"`
+* The Dropbox adapter requires `"spatie/flysystem-dropbox"`
 * The Fallback adapter requires `"litipk/flysystem-fallback-adapter"`
 * The Google Cloud Storage adapter requires `"superbalist/flysystem-google-storage"`
 * The GridFS adapter requires `"league/flysystem-gridfs"`

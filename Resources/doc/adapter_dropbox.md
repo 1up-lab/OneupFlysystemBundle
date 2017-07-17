@@ -6,10 +6,9 @@ The Flysystem adapter works with the official [Dropbox SDK](https://www.dropbox.
 ```yml
 services:
     acme.dropbox_client:
-        class: Dropbox\Client
+        class: Spatie\Dropbox\Client
         arguments:
-            - "access-token"
-            - "client-identifier"
+            - "authorization-token"
 ```
 
 Set this service as the value of the client key in the oneup_flysystem configuration.

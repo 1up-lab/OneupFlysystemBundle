@@ -31,7 +31,7 @@
                    <argument /><!-- Bucket -->
                    <argument /><!-- Prefix -->
                </service>
-               <service id="oneup_flysystem.adapter.dropbox" class="League\Flysystem\Dropbox\DropboxAdapter" abstract="true" public="false">
+               <service id="oneup_flysystem.adapter.dropbox" class="Spatie\FlysystemDropbox\DropboxAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Prefix -->
                </service>
