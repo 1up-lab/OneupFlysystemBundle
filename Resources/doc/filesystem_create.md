@@ -11,6 +11,7 @@ oneup_flysystem:
             cache: ~
             alias: ~
             mount: ~
+            visibility: ~
 ```
 
 This will expose a new service for you to use.
