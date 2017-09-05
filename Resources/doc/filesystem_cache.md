@@ -123,7 +123,7 @@ oneup_flysystem:
     cache:
         my_cache:
             psr6:
-                client: cache.flysystem.psr6
+                service: cache.flysystem.psr6
                 key: ~
                 expires: ~
 ```
