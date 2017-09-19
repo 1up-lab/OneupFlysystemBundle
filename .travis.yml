@@ -3,12 +3,10 @@ language: php
 php:
   - 7.0
   - 7.1
-  - hhvm
 
 env:
   - SYMFONY_VERSION=2.7.*
   - SYMFONY_VERSION=2.8.*
-  - SYMFONY_VERSION=3.2.*
   - SYMFONY_VERSION=3.3.*
   - SYMFONY_VERSION=dev-master
 
@@ -19,9 +17,12 @@ cache:
 matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
-    - php: hhvm
+
+before_install:
+  - composer selfupdate
 
 before_script:
-  - composer selfupdate
-  - composer require symfony/framework-bundle:${SYMFONY_VERSION} --prefer-source
-  - composer install --dev --prefer-source
+  - travis_wait composer require symfony/framework-bundle:${SYMFONY_VERSION} --prefer-source
+  - travis_wait composer install --dev --prefer-source
+
+script: ./vendor/bin/phpunit
