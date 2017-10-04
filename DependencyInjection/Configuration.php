@@ -106,7 +106,6 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->arrayNode('permissions')
                                             ->isRequired()
-                                            ->cannotBeEmpty()
                                             ->children()
                                                 ->arrayNode('dir')
                                                     ->isRequired()
