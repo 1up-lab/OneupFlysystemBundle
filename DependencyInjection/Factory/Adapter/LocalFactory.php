@@ -4,7 +4,7 @@ namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use League\Flysystem\Adapter\Local;
 
@@ -18,7 +18,7 @@ class LocalFactory implements AdapterFactoryInterface
     public function create(ContainerBuilder $container, $id, array $config)
     {
         $container
-            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.adapter.local'))
+            ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.local'))
             ->setLazy($config['lazy'])
             ->replaceArgument(0, $config['directory'])
             ->replaceArgument(1, $config['writeFlags'])

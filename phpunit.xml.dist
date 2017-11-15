@@ -2,7 +2,7 @@
 
 <phpunit bootstrap="./Tests/bootstrap.php" colors="true">
     <php>
-        <server name="KERNEL_DIR" value="Tests/App" />
+        <server name="KERNEL_CLASS" value="Oneup\FlysystemBundle\Tests\App\AppKernel" />
     </php>
 
     <testsuites>

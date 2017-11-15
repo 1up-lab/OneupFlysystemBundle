@@ -1,5 +1,9 @@
 <?php
 
+namespace Oneup\FlysystemBundle\Tests\App;
+
+use Oneup\FlysystemBundle\OneupFlysystemBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -8,10 +12,10 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new FrameworkBundle(),
 
             // Test this Bundle
-            new Oneup\FlysystemBundle\OneupFlysystemBundle(),
+            new OneupFlysystemBundle(),
         );
 
         return $bundles;
