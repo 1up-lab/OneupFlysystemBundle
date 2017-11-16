@@ -6,7 +6,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -101,7 +101,7 @@ class OneupFlysystemExtension extends Extension
             $cache = $caches[$config['cache']];
 
             $container
-                ->setDefinition($adapter.'_cached', new DefinitionDecorator('oneup_flysystem.adapter.cached'))
+                ->setDefinition($adapter.'_cached', new ChildDefinition('oneup_flysystem.adapter.cached'))
                 ->replaceArgument(0, new Reference($adapter))
                 ->replaceArgument(1, new Reference($cache));
         }
@@ -123,7 +123,7 @@ class OneupFlysystemExtension extends Extension
         }
 
         $container
-            ->setDefinition($id, new DefinitionDecorator('oneup_flysystem.filesystem'))
+            ->setDefinition($id, new ChildDefinition('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($cache ? $adapter.'_cached' : $adapter))
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams);
@@ -213,7 +213,7 @@ class OneupFlysystemExtension extends Extension
 
             $streamWrapper = array_merge(['configuration' => null], $filesystem['stream_wrapper']);
 
-            $configuration = new DefinitionDecorator('oneup_flysystem.stream_wrapper.configuration.def');
+            $configuration = new ChildDefinition('oneup_flysystem.stream_wrapper.configuration.def');
             $configuration
                 ->replaceArgument(0, $streamWrapper['protocol'])
                 ->replaceArgument(1, $filesystems[$name])
