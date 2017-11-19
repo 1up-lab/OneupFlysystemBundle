@@ -15,13 +15,13 @@ works with the MongoDB PHP extension.
  services:
      acme_test.mongo:
          class:     Mongo
-         arguments: [%acme_test.mongo.server%, %acme_test.mongo.options%]
+         arguments: ["%acme_test.mongo.server%", "%acme_test.mongo.options%"]
      acme_test.mongodb:
          class:     MongoDB
-         arguments: [@acme_test.mongo, %acme_test.mongodb.name%]
+         arguments: ["@acme_test.mongo", "%acme_test.mongodb.name%"]
      acme_test.gridfs_client:
          class:     MongoGridFS
-         arguments: [@acme_test.mongodb, %acme_test.gridfs.prefix%]
+         arguments: ["@acme_test.mongodb", "%acme_test.gridfs.prefix%"]
 ```
 
 Set this service as the value of the `client` key in the `oneup_flysystem` configuration.

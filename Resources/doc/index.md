@@ -24,7 +24,6 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
 * The AwsS3v2 adapter requires `"league/flysystem-aws-s3-v2"`
 * The Azure adapter requires `"league/flysystem-azure"`
-* The Copy adapter requires `"league/flysystem-copy"`
 * The Dropbox adapter requires `"spatie/flysystem-dropbox"`
 * The Fallback adapter requires `"litipk/flysystem-fallback-adapter"`
 * The Google Cloud Storage adapter requires `"superbalist/flysystem-google-storage"`
@@ -66,7 +65,7 @@ oneup_flysystem:
     adapters:
         my_adapter:
             local:
-                directory: %kernel.root_dir%/cache
+                directory: "%kernel.root_dir%/cache"
 
     filesystems:
         my_filesystem:
