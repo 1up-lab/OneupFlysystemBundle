@@ -9,7 +9,7 @@ oneup_flysystem:
     adapters:
         my_adapter:
             zip:
-                location: %kernel.root_dir%/Resources/fs.zip
+                location: "%kernel.root_dir%/Resources/fs.zip"
                 archive: ~
 ```
 

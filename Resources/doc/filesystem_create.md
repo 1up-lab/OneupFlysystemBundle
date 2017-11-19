@@ -50,7 +50,7 @@ oneup_flysystem:
     adapters:
         myadapter:
             local:
-                directory: %kernel.root_dir%/cache
+                directory: "%kernel.root_dir%/cache"
 
     filesystems:
         myfilesystem:
