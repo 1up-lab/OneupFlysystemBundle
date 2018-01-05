@@ -126,11 +126,12 @@ class OneupFlysystemExtension extends Extension
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.filesystem'))
             ->replaceArgument(0, new Reference($cache ? $adapter.'_cached' : $adapter))
             ->replaceArgument(1, $options)
-            ->addTag('oneup_flysystem.filesystem', $tagParams);
+            ->addTag('oneup_flysystem.filesystem', $tagParams)
+            ->setPublic(true);
 
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
-            $container->setAlias($config['alias'], $id);
+            $container->setAlias($config['alias'], $id)->setPublic(true);
         }
 
         // Attach Plugins
