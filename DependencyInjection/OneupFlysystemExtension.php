@@ -131,7 +131,12 @@ class OneupFlysystemExtension extends Extension
 
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
-            $container->setAlias($config['alias'], $id)->setPublic(true);
+
+            if (null === $alias = $container->setAlias($config['alias'], $id)) {
+                $alias = $container->getAlias($config['alias']);
+            }
+
+            $alias->setPublic(true);
         }
 
         // Attach Plugins
