@@ -17,7 +17,7 @@ services:
         class: Google\Cloud\Storage\Bucket
         factory: 'acme.google_storage_client:bucket'
         arguments:
-            name: 'your-bucket-name'
+            - 'your-bucket-name'
 ```
 
 Set these services as the client and bucket values in the oneup_flysystem configuration.
