@@ -11,7 +11,7 @@ class PluginTest extends ContainerAwareTestCase
     public function testIfSinglePluginIsAttached()
     {
         /** @var FilesystemInterface $filesystem */
-        $filesystem = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+        $filesystem = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
 
         $refl = new \ReflectionObject($filesystem);
         $property = $refl->getProperty('plugins');
@@ -29,7 +29,7 @@ class PluginTest extends ContainerAwareTestCase
     public function testIfAllPluginsAreAttachedCorrectly()
     {
         /** @var FilesystemInterface $filesystem */
-        $filesystem = $this->container->get('oneup_flysystem.myfilesystem2_filesystem');
+        $filesystem = self::$container->get('oneup_flysystem.myfilesystem2_filesystem');
 
         $refl = new \ReflectionObject($filesystem);
         $property = $refl->getProperty('plugins');
@@ -48,7 +48,7 @@ class PluginTest extends ContainerAwareTestCase
     public function testIfGlobalPluginIsAttached()
     {
         /** @var FilesystemInterface $filesystem */
-        $filesystem = $this->container->get('oneup_flysystem.myfilesystem3_filesystem');
+        $filesystem = self::$container->get('oneup_flysystem.myfilesystem3_filesystem');
 
         $refl = new \ReflectionObject($filesystem);
         $property = $refl->getProperty('plugins');

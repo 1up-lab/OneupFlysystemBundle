@@ -11,12 +11,12 @@ class ContainerAwareTestCase extends WebTestCase
      * @var Client
      */
     protected $client;
-    protected $container;
+    protected static $container;
 
     public function setUp()
     {
         $this->client = static::createClient();
-        $this->container = $this->client->getContainer();
+        self::$container = $this->client->getContainer();
     }
 
     public function tearDown()
@@ -24,6 +24,5 @@ class ContainerAwareTestCase extends WebTestCase
         parent::tearDown();
 
         unset($this->client);
-        unset($this->container);
     }
 }

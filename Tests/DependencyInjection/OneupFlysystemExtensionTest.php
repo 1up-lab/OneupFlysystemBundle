@@ -24,21 +24,21 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
          *
          * @var Filesystem $filesystem1
          */
-        $filesystem1 = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+        $filesystem1 = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
 
         /**
          * Visibility flag is set to "public"
          *
          * @var Filesystem $filesystem2
          */
-        $filesystem2 = $this->container->get('oneup_flysystem.myfilesystem2_filesystem');
+        $filesystem2 = self::$container->get('oneup_flysystem.myfilesystem2_filesystem');
 
         /**
          * Visibility flag ist set to "private"
          *
          * @var Filesystem $filesystem3
          */
-        $filesystem3 = $this->container->get('oneup_flysystem.myfilesystem3_filesystem');
+        $filesystem3 = self::$container->get('oneup_flysystem.myfilesystem3_filesystem');
 
         $filesystem1->write('1/meep', 'meep\'s content');
         $filesystem2->write('2/meep', 'meep\'s content');
@@ -56,14 +56,14 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
          *
          * @var Filesystem $filesystem1
          */
-        $filesystem1 = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+        $filesystem1 = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
 
         /**
          * Disabled asserts
          *
          * @var Filesystem $filesystem2
          */
-        $filesystem2 = $this->container->get('oneup_flysystem.myfilesystem2_filesystem');
+        $filesystem2 = self::$container->get('oneup_flysystem.myfilesystem2_filesystem');
 
         $this->assertFalse($filesystem1->getConfig()->get('disable_asserts'));
         $this->assertTrue($filesystem2->getConfig()->get('disable_asserts'));
@@ -72,7 +72,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     public function testIfMountManagerIsFilled()
     {
         /** @var MountManager $mountManager */
-        $mountManager = $this->container->get('oneup_flysystem.mount_manager');
+        $mountManager = self::$container->get('oneup_flysystem.mount_manager');
 
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('prefix'));
     }
@@ -83,7 +83,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     public function testIfOnlyConfiguredFilesystemsAreMounted()
     {
         /** @var MountManager $mountManager */
-        $mountManager = $this->container->get('oneup_flysystem.mount_manager');
+        $mountManager = self::$container->get('oneup_flysystem.mount_manager');
 
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('prefix2'));
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('unrelated'));
@@ -113,7 +113,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
      */
     public function testIfCachedAdapterAreCached()
     {
-        $filesystem = $this->container->get('oneup_flysystem.myfilesystem_filesystem');
+        $filesystem = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
         $adapter = $filesystem->getAdapter();
 
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $adapter);
@@ -242,7 +242,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     public function testStreamWrapperSettings()
     {
         /* @var StreamWrapperManager $manager */
-        $manager = $this->container->get('oneup_flysystem.stream_wrapper.manager');
+        $manager = self::$container->get('oneup_flysystem.stream_wrapper.manager');
 
         $this->assertTrue($manager->hasConfiguration('myfilesystem'));
         $this->assertInstanceOf('Oneup\FlysystemBundle\StreamWrapper\Configuration', $configuration = $manager->getConfiguration('myfilesystem'));
