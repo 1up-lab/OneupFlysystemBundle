@@ -69,6 +69,9 @@
     },
 
     "autoload": {
-        "psr-4": { "Oneup\\FlysystemBundle\\": "" }
+        "psr-4": { "Oneup\\FlysystemBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     }
 }
