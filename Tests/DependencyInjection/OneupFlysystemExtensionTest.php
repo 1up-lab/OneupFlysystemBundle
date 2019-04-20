@@ -5,9 +5,9 @@ namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
+use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
 use Oneup\FlysystemBundle\StreamWrapper\StreamWrapperManager;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
-use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class OneupFlysystemExtensionTest extends ContainerAwareTestCase
@@ -248,6 +248,70 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertInstanceOf('Oneup\FlysystemBundle\StreamWrapper\Configuration', $configuration = $manager->getConfiguration('myfilesystem'));
         $this->assertFalse($manager->hasConfiguration('myfilesystem2'));
         $this->assertFalse($manager->hasConfiguration('myfilesystem3'));
+    }
+
+    public function testServiceAliasWithFilesystemSuffix()
+    {
+        if (!method_exists(ContainerBuilder::class, 'registerAliasForArgument')) {
+            $this->markTestSkipped('Symfony 4.2 needed to test container alias registration for arguments.');
+
+            return;
+        }
+
+        $container = $this->loadExtension([
+            'oneup_flysystem' => [
+                'adapters' => [
+                    'default_adapter' => [
+                        'local' => [
+                            'directory' => '.',
+                        ],
+                    ],
+                ],
+                'filesystems' => [
+                    'acme_filesystem' => [
+                        'alias' => Filesystem::class,
+                        'adapter' => 'default_adapter',
+                    ],
+                ],
+            ],
+        ]);
+
+        $aliasName = 'League\Flysystem\FilesystemInterface $acmeFilesystem';
+
+        $this->assertTrue($container->hasAlias($aliasName));
+        $this->assertSame('oneup_flysystem.acme_filesystem_filesystem', (string) $container->getAlias($aliasName));
+    }
+
+    public function testServiceAliasWithoutFilesystemSuffix()
+    {
+        if (!method_exists(ContainerBuilder::class, 'registerAliasForArgument')) {
+            $this->markTestSkipped('Symfony 4.2 needed to test container alias registration for arguments.');
+
+            return;
+        }
+
+        $container = $this->loadExtension([
+            'oneup_flysystem' => [
+                'adapters' => [
+                    'default_adapter' => [
+                        'local' => [
+                            'directory' => '.',
+                        ],
+                    ],
+                ],
+                'filesystems' => [
+                    'acme' => [
+                        'alias' => Filesystem::class,
+                        'adapter' => 'default_adapter',
+                    ],
+                ],
+            ],
+        ]);
+
+        $aliasName = 'League\Flysystem\FilesystemInterface $acmeFilesystem';
+
+        $this->assertTrue($container->hasAlias($aliasName));
+        $this->assertSame('oneup_flysystem.acme_filesystem', (string) $container->getAlias($aliasName));
     }
 
     /**
