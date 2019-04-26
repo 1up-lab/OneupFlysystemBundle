@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CustomAdapterFactory implements AdapterFactoryInterface
 {
@@ -13,12 +15,12 @@ class CustomAdapterFactory implements AdapterFactoryInterface
         return 'custom';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config)
+    public function create(ContainerBuilder $container, $id, array $config): void
     {
         $container->setAlias($id, $config['service']);
     }
 
-    public function addConfiguration(NodeDefinition $node)
+    public function addConfiguration(NodeDefinition $node): void
     {
         $node
             ->children()

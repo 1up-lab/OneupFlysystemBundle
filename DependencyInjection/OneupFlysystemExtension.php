@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ChildDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -15,12 +17,12 @@ class OneupFlysystemExtension extends Extension
     private $adapterFactories;
     private $cacheFactories;
 
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
-        list($adapterFactories, $cacheFactories) = $this->getFactories($container);
+        [$adapterFactories, $cacheFactories] = $this->getFactories($container);
 
         $configuration = new Configuration($adapterFactories, $cacheFactories);
         $config = $this->processConfiguration($configuration, $configs);
@@ -30,9 +32,9 @@ class OneupFlysystemExtension extends Extension
         $loader->load('cache.xml');
         $loader->load('plugins.xml');
 
-        $adapters = array();
-        $filesystems = array();
-        $caches = array();
+        $adapters = [];
+        $filesystems = [];
+        $caches = [];
 
         foreach ($config['adapters'] as $name => $adapter) {
             $adapters[$name] = $this->createAdapter($name, $adapter, $container, $adapterFactories);
@@ -51,10 +53,10 @@ class OneupFlysystemExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container)
     {
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
-        list($adapterFactories, $cacheFactories) = $this->getFactories($container);
+        [$adapterFactories, $cacheFactories] = $this->getFactories($container);
 
         return new Configuration($adapterFactories, $cacheFactories);
     }
@@ -62,7 +64,7 @@ class OneupFlysystemExtension extends Extension
     private function createCache($name, array $config, ContainerBuilder $container, array $factories)
     {
         foreach ($config as $key => $adapter) {
-            if (array_key_exists($key, $factories)) {
+            if (\array_key_exists($key, $factories)) {
                 $id = sprintf('oneup_flysystem.%s_cache', $name);
                 $factories[$key]->create($container, $id, $adapter);
 
@@ -76,7 +78,7 @@ class OneupFlysystemExtension extends Extension
     private function createAdapter($name, array $config, ContainerBuilder $container, array $factories)
     {
         foreach ($config as $key => $adapter) {
-            if (array_key_exists($key, $factories)) {
+            if (\array_key_exists($key, $factories)) {
                 $id = sprintf('oneup_flysystem.%s_adapter', $name);
                 $factories[$key]->create($container, $id, $adapter);
 
@@ -89,7 +91,7 @@ class OneupFlysystemExtension extends Extension
 
     private function createFilesystem($name, array $config, ContainerBuilder $container, array $adapters, array $caches)
     {
-        if (!array_key_exists($config['adapter'], $adapters)) {
+        if (!\array_key_exists($config['adapter'], $adapters)) {
             throw new \LogicException(sprintf('The adapter \'%s\' is not defined.', $config['adapter']));
         }
 
@@ -97,16 +99,16 @@ class OneupFlysystemExtension extends Extension
         $id = sprintf('oneup_flysystem.%s_filesystem', $name);
 
         $cache = null;
-        if (array_key_exists($config['cache'], $caches)) {
+        if (\array_key_exists($config['cache'], $caches)) {
             $cache = $caches[$config['cache']];
 
             $container
-                ->setDefinition($adapter.'_cached', new ChildDefinition('oneup_flysystem.adapter.cached'))
+                ->setDefinition($adapter . '_cached', new ChildDefinition('oneup_flysystem.adapter.cached'))
                 ->replaceArgument(0, new Reference($adapter))
                 ->replaceArgument(1, new Reference($cache));
         }
 
-        $tagParams = array('key' => $name);
+        $tagParams = ['key' => $name];
 
         if ($config['mount']) {
             $tagParams['mount'] = $config['mount'];
@@ -114,17 +116,17 @@ class OneupFlysystemExtension extends Extension
 
         $options = [];
 
-        if (array_key_exists('visibility', $config)) {
+        if (\array_key_exists('visibility', $config)) {
             $options['visibility'] = $config['visibility'];
         }
 
-        if (array_key_exists('disable_asserts', $config)) {
+        if (\array_key_exists('disable_asserts', $config)) {
             $options['disable_asserts'] = $config['disable_asserts'];
         }
 
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.filesystem'))
-            ->replaceArgument(0, new Reference($cache ? $adapter.'_cached' : $adapter))
+            ->replaceArgument(0, new Reference($cache ? $adapter . '_cached' : $adapter))
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams)
             ->setPublic(true);
@@ -142,9 +144,9 @@ class OneupFlysystemExtension extends Extension
         // Attach Plugins
         $defFilesystem = $container->getDefinition($id);
 
-        if (isset($config['plugins']) && is_array($config['plugins'])) {
+        if (isset($config['plugins']) && \is_array($config['plugins'])) {
             foreach ($config['plugins'] as $pluginId) {
-                $defFilesystem->addMethodCall('addPlugin', array(new Reference($pluginId)));
+                $defFilesystem->addMethodCall('addPlugin', [new Reference($pluginId)]);
             }
         }
 
@@ -153,10 +155,10 @@ class OneupFlysystemExtension extends Extension
 
     private function getFactories(ContainerBuilder $container)
     {
-        return array(
+        return [
             $this->getAdapterFactories($container),
             $this->getCacheFactories($container),
-        );
+        ];
     }
 
     private function getAdapterFactories(ContainerBuilder $container)
@@ -165,7 +167,7 @@ class OneupFlysystemExtension extends Extension
             return $this->adapterFactories;
         }
 
-        $factories = array();
+        $factories = [];
         $services = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
 
         foreach (array_keys($services) as $id) {
@@ -182,7 +184,7 @@ class OneupFlysystemExtension extends Extension
             return $this->cacheFactories;
         }
 
-        $factories = array();
+        $factories = [];
         $services = $container->findTaggedServiceIds('oneup_flysystem.cache_factory');
 
         foreach (array_keys($services) as $id) {
@@ -199,7 +201,7 @@ class OneupFlysystemExtension extends Extension
      * @param Loader\XmlFileLoader $loader
      * @param ContainerBuilder     $container
      */
-    private function loadStreamWrappers(array $configs, array $filesystems, Loader\XmlFileLoader $loader, ContainerBuilder $container)
+    private function loadStreamWrappers(array $configs, array $filesystems, Loader\XmlFileLoader $loader, ContainerBuilder $container): void
     {
         if (!$this->hasStreamWrapperConfiguration($configs)) {
             return;
@@ -226,9 +228,9 @@ class OneupFlysystemExtension extends Extension
                 ->replaceArgument(2, $streamWrapper['configuration'])
                 ->setPublic(false);
 
-            $container->setDefinition('oneup_flysystem.stream_wrapper.configuration.'.$name, $configuration);
+            $container->setDefinition('oneup_flysystem.stream_wrapper.configuration.' . $name, $configuration);
 
-            $configurations[$name] = new Reference('oneup_flysystem.stream_wrapper.configuration.'.$name);
+            $configurations[$name] = new Reference('oneup_flysystem.stream_wrapper.configuration.' . $name);
         }
 
         $container->getDefinition('oneup_flysystem.stream_wrapper.manager')->replaceArgument(0, $configurations);

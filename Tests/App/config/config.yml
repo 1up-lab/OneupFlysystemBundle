@@ -3,7 +3,7 @@ framework:
     secret: secret
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
+        strict_requirements: '%kernel.debug%'
     templating:
         engines: ['php']
     default_locale: en
@@ -19,7 +19,7 @@ oneup_flysystem:
     adapters:
         myadapter:
             local:
-                directory: %kernel.root_dir%/cache
+                directory: '%kernel.root_dir%/cache'
 
     filesystems:
         myfilesystem:

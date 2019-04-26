@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\Tests\Model;
 
 use League\Flysystem\FilesystemInterface;
@@ -10,7 +12,7 @@ class Plugin implements PluginInterface
     /** @var FilesystemInterface $filesystem */
     protected $filesystem;
 
-    public function setFilesystem(FilesystemInterface $filesystem)
+    public function setFilesystem(FilesystemInterface $filesystem): void
     {
         $this->filesystem = $filesystem;
     }

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
-use Symfony\Component\Config\Definition\Builder\NodeDefinition;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ChildDefinition;
-use Symfony\Component\DependencyInjection\Reference;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
+use Symfony\Component\Config\Definition\Builder\NodeDefinition;
+use Symfony\Component\DependencyInjection\ChildDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 class AwsS3V3Factory implements AdapterFactoryInterface
 {
@@ -15,7 +17,7 @@ class AwsS3V3Factory implements AdapterFactoryInterface
         return 'awss3v3';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config)
+    public function create(ContainerBuilder $container, $id, array $config): void
     {
         $definition = $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.awss3v3'))
@@ -26,7 +28,7 @@ class AwsS3V3Factory implements AdapterFactoryInterface
         ;
     }
 
-    public function addConfiguration(NodeDefinition $node)
+    public function addConfiguration(NodeDefinition $node): void
     {
         $node
             ->children()

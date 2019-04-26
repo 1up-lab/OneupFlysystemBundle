@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle;
 
 use Oneup\FlysystemBundle\DependencyInjection\Compiler\FilesystemPass;
@@ -10,12 +12,12 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class OneupFlysystemBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new FilesystemPass());
     }
 
-    public function boot()
+    public function boot(): void
     {
         parent::boot();
 
@@ -25,7 +27,7 @@ class OneupFlysystemBundle extends Bundle
         }
     }
 
-    public function shutdown()
+    public function shutdown(): void
     {
         parent::shutdown();
 

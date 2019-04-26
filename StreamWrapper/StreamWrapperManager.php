@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\StreamWrapper;
 
@@ -30,7 +31,7 @@ class StreamWrapperManager
      * @param string        $filesystemName
      * @param Configuration $configuration
      */
-    public function addConfiguration($filesystemName, Configuration $configuration)
+    public function addConfiguration($filesystemName, Configuration $configuration): void
     {
         $this->configurations[$filesystemName] = $configuration;
     }
@@ -62,7 +63,7 @@ class StreamWrapperManager
     /**
      * @throws \Exception
      */
-    public function register()
+    public function register(): void
     {
         foreach ($this->configurations as $configuration) {
             // Unregister stream wrapper first in case it was already registered.
@@ -77,7 +78,7 @@ class StreamWrapperManager
     /**
      * @throws \Exception
      */
-    public function unregister()
+    public function unregister(): void
     {
         foreach ($this->configurations as $configuration) {
             if (!FlysystemStreamWrapper::unregister($configuration->getProtocol())) {
