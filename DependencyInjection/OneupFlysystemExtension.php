@@ -2,6 +2,7 @@
 
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
+use League\Flysystem\FilesystemInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader;
@@ -127,7 +128,8 @@ class OneupFlysystemExtension extends Extension
             ->replaceArgument(0, new Reference($cache ? $adapter.'_cached' : $adapter))
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams)
-            ->setPublic(true);
+            ->setPublic(true)
+        ;
 
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
@@ -146,6 +148,14 @@ class OneupFlysystemExtension extends Extension
             foreach ($config['plugins'] as $pluginId) {
                 $defFilesystem->addMethodCall('addPlugin', array(new Reference($pluginId)));
             }
+        }
+
+        if (method_exists($container, 'registerAliasForArgument')) {
+            $aliasName = $name;
+            if (!preg_match('~filesystem$~i', $aliasName)) {
+                $aliasName .= 'Filesystem';
+            }
+            $container->registerAliasForArgument($id, FilesystemInterface::class, $aliasName)->setPublic(false);
         }
 
         return new Reference($id);
