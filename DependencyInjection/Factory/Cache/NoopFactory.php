@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class NoopFactory implements CacheFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'noop';
     }

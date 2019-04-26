@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AwsS3V3Factory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'awss3v3';
     }

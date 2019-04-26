@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class GaufretteFactory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'gaufrette';
     }

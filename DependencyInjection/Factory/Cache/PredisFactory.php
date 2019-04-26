@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class PredisFactory implements CacheFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'predis';
     }

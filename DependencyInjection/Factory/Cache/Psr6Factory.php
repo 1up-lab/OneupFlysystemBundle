@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class Psr6Factory implements CacheFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'psr6';
     }

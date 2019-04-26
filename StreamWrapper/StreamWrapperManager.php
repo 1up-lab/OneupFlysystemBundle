@@ -36,22 +36,12 @@ class StreamWrapperManager
         $this->configurations[$filesystemName] = $configuration;
     }
 
-    /**
-     * @param string $filesystemName
-     *
-     * @return bool
-     */
-    public function hasConfiguration($filesystemName)
+    public function hasConfiguration(string $filesystemName): bool
     {
         return isset($this->configurations[$filesystemName]);
     }
 
-    /**
-     * @param string $filesystemName
-     *
-     * @return Configuration
-     */
-    public function getConfiguration($filesystemName)
+    public function getConfiguration(string $filesystemName): Configuration
     {
         if (!$this->hasConfiguration($filesystemName)) {
             throw new \InvalidArgumentException(sprintf('The filesystem "%s" has no stream wrapper configuration', $filesystemName));

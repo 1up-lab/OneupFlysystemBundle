@@ -37,26 +37,17 @@ class Configuration
         $this->configuration = $configuration;
     }
 
-    /**
-     * @return string
-     */
-    public function getProtocol()
+    public function getProtocol(): string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return FilesystemInterface
-     */
-    public function getFilesystem()
+    public function getFilesystem(): FilesystemInterface
     {
         return $this->filesystem;
     }
 
-    /**
-     * @return array|null
-     */
-    public function getConfiguration()
+    public function getConfiguration(): ?array
     {
         return $this->configuration;
     }

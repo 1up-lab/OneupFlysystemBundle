@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
         $this->cacheFactories = $cacheFactories;
     }
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('oneup_flysystem');
 

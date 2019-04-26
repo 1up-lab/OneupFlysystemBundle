@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class StashFactory implements CacheFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'stash';
     }

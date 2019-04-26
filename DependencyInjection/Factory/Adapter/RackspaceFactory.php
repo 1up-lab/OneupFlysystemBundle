@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class RackspaceFactory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'rackspace';
     }

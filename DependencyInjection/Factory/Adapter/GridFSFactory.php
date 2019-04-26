@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class GridFSFactory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'gridfs';
     }

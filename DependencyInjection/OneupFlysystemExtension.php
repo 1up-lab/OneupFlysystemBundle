@@ -153,7 +153,7 @@ class OneupFlysystemExtension extends Extension
         return new Reference($id);
     }
 
-    private function getFactories(ContainerBuilder $container)
+    private function getFactories(ContainerBuilder $container): array
     {
         return [
             $this->getAdapterFactories($container),
@@ -161,7 +161,7 @@ class OneupFlysystemExtension extends Extension
         ];
     }
 
-    private function getAdapterFactories(ContainerBuilder $container)
+    private function getAdapterFactories(ContainerBuilder $container): array
     {
         if (null !== $this->adapterFactories) {
             return $this->adapterFactories;
@@ -178,7 +178,7 @@ class OneupFlysystemExtension extends Extension
         return $this->adapterFactories = $factories;
     }
 
-    private function getCacheFactories(ContainerBuilder $container)
+    private function getCacheFactories(ContainerBuilder $container): array
     {
         if (null !== $this->cacheFactories) {
             return $this->cacheFactories;
@@ -196,10 +196,7 @@ class OneupFlysystemExtension extends Extension
     }
 
     /**
-     * @param array                $configs
-     * @param Reference[]          $filesystems
-     * @param Loader\XmlFileLoader $loader
-     * @param ContainerBuilder     $container
+     * @throws \Exception
      */
     private function loadStreamWrappers(array $configs, array $filesystems, Loader\XmlFileLoader $loader, ContainerBuilder $container): void
     {
@@ -236,12 +233,7 @@ class OneupFlysystemExtension extends Extension
         $container->getDefinition('oneup_flysystem.stream_wrapper.manager')->replaceArgument(0, $configurations);
     }
 
-    /**
-     * @param array $configs
-     *
-     * @return bool
-     */
-    private function hasStreamWrapperConfiguration(array $configs)
+    private function hasStreamWrapperConfiguration(array $configs): bool
     {
         foreach ($configs as $name => $filesystem) {
             if (isset($filesystem['stream_wrapper'])) {
