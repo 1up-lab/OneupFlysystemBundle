@@ -94,4 +94,4 @@ oneup_flysystem:
 $filesystem = $container->get('oneup_flysystem.mount_manager')->getFilesystem('prefix');
 ```
 
-Details on the usage of the MountManager can be found in the [Flysystem documentation](http://flysystem.thephpleague.com/mount-manager/).
+Details on the usage of the MountManager can be found in the [Flysystem documentation](https://flysystem.thephpleague.com/docs/advanced/mount-manager/).
