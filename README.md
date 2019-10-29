@@ -4,6 +4,7 @@ OneupFlysystemBundle
 The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/flysystem) integration for your Symfony projects. Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one. Currently you can configure the following adapters to use in your Symfony project.
 
 * [AwsS3](http://aws.amazon.com/de/sdkforphp/)
+* [AzureBlobStorage](https://azure.microsoft.com/en-us/services/storage/blobs/)
 * [Dropbox](https://www.dropbox.com/developers)
 * [Ftp](http://php.net/manual/en/book.ftp.php)
 * [Google Cloud Storage](https://cloud.google.com/storage/)

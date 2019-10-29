@@ -23,7 +23,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 
 * The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
 * The AwsS3v2 adapter requires `"league/flysystem-aws-s3-v2"`
-* The Azure adapter requires `"league/flysystem-azure"`
+* The Azure Blob Storage adapter requires `"league/flysystem-azure-blob-storage"`
 * The Dropbox adapter requires `"spatie/flysystem-dropbox"`
 * The Fallback adapter requires `"litipk/flysystem-fallback-adapter"`
 * The Google Cloud Storage adapter requires `"superbalist/flysystem-google-storage"`
@@ -78,6 +78,7 @@ oneup_flysystem:
 There are a bunch of adapters for you to use:
 
 * [AwsS3](adapter_awss3.md)
+* [AzureBlobStorage](adapter_azureblob.md)
 * [Copy.com](https://github.com/copy-app/php-client-library)
 * [Dropbox](adapter_dropbox.md)
 * [Ftp](adapter_ftp.md)

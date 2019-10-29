@@ -31,6 +31,11 @@
                    <argument /><!-- Bucket -->
                    <argument /><!-- Prefix -->
                </service>
+               <service id="oneup_flysystem.adapter.azureblob" class="League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Container -->
+                   <argument /><!-- Prefix -->
+               </service>
                <service id="oneup_flysystem.adapter.dropbox" class="Spatie\FlysystemDropbox\DropboxAdapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Prefix -->
