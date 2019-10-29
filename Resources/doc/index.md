@@ -78,6 +78,7 @@ oneup_flysystem:
 There are a bunch of adapters for you to use:
 
 * [AwsS3](adapter_awss3.md)
+* Test
 * [Copy.com](https://github.com/copy-app/php-client-library)
 * [Dropbox](adapter_dropbox.md)
 * [Ftp](adapter_ftp.md)
