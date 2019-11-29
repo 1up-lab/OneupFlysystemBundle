@@ -2,10 +2,8 @@ framework:
     translator: { fallback: en }
     secret: secret
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
-    templating:
-        engines: ['php']
+        resource: "%kernel.project_dir/config/routing.yml"
+        strict_requirements: "%kernel.debug%"
     default_locale: en
     session: ~
     test: ~
@@ -19,7 +17,7 @@ oneup_flysystem:
     adapters:
         myadapter:
             local:
-                directory: %kernel.root_dir%/cache
+                directory: "kernel.project_dir%/cache"
 
     filesystems:
         myfilesystem:
