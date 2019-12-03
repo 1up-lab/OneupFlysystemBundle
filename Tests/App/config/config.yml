@@ -2,11 +2,11 @@ framework:
     translator: { fallback: en }
     secret: secret
     router:
-        resource: "%kernel.project_dir/config/routing.yml"
+        resource: "%kernel.project_dir%/config/routing.yml"
         strict_requirements: "%kernel.debug%"
     default_locale: en
     session: ~
-    test: ~
+    test: true
     trusted_hosts: ~
 
 oneup_flysystem:
@@ -17,7 +17,7 @@ oneup_flysystem:
     adapters:
         myadapter:
             local:
-                directory: "kernel.project_dir%/cache"
+                directory: "%kernel.project_dir%/cache"
 
     filesystems:
         myfilesystem:
