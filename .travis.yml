@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
   - 7.2
   - 7.3
@@ -20,13 +19,11 @@ matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
   exclude:
-    - php: 7.0
+    - php: 7.1
       env: SYMFONY_VERSION=^4.0
-    - php: 7.0
-      env: SYMFONY_VERSION=^5.0   
     - php: 7.1
       env: SYMFONY_VERSION=^5.0       
-    - php: 7.0
+    - php: 7.1
       env: SYMFONY_VERSION=dev-master
 
 before_install:
