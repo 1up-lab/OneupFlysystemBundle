@@ -20,7 +20,7 @@ matrix:
     - env: SYMFONY_VERSION=dev-master
   exclude:
     - php: 7.1
-      env: SYMFONY_VERSION=^5.0       
+      env: SYMFONY_VERSION=^5.0
     - php: 7.1
       env: SYMFONY_VERSION=dev-master
 
