@@ -1,14 +1,14 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
   - 7.2
   - 7.3
 
 env:
-  - SYMFONY_VERSION=^3.3
+  - SYMFONY_VERSION=^3.4 COMPOSER_FLAGS=--prefer-lowest
   - SYMFONY_VERSION=^4.0
+  - SYMFONY_VERSION=^5.0
   - SYMFONY_VERSION=dev-master
 
 cache:
@@ -19,17 +19,17 @@ matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
   exclude:
-    - php: 7.0
-      env: SYMFONY_VERSION=^4.0
-    - php: 7.0
+    - php: 7.1
+      env: SYMFONY_VERSION=^5.0
+    - php: 7.1
       env: SYMFONY_VERSION=dev-master
 
 before_install:
   - travis_retry composer selfupdate
 
 before_script:
-  - if [ "$SYMFONY_VERSION" = "^4.0" ]; then composer config minimum-stability dev; composer config prefer-stable true; fi
+  - if [ "$SYMFONY_VERSION" = "dev-master" ]; then composer config minimum-stability dev; composer config prefer-stable true; fi
   - travis_wait composer require symfony/framework-bundle:${SYMFONY_VERSION} --prefer-source
-  - travis_wait composer install --dev --prefer-source
+  - travis_wait composer update --dev --prefer-source ${COMPOSER_FLAGS}
 
 script: ./vendor/bin/phpunit
