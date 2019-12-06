@@ -13,13 +13,13 @@ class ContainerAwareTestCase extends WebTestCase
     protected $client;
     protected static $container;
 
-    public function setUp():void
+    public function setUp(): void
     {
         $this->client = static::createClient();
         self::$container = $this->client->getContainer();
     }
 
-    public function tearDown():void
+    public function tearDown(): void
     {
         parent::tearDown();
 
