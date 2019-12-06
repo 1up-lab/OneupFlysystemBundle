@@ -6,7 +6,7 @@ framework:
         strict_requirements: "%kernel.debug%"
     default_locale: en
     session: ~
-    test: ~
+    test: true
     trusted_hosts: ~
 
 oneup_flysystem:
