@@ -1,6 +1,9 @@
 OneupFlysystemBundle
 ====================
 
+[![Build Status](https://travis-ci.org/1up-lab/OneupFlysystemBundle.png)](https://travis-ci.org/1up-lab/OneupFlysystemBundle)
+[![Total Downloads](https://poser.pugx.org/oneup/flysystem-bundle/d/total.png)](https://packagist.org/packages/oneup/flysystem-bundle)
+
 The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/flysystem) integration for your Symfony projects. Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one. Currently you can configure the following adapters to use in your Symfony project.
 
 * [AwsS3](http://aws.amazon.com/de/sdkforphp/)
@@ -15,9 +18,6 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 * [ZipArchive](http://php.net/manual/en/class.ziparchive.php)
 * [GridFS](http://php.net/manual/en/mongo.gridfs.php)
 * [Gaufrette](http://knplabs.github.io/Gaufrette/)
-
-[![Build Status](https://travis-ci.org/1up-lab/OneupFlysystemBundle.png)](https://travis-ci.org/1up-lab/OneupFlysystemBundle)
-[![Total Downloads](https://poser.pugx.org/oneup/flysystem-bundle/d/total.png)](https://packagist.org/packages/oneup/flysystem-bundle)
 
 Documentation
 -------------
