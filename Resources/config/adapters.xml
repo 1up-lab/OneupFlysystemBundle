@@ -21,6 +21,11 @@
                    <argument /><!-- Archive -->
                    <argument /><!-- Prefix -->
                </service>
+               <service id="oneup_flysystem.adapter.async_aws_s3" class="AsyncAws\Flysystem\S3\S3FilesystemV1" abstract="true" public="false">
+                   <argument /><!-- Client -->
+                   <argument /><!-- Bucket -->
+                   <argument /><!-- Prefix -->
+               </service>
                <service id="oneup_flysystem.adapter.awss3v2" class="League\Flysystem\AwsS3v2\AwsS3Adapter" abstract="true" public="false">
                    <argument /><!-- Client -->
                    <argument /><!-- Bucket -->
