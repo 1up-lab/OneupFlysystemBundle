@@ -32,7 +32,7 @@ class AsyncAwsS3Factory implements AdapterFactoryInterface
             ->children()
                 ->scalarNode('client')->isRequired()->end()
                 ->scalarNode('bucket')->isRequired()->end()
-                ->scalarNode('prefix')->defaultNull()->end()
+                ->scalarNode('prefix')->defaultValue('')->end()
                 ->arrayNode('options')->prototype('scalar')->end()
             ->end()
         ;
