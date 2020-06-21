@@ -8,7 +8,7 @@ the S3 client at [async-aws.com](https://async-aws.com/clients/) or use the
 ```yml
 services:
     acme.async_s3_client:
-        class:
+        class: AsyncAws\S3\S3Client
         arguments:
             - region: 'eu-central-1'
               accessKeyId: 'AKIAIOSFODNN7EXAMPLE'

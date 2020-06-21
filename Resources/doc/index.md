@@ -78,7 +78,7 @@ oneup_flysystem:
 
 There are a bunch of adapters for you to use:
 
-* [AsyncAwsS3](adapter_asyncawss3.md)
+* [AsyncAwsS3](adapter_async_aws_s3.md)
 * [AwsS3](adapter_awss3.md)
 * [AzureBlobStorage](adapter_azureblob.md)
 * [Copy.com](https://github.com/copy-app/php-client-library)
