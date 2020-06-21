@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.1
   - 7.2
   - 7.3
   - 7.4
@@ -19,11 +18,6 @@ cache:
 matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
-  exclude:
-    - php: 7.1
-      env: SYMFONY_VERSION=^5.0
-    - php: 7.1
-      env: SYMFONY_VERSION=dev-master
 
 before_install:
   - travis_retry composer selfupdate
