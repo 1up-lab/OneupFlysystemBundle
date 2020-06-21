@@ -21,6 +21,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 
 **Note**: There are some additional dependencies you will need to install for some of the features:
 
+* The AsyncAwsS3 adapter requires `"async-aws/flysystem-s3"`
 * The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
 * The AwsS3v2 adapter requires `"league/flysystem-aws-s3-v2"`
 * The Azure Blob Storage adapter requires `"league/flysystem-azure-blob-storage"`
@@ -77,6 +78,7 @@ oneup_flysystem:
 
 There are a bunch of adapters for you to use:
 
+* [AsyncAwsS3](adapter_asyncawss3.md)
 * [AwsS3](adapter_awss3.md)
 * [AzureBlobStorage](adapter_azureblob.md)
 * [Copy.com](https://github.com/copy-app/php-client-library)
