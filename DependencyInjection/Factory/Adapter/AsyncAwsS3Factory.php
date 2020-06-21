@@ -22,7 +22,7 @@ class AsyncAwsS3Factory implements AdapterFactoryInterface
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['bucket'])
             ->replaceArgument(2, $config['prefix'])
-            ->addArgument((array) $config['options'])
+            ->addArgument($config['options'])
         ;
     }
 
@@ -32,8 +32,8 @@ class AsyncAwsS3Factory implements AdapterFactoryInterface
             ->children()
                 ->scalarNode('client')->isRequired()->end()
                 ->scalarNode('bucket')->isRequired()->end()
-                ->scalarNode('prefix')->defaultValue('')->end()
-                ->arrayNode('options')->prototype('scalar')->end()
+                ->scalarNode('prefix')->treatNullLike('')->defaultValue('')->end()
+                ->variableNode('options')->treatNullLike([])->defaultValue([])->end()
             ->end()
         ;
     }
