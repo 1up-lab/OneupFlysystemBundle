@@ -22,7 +22,7 @@ oneup_flysystem:
     adapters:
         acme.flysystem_adapter:
             async_aws_s3:
-                client: acme.s3_client
+                client: acme.async_s3_client
                 bucket: 'my_image_bucket'
                 prefix: ''
 ```
