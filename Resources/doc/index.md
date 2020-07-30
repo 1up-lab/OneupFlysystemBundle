@@ -108,3 +108,4 @@ After installing and setting up the basic functionality of this bundle you can m
 * [Running the tests](tests.md)
 * [Use your own flysystem adapters](adapter_custom.md)
 * [Configure stream wrapper for your filesystems](filesystem_stream_wrapper.md)
+* [Config based on PHP files](filesystem_php_config.md)
