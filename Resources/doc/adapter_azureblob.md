@@ -12,6 +12,18 @@ services:
           - '%env(AZURE_BLOB_STORAGE_CONNECTION_STRING)%'
 ```
 
+With Symfony 5.x you need to add class attribute :
+
+```yml
+services:
+    acme.azure_blob_client:
+        class: MicrosoftAzure\Storage\Blob\BlobRestProxy
+        factory: [ MicrosoftAzure\Storage\Blob\BlobRestProxy, createBlobService ]
+        arguments:
+          - '%env(AZURE_BLOB_STORAGE_CONNECTION_STRING)%'
+```
+
+
 Set this service as the value of the `client` key in the `oneup_flysystem` configuration.
 
 ```yml
