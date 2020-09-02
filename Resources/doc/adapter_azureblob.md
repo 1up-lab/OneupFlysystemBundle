@@ -12,7 +12,7 @@ services:
           - '%env(AZURE_BLOB_STORAGE_CONNECTION_STRING)%'
 ```
 
-With Symfony 5.X you need to add class attribute :
+With Symfony 5.x you need to add class attribute :
 
 ```yml
 services:
