@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
+use League\Flysystem\Visibility;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -27,6 +28,7 @@ class MemoryAdapterFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
+                ->scalarNode('defaultVisiblity')->defaultValue(Visibility::PUBLIC)->end()
             ->end()
         ;
     }

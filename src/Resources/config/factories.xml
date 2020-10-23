@@ -2,92 +2,35 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-           <services>
-               <!-- Adapter factories -->
-               <service id="oneup_flysystem.adapter_factory.local" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\LocalFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.nulladapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\NullAdapterFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.zip" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\ZipFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.async_aws_s3" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AsyncAwsS3Factory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.awss3v2" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V2Factory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.awss3v3" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V3Factory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.azureblob" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AzureBlobFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.dropbox" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\DropboxFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.googlecloudstorage" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GoogleCloudStorageFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.rackspace" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\RackspaceFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.webdav" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\WebDavFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.ftp" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\FtpFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.sftp" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\SftpFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.gridfs" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GridFSFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.customadapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CustomAdapterFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\MemoryAdapterFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.fallback" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\FallbackFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.gaufrette" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GaufretteFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-               <service id="oneup_flysystem.adapter_factory.replicate" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\ReplicateFactory">
-                   <tag name="oneup_flysystem.adapter_factory" />
-               </service>
-
-               <!-- Cache factories -->
-               <service id="oneup_flysystem.cache_factory.adapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\AdapterFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.memory" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemoryFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.noop" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\NoopFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.memcached" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\MemcachedFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.php_redis" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\PhpRedisFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.predis" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\PredisFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.stash" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\StashFactory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-               <service id="oneup_flysystem.cache_factory.psr6" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Cache\Psr6Factory">
-                   <tag name="oneup_flysystem.cache_factory" />
-               </service>
-           </services>
-
+    <services>
+        <!-- Adapter factories -->
+        <service id="oneup_flysystem.adapter_factory.local"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\LocalFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.async_aws_s3"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AsyncAwsS3Factory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.awss3v3"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V3Factory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.ftp"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\FtpFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.sftp"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\SftpFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.customadapter"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CustomAdapterFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.memory"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\MemoryAdapterFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+    </services>
 </container>
