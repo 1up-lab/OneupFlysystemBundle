@@ -27,11 +27,12 @@
     "require": {
         "php": "^7.2",
         "league/flysystem": "^1.0.26",
-        "symfony/config": "^3.4 || ^4.0 || ^5.0",
-        "symfony/dependency-injection": "^3.4 || ^4.0 || ^5.0",
-        "symfony/http-kernel": "^3.4 || ^4.0 || ^5.0"
+        "symfony/config": "^4.0 || ^5.0",
+        "symfony/dependency-injection": "^4.0 || ^5.0",
+        "symfony/http-kernel": "^4.0 || ^5.0"
     },
     "require-dev": {
+        "ext-simplexml": "*",
         "async-aws/flysystem-s3": "^0.4.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "jenko/flysystem-gaufrette": "^1.0",
@@ -50,14 +51,14 @@
         "phpunit/phpunit": "^8.5",
         "spatie/flysystem-dropbox": "^1.0",
         "superbalist/flysystem-google-storage": "^4.0",
-        "symfony/asset": "^3.4 || ^4.0 || ^5.0",
-        "symfony/browser-kit": "^3.4 || ^4.0 || ^5.0",
-        "symfony/finder": "^3.4 || ^4.0 || ^5.0",
-        "symfony/framework-bundle": "^3.4 || ^4.0 || ^5.0",
+        "symfony/asset": "^4.0 || ^5.0",
+        "symfony/browser-kit": "^4.0 || ^5.0",
+        "symfony/finder": "^4.0 || ^5.0",
+        "symfony/framework-bundle": "^4.0 || ^5.0",
         "symfony/phpunit-bridge": "^5.0",
-        "symfony/templating": "^3.4 || ^4.0 || ^5.0",
-        "symfony/translation": "^3.4 || ^4.0 || ^5.0",
-        "symfony/yaml": "^3.4 || ^4.0 || ^5.0",
+        "symfony/templating": "^4.0 || ^5.0",
+        "symfony/translation": "^4.0 || ^5.0",
+        "symfony/yaml": "^4.0 || ^5.0",
         "twistor/flysystem-stream-wrapper": "^1.0"
     },
     "suggest": {
