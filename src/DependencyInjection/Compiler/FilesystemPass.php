@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -8,7 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class FilesystemPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('oneup_flysystem.mount_manager')) {
             return;
@@ -28,7 +30,7 @@ class FilesystemPass implements CompilerPassInterface
                 $prefix = $attribute['mount'];
 
                 // add filesystem to the map
-                $mountManager->addMethodCall('mountFilesystem', array($prefix, new Reference($id)));
+                $mountManager->addMethodCall('mountFilesystem', [$prefix, new Reference($id)]);
             }
         }
     }

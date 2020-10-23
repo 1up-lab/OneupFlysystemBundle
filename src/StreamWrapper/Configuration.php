@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\StreamWrapper;
 
@@ -25,9 +26,8 @@ class Configuration
     /**
      * Configuration constructor.
      *
-     * @param string              $protocol
-     * @param FilesystemInterface $filesystem
-     * @param array               $configuration
+     * @param string $protocol
+     * @param array  $configuration
      */
     public function __construct($protocol, FilesystemInterface $filesystem, array $configuration = null)
     {

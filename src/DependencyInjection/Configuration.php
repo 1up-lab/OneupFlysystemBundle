@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use League\Flysystem\AdapterInterface;
@@ -41,7 +43,7 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addCacheSection(ArrayNodeDefinition $node)
+    private function addCacheSection(ArrayNodeDefinition $node): void
     {
         $cacheNodeBuilder = $node
             ->children()
@@ -59,7 +61,7 @@ class Configuration implements ConfigurationInterface
         }
     }
 
-    private function addAdapterSection(ArrayNodeDefinition $node)
+    private function addAdapterSection(ArrayNodeDefinition $node): void
     {
         $adapterNodeBuilder = $node
             ->fixXmlConfig('adapter')
@@ -78,12 +80,12 @@ class Configuration implements ConfigurationInterface
         }
     }
 
-    private function addFilesystemSection(ArrayNodeDefinition $node)
+    private function addFilesystemSection(ArrayNodeDefinition $node): void
     {
-        $supportedVisibilities = array(
+        $supportedVisibilities = [
             AdapterInterface::VISIBILITY_PRIVATE,
             AdapterInterface::VISIBILITY_PUBLIC,
-        );
+        ];
 
         $node
             ->fixXmlConfig('filesystem')
@@ -95,7 +97,7 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('disable_asserts')
                             ->defaultFalse()
                         ->end()
-                        ->arrayNode('plugins')->treatNullLike(array())->prototype('scalar')->end()->end()
+                        ->arrayNode('plugins')->treatNullLike([])->prototype('scalar')->end()->end()
                         ->scalarNode('adapter')->isRequired()->end()
                         ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()

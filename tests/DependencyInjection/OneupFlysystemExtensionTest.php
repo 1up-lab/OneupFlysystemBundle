@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 
 use League\Flysystem\AdapterInterface;
@@ -12,12 +14,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 {
-    public function testIfTestSuiteLoads()
+    public function testIfTestSuiteLoads(): void
     {
         $this->assertTrue(true);
     }
 
-    public function testVisibilitySettings()
+    public function testVisibilitySettings(): void
     {
         $this->markTestSkipped('Does not work on Travis.org servers.');
 
@@ -29,14 +31,14 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $filesystem1 = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
 
         /**
-         * Visibility flag is set to "public"
+         * Visibility flag is set to "public".
          *
          * @var Filesystem $filesystem2
          */
         $filesystem2 = self::$container->get('oneup_flysystem.myfilesystem2_filesystem');
 
         /**
-         * Visibility flag ist set to "private"
+         * Visibility flag ist set to "private".
          *
          * @var Filesystem $filesystem3
          */
@@ -46,12 +48,12 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $filesystem2->write('2/meep', 'meep\'s content');
         $filesystem3->write('3/meep', 'meep\'s content');
 
-        $this->assertEquals(AdapterInterface::VISIBILITY_PUBLIC, $filesystem1->getVisibility('1/meep'));
-        $this->assertEquals(AdapterInterface::VISIBILITY_PUBLIC, $filesystem2->getVisibility('2/meep'));
-        $this->assertEquals(AdapterInterface::VISIBILITY_PRIVATE, $filesystem3->getVisibility('3/meep'));
+        $this->assertSame(AdapterInterface::VISIBILITY_PUBLIC, $filesystem1->getVisibility('1/meep'));
+        $this->assertSame(AdapterInterface::VISIBILITY_PUBLIC, $filesystem2->getVisibility('2/meep'));
+        $this->assertSame(AdapterInterface::VISIBILITY_PRIVATE, $filesystem3->getVisibility('3/meep'));
     }
 
-    public function testDisableAssertsSetting()
+    public function testDisableAssertsSetting(): void
     {
         /**
          * Enabled asserts.
@@ -61,7 +63,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $filesystem1 = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
 
         /**
-         * Disabled asserts
+         * Disabled asserts.
          *
          * @var Filesystem $filesystem2
          */
@@ -71,7 +73,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertTrue($filesystem2->getConfig()->get('disable_asserts'));
     }
 
-    public function testIfMountManagerIsFilled()
+    public function testIfMountManagerIsFilled(): void
     {
         /** @var MountManager $mountManager */
         $mountManager = self::$container->get('oneup_flysystem.mount_manager');
@@ -79,11 +81,10 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('prefix'));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
-    public function testIfOnlyConfiguredFilesystemsAreMounted()
+    public function testIfOnlyConfiguredFilesystemsAreMounted(): void
     {
+        $this->expectException(\LogicException::class);
+
         /** @var MountManager $mountManager */
         $mountManager = self::$container->get('oneup_flysystem.mount_manager');
 
@@ -91,7 +92,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertInstanceOf('League\Flysystem\Filesystem', $mountManager->getFilesystem('unrelated'));
     }
 
-    public function testAdapterAvailability()
+    public function testAdapterAvailability(): void
     {
         /** @var \SimpleXMLElement $adapters */
         $adapters = simplexml_load_string(file_get_contents(__DIR__ . '/../../src/Resources/config/adapters.xml'));
@@ -104,7 +105,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
                 }
 
                 if ('class' === (string) $key) {
-                    $this->assertTrue(class_exists((string) $attribute), 'Could not load class: '.(string) $attribute);
+                    $this->assertTrue(class_exists((string) $attribute), 'Could not load class: ' . (string) $attribute);
                 }
             }
         }
@@ -113,7 +114,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     /**
      * Checks if a filesystem with configured cached is from type CachedAdapter.
      */
-    public function testIfCachedAdapterAreCached()
+    public function testIfCachedAdapterAreCached(): void
     {
         $filesystem = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
         $adapter = $filesystem->getAdapter();
@@ -121,14 +122,14 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $adapter);
     }
 
-    public function testGetConfiguration()
+    public function testGetConfiguration(): void
     {
         $extension = new OneupFlysystemExtension();
         $configuration = $extension->getConfiguration([], new ContainerBuilder());
         $this->assertInstanceOf('Oneup\FlysystemBundle\DependencyInjection\Configuration', $configuration);
     }
 
-    public function testIfNoStreamWrappersConfiguration()
+    public function testIfNoStreamWrappersConfiguration(): void
     {
         $container = $this->loadExtension([]);
 
@@ -137,12 +138,11 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 
     /**
      * @dataProvider provideDefectiveStreamWrapperConfigurations
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     *
-     * @param array $streamWrapperConfig
      */
-    public function testIfDefectiveStreamWrapperConfiguration(array $streamWrapperConfig)
+    public function testIfDefectiveStreamWrapperConfiguration(array $streamWrapperConfig): void
     {
+        $this->expectException(\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException::class);
+
         $this->loadExtension([
             'oneup_flysystem' => [
                 'adapters' => [
@@ -196,7 +196,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
      * @param array $configuration
      * @param       $streamWrapperConfig
      */
-    public function testStreamWrapperConfiguration($protocol, array $configuration = null, $streamWrapperConfig)
+    public function testStreamWrapperConfiguration($protocol, array $configuration = null, $streamWrapperConfig): void
     {
         $container = $this->loadExtension([
             'oneup_flysystem' => [
@@ -213,8 +213,8 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         ]);
 
         $definition = $container->getDefinition('oneup_flysystem.stream_wrapper.configuration.myfilesystem');
-        $this->assertEquals($protocol, $definition->getArgument(0));
-        $this->assertEquals($configuration, $definition->getArgument(2));
+        $this->assertSame($protocol, $definition->getArgument(0));
+        $this->assertSame($configuration, $definition->getArgument(2));
     }
 
     public function provideStreamWrapperConfigurationTests()
@@ -241,7 +241,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         ];
     }
 
-    public function testStreamWrapperSettings()
+    public function testStreamWrapperSettings(): void
     {
         /* @var StreamWrapperManager $manager */
         $manager = self::$container->get('oneup_flysystem.stream_wrapper.manager');
@@ -252,7 +252,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertFalse($manager->hasConfiguration('myfilesystem3'));
     }
 
-    public function testServiceAliasWithFilesystemSuffix()
+    public function testServiceAliasWithFilesystemSuffix(): void
     {
         if (!method_exists(ContainerBuilder::class, 'registerAliasForArgument')) {
             $this->markTestSkipped('Symfony 4.2 needed to test container alias registration for arguments.');
@@ -284,7 +284,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $this->assertSame('oneup_flysystem.acme_filesystem_filesystem', (string) $container->getAlias($aliasName));
     }
 
-    public function testServiceAliasWithoutFilesystemSuffix()
+    public function testServiceAliasWithoutFilesystemSuffix(): void
     {
         if (!method_exists(ContainerBuilder::class, 'registerAliasForArgument')) {
             $this->markTestSkipped('Symfony 4.2 needed to test container alias registration for arguments.');
@@ -317,8 +317,6 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     }
 
     /**
-     * @param array $config
-     *
      * @return ContainerBuilder
      */
     private function loadExtension(array $config)

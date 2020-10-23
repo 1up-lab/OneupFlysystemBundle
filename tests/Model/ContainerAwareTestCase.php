@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\Tests\Model;
 
 use Symfony\Bundle\FrameworkBundle\Client;
