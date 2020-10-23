@@ -1,11 +1,7 @@
+.idea
+.phpunit.result.cache
 composer.lock
-phpunit.xml
 vendor
-log
-var
 tests/App/cache
 tests/App/logs
 tests/App/var
-
-.idea
-.phpunit.result.cache
