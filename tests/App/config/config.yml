@@ -1,0 +1,57 @@
+framework:
+    translator: { fallback: en }
+    secret: secret
+    router:
+        resource: "%kernel.project_dir%/config/routing.yml"
+        strict_requirements: "%kernel.debug%"
+    default_locale: en
+    session: ~
+    test: true
+    trusted_hosts: ~
+
+oneup_flysystem:
+    cache:
+        mycache:
+            memory: ~
+
+    adapters:
+        myadapter:
+            local:
+                directory: "%kernel.project_dir%/cache"
+
+    filesystems:
+        myfilesystem:
+            adapter: myadapter
+            cache:   mycache
+            stream_wrapper:
+                protocol: myfilesystem
+            mount:   prefix
+            plugins:
+                - local_plugin
+                - global_plugin
+
+        myfilesystem2:
+            adapter: myadapter
+            cache:   mycache
+            visibility: public
+            disable_asserts: true
+            plugins:
+                - global_plugin
+                - multiple_plugin
+
+        myfilesystem3:
+            adapter: myadapter
+            cache:   mycache
+            visibility: private
+            plugins:
+                - global_plugin
+
+services:
+    local_plugin:
+        class: Oneup\FlysystemBundle\Tests\Model\Plugin
+
+    global_plugin:
+        class: Oneup\FlysystemBundle\Tests\Model\Plugin
+
+    multiple_plugin:
+        class: Oneup\FlysystemBundle\Tests\Model\Plugin
