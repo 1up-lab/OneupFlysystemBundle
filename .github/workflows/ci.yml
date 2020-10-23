@@ -1,0 +1,79 @@
+name: CI
+
+on:
+    pull_request: ~
+    push:
+        branches:
+            - master
+        tags:
+            - '*'
+
+jobs:
+    coding-style:
+        name: Coding Style
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 7.4
+                  extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo, zlib
+                  tools: prestissimo
+                  coverage: none
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install the dependencies
+              run: composer install --no-interaction --no-suggest
+            - name: Check the coding style
+              run: vendor/bin/php-cs-fixer fix --diff --dry-run
+            - name: Analyze the code
+              run: vendor/bin/phpstan analyze src/ tests/ --level=6
+
+    tests:
+        name: PHP ${{ matrix.php }} / SF ^${{ matrix.symfony }}
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                php: [7.2, 7.3, 7.4]
+                symfony: [3.4, 4.4, 5.0]
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
+                  tools: prestissimo
+                  coverage: none
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install the dependencies
+              run: |
+                composer require symfony/framework-bundle:^${{ matrix.symfony }}
+                composer install --no-interaction --no-suggest
+            - name: Run the unit tests
+              run: vendor/bin/phpunit --colors=always
+
+    prefer-lowest:
+        name: Prefer Lowest
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 7.2
+                  extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
+                  tools: prestissimo
+                  coverage: none
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install the dependencies
+              run: composer update --prefer-lowest --prefer-stable --no-interaction --no-suggest
+            - name: Run the unit tests
+              run: vendor/bin/phpunit --colors=always
