@@ -11,12 +11,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class NoopFactory implements CacheFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'noop';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.cache.noop'))

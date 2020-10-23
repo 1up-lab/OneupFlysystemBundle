@@ -12,12 +12,12 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class StashFactory implements CacheFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'stash';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.cache.stash'))

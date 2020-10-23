@@ -10,12 +10,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CustomAdapterFactory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'custom';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $container->setAlias($id, $config['service']);
     }

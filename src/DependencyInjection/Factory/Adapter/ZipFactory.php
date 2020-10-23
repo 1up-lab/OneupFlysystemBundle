@@ -12,12 +12,12 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ZipFactory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'zip';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $archive = null !== $config['archive'] ? new Reference($config['archive']) : null;
 

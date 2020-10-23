@@ -9,7 +9,9 @@ use League\Flysystem\PluginInterface;
 
 class Plugin implements PluginInterface
 {
-    /** @var FilesystemInterface */
+    /**
+     * @var FilesystemInterface
+     */
     protected $filesystem;
 
     public function setFilesystem(FilesystemInterface $filesystem): void
@@ -17,15 +19,15 @@ class Plugin implements PluginInterface
         $this->filesystem = $filesystem;
     }
 
-    public function getMethod()
+    public function getMethod(): string
     {
         // we return a unique handler
         // so we can attach this class
         // to multiple filesystems
-        return uniqid();
+        return uniqid('', true);
     }
 
-    public function handle($path = null)
+    public function handle(string $path = null): ?string
     {
         return $path;
     }

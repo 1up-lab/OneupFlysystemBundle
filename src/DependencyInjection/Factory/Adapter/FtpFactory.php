@@ -11,12 +11,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class FtpFactory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'ftp';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $definition = $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.ftp'))

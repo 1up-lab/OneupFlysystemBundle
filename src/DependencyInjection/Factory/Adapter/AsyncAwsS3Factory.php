@@ -12,12 +12,12 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AsyncAwsS3Factory implements AdapterFactoryInterface
 {
-    public function getKey()
+    public function getKey(): string
     {
         return 'async_aws_s3';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.async_aws_s3'))

@@ -5,17 +5,22 @@ declare(strict_types=1);
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use League\Flysystem\FilesystemInterface;
+use Oneup\FlysystemBundle\DependencyInjection\Factory\FactoryInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class OneupFlysystemExtension extends Extension
 {
+    /** @var array */
     private $adapterFactories;
+
+    /** @var array */
     private $cacheFactories;
 
     public function load(array $configs, ContainerBuilder $container): void
@@ -52,7 +57,7 @@ class OneupFlysystemExtension extends Extension
         $this->loadStreamWrappers($config['filesystems'], $filesystems, $loader, $container);
     }
 
-    public function getConfiguration(array $config, ContainerBuilder $container)
+    public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
@@ -62,7 +67,7 @@ class OneupFlysystemExtension extends Extension
         return new Configuration($adapterFactories, $cacheFactories);
     }
 
-    private function createCache($name, array $config, ContainerBuilder $container, array $factories)
+    private function createCache(string $name, array $config, ContainerBuilder $container, array $factories): string
     {
         foreach ($config as $key => $adapter) {
             if (\array_key_exists($key, $factories)) {
@@ -76,7 +81,7 @@ class OneupFlysystemExtension extends Extension
         throw new \LogicException(sprintf('The cache \'%s\' is not configured.', $name));
     }
 
-    private function createAdapter($name, array $config, ContainerBuilder $container, array $factories)
+    private function createAdapter(string $name, array $config, ContainerBuilder $container, array $factories): string
     {
         foreach ($config as $key => $adapter) {
             if (\array_key_exists($key, $factories)) {
@@ -90,7 +95,7 @@ class OneupFlysystemExtension extends Extension
         throw new \LogicException(sprintf('The adapter \'%s\' is not configured.', $name));
     }
 
-    private function createFilesystem($name, array $config, ContainerBuilder $container, array $adapters, array $caches)
+    private function createFilesystem(string $name, array $config, ContainerBuilder $container, array $adapters, array $caches): Reference
     {
         if (!\array_key_exists($config['adapter'], $adapters)) {
             throw new \LogicException(sprintf('The adapter \'%s\' is not defined.', $config['adapter']));
@@ -136,7 +141,9 @@ class OneupFlysystemExtension extends Extension
         if (!empty($config['alias'])) {
             $container->getDefinition($id)->setPublic(false);
 
-            if (null === $alias = $container->setAlias($config['alias'], $id)) {
+            try {
+                $alias = $container->setAlias($config['alias'], $id);
+            } catch (InvalidArgumentException $exception) {
                 $alias = $container->getAlias($config['alias']);
             }
 
@@ -165,7 +172,7 @@ class OneupFlysystemExtension extends Extension
         return new Reference($id);
     }
 
-    private function getFactories(ContainerBuilder $container)
+    private function getFactories(ContainerBuilder $container): array
     {
         return [
             $this->getAdapterFactories($container),
@@ -173,7 +180,7 @@ class OneupFlysystemExtension extends Extension
         ];
     }
 
-    private function getAdapterFactories(ContainerBuilder $container)
+    private function getAdapterFactories(ContainerBuilder $container): array
     {
         if (null !== $this->adapterFactories) {
             return $this->adapterFactories;
@@ -183,14 +190,15 @@ class OneupFlysystemExtension extends Extension
         $services = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
 
         foreach (array_keys($services) as $id) {
+            /** @var FactoryInterface $factory */
             $factory = $container->get($id);
-            $factories[str_replace('-', '_', $factory->getKey())] = $factory;
+            $factories[(string) str_replace('-', '_', $factory->getKey())] = $factory;
         }
 
         return $this->adapterFactories = $factories;
     }
 
-    private function getCacheFactories(ContainerBuilder $container)
+    private function getCacheFactories(ContainerBuilder $container): array
     {
         if (null !== $this->cacheFactories) {
             return $this->cacheFactories;
@@ -200,8 +208,9 @@ class OneupFlysystemExtension extends Extension
         $services = $container->findTaggedServiceIds('oneup_flysystem.cache_factory');
 
         foreach (array_keys($services) as $id) {
+            /** @var FactoryInterface $factory */
             $factory = $container->get($id);
-            $factories[str_replace('-', '_', $factory->getKey())] = $factory;
+            $factories[(string) str_replace('-', '_', $factory->getKey())] = $factory;
         }
 
         return $this->cacheFactories = $factories;

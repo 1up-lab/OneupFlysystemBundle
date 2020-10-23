@@ -21,8 +21,9 @@ class OneupFlysystemBundle extends Bundle
     {
         parent::boot();
 
-        /* @var StreamWrapperManager $manager */
-        if ($manager = $this->container->get('oneup_flysystem.stream_wrapper.manager', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {
+        $manager = $this->container->get('oneup_flysystem.stream_wrapper.manager', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+
+        if ($manager instanceof StreamWrapperManager) {
             $manager->register();
         }
     }
@@ -31,8 +32,9 @@ class OneupFlysystemBundle extends Bundle
     {
         parent::shutdown();
 
-        /* @var StreamWrapperManager $manager */
-        if ($manager = $this->container->get('oneup_flysystem.stream_wrapper.manager', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {
+        $manager = $this->container->get('oneup_flysystem.stream_wrapper.manager', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+
+        if ($manager instanceof StreamWrapperManager) {
             $manager->unregister();
         }
     }
