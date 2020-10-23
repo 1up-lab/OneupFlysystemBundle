@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
     <php>
-        <server name="KERNEL_CLASS" value="Oneup\FlysystemBundle\Tests\App\AppKernel" />
+        <server name="KERNEL_DIR" value="tests/App" />
+        <server name="KERNEL_CLASS" value="Kernel" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled=1" />
     </php>
+
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
 
     <testsuites>
         <testsuite name="OneupFlysystemBundle test suite">
-            <directory suffix="Test.php">./Tests</directory>
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-                <directory>./vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
 </phpunit>
