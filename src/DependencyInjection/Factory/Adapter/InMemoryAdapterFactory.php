@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class MemoryAdapterFactory implements AdapterFactoryInterface
+class InMemoryAdapterFactory implements AdapterFactoryInterface
 {
     public function getKey(): string
     {
@@ -21,6 +21,7 @@ class MemoryAdapterFactory implements AdapterFactoryInterface
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.memory'))
+            ->replaceArgument(0, $config['defaultVisiblity'])
         ;
     }
 

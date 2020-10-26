@@ -28,8 +28,8 @@
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CustomAdapterFactory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
-        <service id="oneup_flysystem.adapter_factory.memory"
-                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\MemoryAdapterFactory">
+        <service id="oneup_flysystem.adapter_factory.in_memory"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\InMemoryAdapterFactory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
     </services>
