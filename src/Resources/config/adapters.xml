@@ -3,16 +3,14 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Local\LocalFilesystemAdapter"
-                 abstract="true" public="false">
+        <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Local\LocalFilesystemAdapter" abstract="true" public="false">
             <argument/><!-- location -->
             <argument/><!-- VisibilityConverter -->
             <argument/><!-- writeFlags -->
             <argument/><!-- linkHandling -->
             <argument/><!-- MimeTypeDetector -->
         </service>
-        <service id="oneup_flysystem.adapter.awss3v3" class="League\Flysystem\AwsS3V3\AwsS3V3Adapter" abstract="true"
-                 public="false">
+        <service id="oneup_flysystem.adapter.awss3v3" class="League\Flysystem\AwsS3V3\AwsS3V3Adapter" abstract="true" public="false">
             <argument/><!-- S3ClientInterface -->
             <argument/><!-- bucket -->
             <argument/><!-- prefix -->
@@ -21,23 +19,20 @@
             <argument/><!-- options -->
             <argument/><!-- streamReads -->
         </service>
-        <service id="oneup_flysystem.adapter.ftp" class="League\Flysystem\Ftp\FtpAdapter" abstract="true"
-                 public="false">
+        <service id="oneup_flysystem.adapter.ftp" class="League\Flysystem\Ftp\FtpAdapter" abstract="true" public="false">
             <argument/><!-- FtpConnectionOptions -->
             <argument/><!-- FtpConnectionProvider -->
             <argument/><!-- ConnectivityChecker -->
             <argument/><!-- VisibilityConverter -->
             <argument/><!-- MimeTypeDetector -->
         </service>
-        <service id="oneup_flysystem.adapter.sftp" class="League\Flysystem\PhpseclibV2\SftpAdapter" abstract="true"
-                 public="false">
+        <service id="oneup_flysystem.adapter.sftp" class="League\Flysystem\PhpseclibV2\SftpAdapter" abstract="true" public="false">
             <argument/><!-- ConnectionProvider -->
             <argument/><!-- root -->
             <argument/><!-- VisibilityConverter -->
             <argument/><!-- MimeTypeDetector -->
         </service>
-        <service id="oneup_flysystem.adapter.memory" class="League\Flysystem\InMemory\InMemoryFilesystemAdapter"
-                 abstract="true" public="false">
+        <service id="oneup_flysystem.adapter.memory" class="League\Flysystem\InMemory\InMemoryFilesystemAdapter" abstract="true" public="false">
             <argument/><!-- defaultVisibility -->
         </service>
         <service id="oneup_flysystem.adapter.async_aws_s3" class="AsyncAws\Flysystem\S3\S3FilesystemV2" abstract="true" public="false">

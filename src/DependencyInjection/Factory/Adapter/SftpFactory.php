@@ -18,9 +18,12 @@ class SftpFactory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, string $id, array $config): void
     {
-        $definition = $container
+        $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.sftp'))
-            ->replaceArgument(0, $config)
+            ->replaceArgument(0, $config['connectionProvider'])
+            ->replaceArgument(1, $config['root'])
+            ->replaceArgument(2, $config['visibilityConverter'])
+            ->replaceArgument(3, $config['mimeTypeDetector'])
         ;
     }
 
@@ -28,17 +31,10 @@ class SftpFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
-                ->scalarNode('host')->isRequired()->end()
-
-                ->scalarNode('port')->defaultValue(22)->end()
-                ->scalarNode('username')->defaultNull()->end()
-                ->scalarNode('password')->defaultNull()->end()
-                ->scalarNode('timeout')->defaultValue(90)->end()
-                ->scalarNode('root')->defaultNull()->end()
-                ->scalarNode('privateKey')->defaultNull()->end()
-                ->scalarNode('permPrivate')->defaultValue(0000)->end()
-                ->scalarNode('permPublic')->defaultNull(0744)->end()
-                ->scalarNode('directoryPerm')->defaultNull()->end()
+                ->scalarNode('connectionProvider')->isRequired()->end()
+                ->scalarNode('root')->isRequired()->end()
+                ->scalarNode('visibilityConverter')->defaultNull()->end()
+                ->scalarNode('mimeTypeDetector')->defaultNull()->end()
             ->end()
         ;
     }
