@@ -14,7 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.7
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: 7.4
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo, zlib
@@ -40,7 +40,7 @@ jobs:
                 symfony: [4.4, 5.0]
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.7
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: ${{ matrix.php }}
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
@@ -61,7 +61,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.7
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: 7.2
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
