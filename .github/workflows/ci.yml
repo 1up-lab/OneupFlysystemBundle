@@ -14,11 +14,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: 7.4
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo, zlib
-                  tools: prestissimo
                   coverage: none
 
             - name: Checkout
@@ -41,11 +40,10 @@ jobs:
                 symfony: [4.4, 5.0]
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: ${{ matrix.php }}
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
-                  tools: prestissimo
                   coverage: none
 
             - name: Checkout
@@ -63,11 +61,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: 7.2
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
-                  tools: prestissimo
                   coverage: none
 
             - name: Checkout
