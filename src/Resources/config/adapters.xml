@@ -6,27 +6,17 @@
         <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Local\LocalFilesystemAdapter"
                  abstract="true" public="false">
             <argument/><!-- location -->
-            <argument/><!-- VisibilityConverter -->
+            <argument/><!-- visibility -->
             <argument/><!-- writeFlags -->
             <argument/><!-- linkHandling -->
             <argument/><!-- MimeTypeDetector -->
-        </service>
-        <service id="oneup_flysystem.adapter.memory" class="League\Flysystem\InMemory\InMemoryFilesystemAdapter"
-                 abstract="true" public="false">
-            <argument/><!-- defaultVisibility -->
-        </service>
-        <service id="oneup_flysystem.adapter.async_aws_s3" class="AsyncAws\Flysystem\S3\S3FilesystemV2" abstract="true" public="false">
-            <argument/><!-- Client -->
-            <argument/><!-- Bucket -->
-            <argument/><!-- Prefix -->
-            <argument/><!-- options -->
         </service>
         <service id="oneup_flysystem.adapter.awss3v3" class="League\Flysystem\AwsS3V3\AwsS3V3Adapter" abstract="true"
                  public="false">
             <argument/><!-- S3ClientInterface -->
             <argument/><!-- bucket -->
             <argument/><!-- prefix -->
-            <argument/><!-- VisibilityConverter -->
+            <argument/><!-- visibility -->
             <argument/><!-- MimeTypeDetector -->
             <argument/><!-- options -->
             <argument/><!-- streamReads -->
@@ -45,6 +35,16 @@
             <argument/><!-- root -->
             <argument/><!-- VisibilityConverter -->
             <argument/><!-- MimeTypeDetector -->
+        </service>
+        <service id="oneup_flysystem.adapter.memory" class="League\Flysystem\InMemory\InMemoryFilesystemAdapter"
+                 abstract="true" public="false">
+            <argument/><!-- defaultVisibility -->
+        </service>
+        <service id="oneup_flysystem.adapter.async_aws_s3" class="AsyncAws\Flysystem\S3\S3FilesystemV2" abstract="true" public="false">
+            <argument/><!-- Client -->
+            <argument/><!-- Bucket -->
+            <argument/><!-- Prefix -->
+            <argument/><!-- options -->
         </service>
     </services>
 </container>

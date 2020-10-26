@@ -19,12 +19,15 @@ class AwsS3V3Factory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, string $id, array $config): void
     {
-        $definition = $container
+        $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.awss3v3'))
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['bucket'])
             ->replaceArgument(2, $config['prefix'])
-            ->addArgument((array) $config['options'])
+            ->replaceArgument(3, $config['visibility'])
+            ->replaceArgument(4, $config['mimeTypeDetector'])
+            ->replaceArgument(5, (array) $config['options'])
+            ->replaceArgument(6, $config['streamReads'])
         ;
     }
 
@@ -35,7 +38,12 @@ class AwsS3V3Factory implements AdapterFactoryInterface
                 ->scalarNode('client')->isRequired()->end()
                 ->scalarNode('bucket')->isRequired()->end()
                 ->scalarNode('prefix')->defaultNull()->end()
-                ->arrayNode('options')->prototype('scalar')->end()
+                ->scalarNode('visibility')->defaultNull()->end()
+                ->scalarNode('mimeTypeDetector')->defaultNull()->end()
+                ->arrayNode('options')
+                    ->scalarPrototype()->end()
+                ->end()
+                ->booleanNode('streamReads')->defaultTrue()->end()
             ->end()
         ;
     }
