@@ -30,4 +30,3 @@ oneup_flysystem:
 ## More to know
 
 * [Create and use your filesystem](filesystem_create.md)
-* [Add a cache](filesystem_cache.md)
