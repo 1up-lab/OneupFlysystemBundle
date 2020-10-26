@@ -39,7 +39,7 @@
             <argument/><!-- Client -->
             <argument/><!-- Bucket -->
             <argument/><!-- Prefix -->
-            <argument/><!-- options -->
+            <argument/><!-- VisibilityConverter -->
         </service>
     </services>
 </container>

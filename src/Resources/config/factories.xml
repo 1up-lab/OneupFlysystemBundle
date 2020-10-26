@@ -8,10 +8,6 @@
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\LocalFactory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
-        <service id="oneup_flysystem.adapter_factory.async_aws_s3"
-                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AsyncAwsS3Factory">
-            <tag name="oneup_flysystem.adapter_factory"/>
-        </service>
         <service id="oneup_flysystem.adapter_factory.awss3v3"
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V3Factory">
             <tag name="oneup_flysystem.adapter_factory"/>
@@ -24,12 +20,16 @@
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\SftpFactory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
+        <service id="oneup_flysystem.adapter_factory.in_memory"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\InMemoryAdapterFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
         <service id="oneup_flysystem.adapter_factory.customadapter"
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CustomAdapterFactory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
-        <service id="oneup_flysystem.adapter_factory.in_memory"
-                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\InMemoryAdapterFactory">
+        <service id="oneup_flysystem.adapter_factory.async_aws_s3"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AsyncAwsS3Factory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
     </services>
