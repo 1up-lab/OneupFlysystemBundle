@@ -60,13 +60,8 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 
         foreach ($adapters->children()->children() as $service) {
             foreach ($service->attributes() as $key => $attribute) {
-                // skip awss3v2 test - it's still BETA
-                if ('id' === (string) $key && 'oneup_flysystem.adapter.awss3v3' === (string) $attribute) {
-                    break;
-                }
-
                 if ('class' === (string) $key) {
-                    self::assertTrue(class_exists((string) $attribute), 'Could not load class: ' . (string) $attribute);
+                    self::assertTrue(class_exists((string) $attribute), 'Could not load class: ' . $attribute);
                 }
             }
         }
@@ -76,6 +71,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     {
         $extension = new OneupFlysystemExtension();
         $configuration = $extension->getConfiguration([], new ContainerBuilder());
+
         self::assertInstanceOf('Oneup\FlysystemBundle\DependencyInjection\Configuration', $configuration);
     }
 
