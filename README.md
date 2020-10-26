@@ -37,8 +37,3 @@ When reporting a bug, it may be a good idea to reproduce it in a basic project
 built using the [Symfony Skeleton](https://symfony.com/doc/current/setup.html)
 to allow developers of the bundle to reproduce the issue by simply cloning it
 and following some steps.
-
-Credit where credit is due
---------------------------
-
-Due to the similiarities between Flysystem and Gaufrette, this bundle is *heavily* inspired by the beautifully crafted [GaufretteBundle](https://github.com/KnpLabs/KnpGaufretteBundle). Props to the devs at [KnpLab](http://knplabs.com/)!
