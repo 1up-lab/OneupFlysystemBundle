@@ -6,7 +6,7 @@
         <service id="oneup_flysystem.adapter.local" class="League\Flysystem\Local\LocalFilesystemAdapter"
                  abstract="true" public="false">
             <argument/><!-- location -->
-            <argument/><!-- visibility -->
+            <argument/><!-- VisibilityConverter -->
             <argument/><!-- writeFlags -->
             <argument/><!-- linkHandling -->
             <argument/><!-- MimeTypeDetector -->
@@ -16,7 +16,7 @@
             <argument/><!-- S3ClientInterface -->
             <argument/><!-- bucket -->
             <argument/><!-- prefix -->
-            <argument/><!-- visibility -->
+            <argument/><!-- VisibilityConverter -->
             <argument/><!-- MimeTypeDetector -->
             <argument/><!-- options -->
             <argument/><!-- streamReads -->
