@@ -17,6 +17,7 @@ composer.lock
 Tests/App/cache
 Tests/App/logs
 phpunit.xml
+.phpunit.result.cache
 
 # IDE
 .idea
