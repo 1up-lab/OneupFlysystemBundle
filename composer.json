@@ -26,7 +26,7 @@
     ],
     "require": {
         "php": ">=7.2",
-        "league/flysystem": "^2.0.0-RC1",
+        "league/flysystem": "^2.0",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
         "symfony/http-kernel": "^4.4 || ^5.0"
@@ -35,10 +35,10 @@
         "ext-simplexml": "*",
         "async-aws/flysystem-s3": "^0.4.0",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "league/flysystem-adapter-test-utilities": "2.0.0-RC1",
-        "league/flysystem-aws-s3-v3": "^2.0.0-RC1",
-        "league/flysystem-memory": "^2.0.0-RC1",
-        "league/flysystem-sftp": "^2.0.0-RC1",
+        "league/flysystem-adapter-test-utilities": "^2.0",
+        "league/flysystem-aws-s3-v3": "^2.0",
+        "league/flysystem-memory": "^2.0",
+        "league/flysystem-sftp": "^2.0",
         "phpstan/phpstan": "^0.12.10",
         "phpunit/phpunit": "^8.5",
         "symfony/asset": "^4.4 || ^5.0",
