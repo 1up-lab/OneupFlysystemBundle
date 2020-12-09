@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    protected $adapterFactories;
+    protected array $adapterFactories;
 
     public function __construct(array $adapterFactories)
     {
