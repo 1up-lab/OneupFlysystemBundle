@@ -36,5 +36,27 @@ oneup_flysystem:
 
 For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/aws-s3-v3/).
 
+## Additional parameters
+Use `options` config to pass additional parameters to AWS.
+
+### Example use case
+
+Sending files to S3 bucket owned by another AWS account.
+In this situation default `ACL` value, which is `private`, prevents bucket owner from viewing the file.
+
+To allow bucket owner full control over an object use below config example:
+
+```yml
+oneup_flysystem:
+    adapters:
+        acme.flysystem_adapter:
+            awss3v3:
+                client: acme.s3_client
+                bucket: foo
+                prefix: ~
+                options:
+                    ACL: bucket-owner-full-control
+```
+
 ## More to know
 * [Create and use your filesystem](filesystem_create.md)
