@@ -25,7 +25,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": "^7.4 || 8.0",
         "league/flysystem": "^2.0",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
@@ -35,7 +35,6 @@
         "ext-simplexml": "*",
         "async-aws/flysystem-s3": "^0.4.0",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "league/flysystem-adapter-test-utilities": "^2.0",
         "league/flysystem-aws-s3-v3": "^2.0",
         "league/flysystem-memory": "^2.0",
         "league/flysystem-sftp": "^2.0",
@@ -56,7 +55,8 @@
         "ext-ftp": "Required for FTP and SFTP",
         "async-aws/flysystem-s3": "Use flysystem S3 adapter from AsyncAws",
         "league/flysystem-aws-s3-v3": "Use S3 storage with AWS SDK v3",
-        "league/flysystem-sftp": "Allows SFTP server storage via phpseclib"
+        "league/flysystem-sftp": "Allows SFTP server storage via phpseclib",
+        "royvoetman/flysystem-gitlab-storage": "Use Gitlab Storage filesystem for Flysystem"
     },
     "config": {
         "sort-packages": true
