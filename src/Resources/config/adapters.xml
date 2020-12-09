@@ -41,5 +41,9 @@
             <argument/><!-- Prefix -->
             <argument/><!-- VisibilityConverter -->
         </service>
+        <service id="oneup_flysystem.adapter.gitlab" class="RoyVoetman\FlysystemGitlab\GitlabAdapter" abstract="true" public="false">
+            <argument/><!-- Client -->
+            <argument/><!-- Prefix -->
+        </service>
     </services>
 </container>

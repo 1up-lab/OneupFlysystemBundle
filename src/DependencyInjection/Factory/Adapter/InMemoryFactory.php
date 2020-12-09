@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class InMemoryAdapterFactory implements AdapterFactoryInterface
+class InMemoryFactory implements AdapterFactoryInterface
 {
     public function getKey(): string
     {
