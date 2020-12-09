@@ -17,6 +17,9 @@ cache:
     - $COMPOSER_CACHE_DIR
 
 matrix:
+  exclude:
+    - env: SYMFONY_VERSION=^3.4 COMPOSER_FLAGS=--prefer-lowest
+      php: 8.0snapshot
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
 
