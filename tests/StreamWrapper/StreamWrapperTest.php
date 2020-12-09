@@ -9,7 +9,7 @@ use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
 
 class StreamWrapperTest extends ContainerAwareTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         self::assertContains('myfilesystem', stream_get_wrappers());
 
