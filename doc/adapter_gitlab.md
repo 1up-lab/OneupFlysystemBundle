@@ -9,10 +9,10 @@ services:
     acme.gitlab_client:
         class: RoyVoetman\FlysystemGitlab\Client
         arguments:
-            - projectId: 'project-id'
-              branch: 'branch'
-              baseUrl: 'base-url'
-              personalAccessToken: 'personal-access-token'
+            - 'project-id'
+            - 'branch'
+            - 'base-url'
+            - 'personal-access-token'
 ```
 
 Set this service as the value of the `client` key in the `oneup_flysystem` configuration.
