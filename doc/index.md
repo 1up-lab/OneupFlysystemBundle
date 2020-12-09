@@ -19,13 +19,14 @@ $> php composer.phar require oneup/flysystem-bundle
 
 Composer will now fetch and install this bundle in the vendor directory `vendor/oneup`
 
-**Note**: There are some additional dependencies you will need to install for some of the features:
+**Note**: There are some additional dependencies you will need to install for some features:
 
 * The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
 * The FTP adapter requires `"league/flysystem-ftp"`
 * The SFTP adapter requires `"league/flysystem-sftp"`
 * The InMemory adapter requires `"league/flysystem-memory"`
 * The AsyncAwsS3 adapter requires `"async-aws/flysystem-s3"`
+* The Gitlab adapter requires `"royvoetman/flysystem-gitlab-storage"`
 
 ### Step 2: Enable the bundle
 Enable the bundle in the kernel:
@@ -71,6 +72,7 @@ There are a bunch of adapters for you to use:
 * [Local filesystem](adapter_local.md)
 * [InMemoryAdapter](adapter_in_memory.md)
 * [Sftp](adapter_sftp.md)
+* [Gitlab](adapter_gitlab.md)
 * [Custom](adapter_custom.md)
 
 ### Step 4: Next steps
@@ -80,5 +82,4 @@ After installing and setting up the basic functionality of this bundle you can m
 * [Create and use your filesystems](filesystem_create.md)
 * [Running the tests](tests.md)
 * [Use your own flysystem adapters](adapter_custom.md)
-* [Configure stream wrapper for your filesystems](filesystem_stream_wrapper.md)
 * [Config based on PHP files](filesystem_php_config.md)
