@@ -28,7 +28,7 @@ jobs:
             - name: Check the coding style
               run: vendor/bin/php-cs-fixer fix --diff --dry-run
             - name: Analyze the code
-              run: vendor/bin/phpstan analyze src/ tests/ --level=6
+              run: vendor/bin/phpstan analyze src/ tests/ --level=max
 
     tests:
         name: PHP ${{ matrix.php }} / SF ^${{ matrix.symfony }}

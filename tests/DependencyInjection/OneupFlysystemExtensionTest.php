@@ -259,8 +259,6 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     {
         if (!method_exists(ContainerBuilder::class, 'registerAliasForArgument')) {
             self::markTestSkipped('Symfony 4.2 needed to test container alias registration for arguments.');
-
-            return;
         }
 
         $container = $this->loadExtension([
@@ -291,8 +289,6 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     {
         if (!method_exists(ContainerBuilder::class, 'registerAliasForArgument')) {
             self::markTestSkipped('Symfony 4.2 needed to test container alias registration for arguments.');
-
-            return;
         }
 
         $container = $this->loadExtension([
