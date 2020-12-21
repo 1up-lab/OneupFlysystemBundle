@@ -32,7 +32,7 @@
         "symfony/http-kernel": "^3.4 || ^4.0 || ^5.0"
     },
     "require-dev": {
-        "async-aws/flysystem-s3": "^0.4.0",
+        "async-aws/flysystem-s3": "^1.0",
         "jenko/flysystem-gaufrette": "^1.0",
         "league/flysystem-aws-s3-v2": "^1.0",
         "league/flysystem-azure-blob-storage": "^0.1",
@@ -74,6 +74,9 @@
         "spatie/flysystem-dropbox": "Use Dropbox storage",
         "superbalist/flysystem-google-storage": "Allows you to use Google Cloud Storage buckets",
         "twistor/flysystem-stream-wrapper": "Allows you to use stream wrapper"
+    },
+    "conflict": {
+        "async-aws/flysystem-s3": "<1.0"
     },
     "config": {
         "sort-packages": true
