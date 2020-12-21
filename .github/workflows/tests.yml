@@ -1,0 +1,53 @@
+name: Tests
+
+on:
+    push:
+    pull_request:
+
+jobs:
+
+    phpunit:
+        name: PHP Unit
+        runs-on: ubuntu-20.04
+
+        strategy:
+            matrix:
+                php:
+                    - '7.2'
+                    - '7.3'
+                    - '7.4'
+                    - '8.0'
+                symfony:
+                    - '3.4'
+                    - '4.4'
+                    - '5.2'
+                    - '5.4'
+                exclude:
+                    - { php: '8.0', symfony: '3.4' }
+            fail-fast: false
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: "${{ matrix.php }}"
+                    coverage: none
+
+            -   name: Configure composer
+                if: ${{ matrix.symfony == '3.4' }}
+                run: echo "COMPOSER_FLAGS=--prefer-lowest" >> $GITHUB_ENV
+
+            -   name: Configure composer
+                if: ${{ matrix.symfony == '5.4' }}
+                run: composer config minimum-stability dev
+
+            -   name: Install dependencies
+                run: |
+                    composer require --dev --no-update symfony/framework-bundle:^${{ matrix.symfony }}
+                    composer update --no-progress --no-suggest --ansi $COMPOSER_FLAGS
+
+            -   name: Run tests
+                run: ./vendor/bin/phpunit
