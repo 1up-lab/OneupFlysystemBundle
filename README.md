@@ -1,7 +1,7 @@
 OneupFlysystemBundle
 ====================
 
-[![Build Status](https://travis-ci.org/1up-lab/OneupFlysystemBundle.png)](https://travis-ci.org/1up-lab/OneupFlysystemBundle)
+[![CI](https://github.com/1up-lab/OneupFlysystemBundle/workflows/CI/badge.svg)](https://github.com/1up-lab/OneupFlysystemBundle/actions)
 [![Total Downloads](https://poser.pugx.org/oneup/flysystem-bundle/d/total.png)](https://packagist.org/packages/oneup/flysystem-bundle)
 
 The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/flysystem) integration for your Symfony projects. Flysystem is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one. Currently you can configure the following adapters to use in your Symfony project.
