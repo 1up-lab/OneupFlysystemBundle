@@ -15,7 +15,7 @@ services:
 
     acme.google_storage_bucket:
         class: Google\Cloud\Storage\Bucket
-        factory: 'acme.google_storage_client:bucket'
+        factory: ['@acme.google_storage_client', 'bucket']
         arguments:
             - 'your-bucket-name'
 ```
