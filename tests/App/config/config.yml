@@ -46,6 +46,8 @@ oneup_flysystem:
             plugins:
                 - global_plugin
 
+        myfilesystem4:
+            adapter: myadapter
 services:
     local_plugin:
         class: Oneup\FlysystemBundle\Tests\Model\Plugin
