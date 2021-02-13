@@ -315,6 +315,35 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         self::assertSame('oneup_flysystem.acme_filesystem', (string) $container->getAlias($aliasName));
     }
 
+    public function testEnvVarConfiguration(): void
+    {
+        putenv('ADAPTER=other');
+        putenv('CACHE=memory');
+        $this->loadExtension([
+            'oneup_flysystem' => [
+                'adapters' => [
+                    'local' => ['local' => ['directory' => 'dir']],
+                    'other' => ['memory' => []],
+                ],
+                'cache' => [
+                    'noop' => ['noop' => []],
+                    'memory' => ['memory' => []],
+                ],
+                'filesystems' => [
+                    'myfilesystem' => [
+                        'adapter' => '%env(ADAPTER)%',
+                        'cache' => '%env(CACHE)%',
+                    ],
+                ],
+            ],
+        ]);
+
+        /** @var Filesystem $filesystem */
+        $filesystem = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
+        $adapter = $filesystem->getAdapter();
+        self::assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $adapter);
+    }
+
     /**
      * @return ContainerBuilder
      */

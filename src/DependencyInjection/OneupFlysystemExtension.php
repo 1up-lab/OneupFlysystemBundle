@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use League\Flysystem\FilesystemInterface;
+use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
+use Oneup\FlysystemBundle\DependencyInjection\Factory\CacheFactoryInterface;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\FactoryInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
@@ -17,10 +19,10 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class OneupFlysystemExtension extends Extension
 {
-    /** @var array */
+    /** @var array<AdapterFactoryInterface> */
     private $adapterFactories;
 
-    /** @var array */
+    /** @var array<CacheFactoryInterface> */
     private $cacheFactories;
 
     public function load(array $configs, ContainerBuilder $container): void
@@ -28,9 +30,9 @@ class OneupFlysystemExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
-        [$adapterFactories, $cacheFactories] = $this->getFactories($container);
+        $this->loadFactories($container);
 
-        $configuration = new Configuration($adapterFactories, $cacheFactories);
+        $configuration = new Configuration($this->adapterFactories, $this->cacheFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader->load('adapters.xml');
@@ -38,20 +40,18 @@ class OneupFlysystemExtension extends Extension
         $loader->load('cache.xml');
         $loader->load('plugins.xml');
 
-        $adapters = [];
         $filesystems = [];
-        $caches = [];
 
         foreach ($config['adapters'] as $name => $adapter) {
-            $adapters[$name] = $this->createAdapter($name, $adapter, $container, $adapterFactories);
+            $this->createAdapter($name, $adapter, $container);
         }
 
         foreach ($config['cache'] as $name => $cache) {
-            $caches[$name] = $this->createCache($name, $cache, $container, $cacheFactories);
+            $this->createCache($name, $cache, $container);
         }
 
         foreach ($config['filesystems'] as $name => $filesystem) {
-            $filesystems[$name] = $this->createFilesystem($name, $filesystem, $container, $adapters, $caches);
+            $filesystems[$name] = $this->createFilesystem($name, $filesystem, $container);
         }
 
         $this->loadStreamWrappers($config['filesystems'], $filesystems, $loader, $container);
@@ -62,57 +62,43 @@ class OneupFlysystemExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
-        [$adapterFactories, $cacheFactories] = $this->getFactories($container);
+        $this->loadFactories($container);
 
-        return new Configuration($adapterFactories, $cacheFactories);
+        return new Configuration($this->adapterFactories, $this->cacheFactories);
     }
 
-    private function createCache(string $name, array $config, ContainerBuilder $container, array $factories): string
+    private function createCache(string $name, array $config, ContainerBuilder $container): void
     {
-        foreach ($config as $key => $adapter) {
-            if (\array_key_exists($key, $factories)) {
+        foreach ($config as $key => $cache) {
+            if (\array_key_exists($key, $this->cacheFactories)) {
                 $id = sprintf('oneup_flysystem.%s_cache', $name);
-                $factories[$key]->create($container, $id, $adapter);
+                $this->cacheFactories[$key]->create($container, $id, $cache);
 
-                return $id;
+                return;
             }
         }
 
         throw new \LogicException(sprintf('The cache \'%s\' is not configured.', $name));
     }
 
-    private function createAdapter(string $name, array $config, ContainerBuilder $container, array $factories): string
+    private function createAdapter(string $name, array $config, ContainerBuilder $container): void
     {
         foreach ($config as $key => $adapter) {
-            if (\array_key_exists($key, $factories)) {
+            if (\array_key_exists($key, $this->adapterFactories)) {
                 $id = sprintf('oneup_flysystem.%s_adapter', $name);
-                $factories[$key]->create($container, $id, $adapter);
+                $this->adapterFactories[$key]->create($container, $id, $adapter);
+                $this->adapterFactories['cached']->create($container, $id . '_cached', $adapter);
 
-                return $id;
+                return;
             }
         }
 
         throw new \LogicException(sprintf('The adapter \'%s\' is not configured.', $name));
     }
 
-    private function createFilesystem(string $name, array $config, ContainerBuilder $container, array $adapters, array $caches): Reference
+    private function createFilesystem(string $name, array $config, ContainerBuilder $container): Reference
     {
-        if (!\array_key_exists($config['adapter'], $adapters)) {
-            throw new \LogicException(sprintf('The adapter \'%s\' is not defined.', $config['adapter']));
-        }
-
-        $adapter = $adapters[$config['adapter']];
         $id = sprintf('oneup_flysystem.%s_filesystem', $name);
-
-        $cache = null;
-        if (\array_key_exists($config['cache'], $caches)) {
-            $cache = $caches[$config['cache']];
-
-            $container
-                ->setDefinition($adapter . '_cached', new ChildDefinition('oneup_flysystem.adapter.cached'))
-                ->replaceArgument(0, new Reference($adapter))
-                ->replaceArgument(1, new Reference($cache));
-        }
 
         $tagParams = ['key' => $name];
 
@@ -132,7 +118,10 @@ class OneupFlysystemExtension extends Extension
 
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.filesystem'))
-            ->replaceArgument(0, new Reference($cache ? $adapter . '_cached' : $adapter))
+            ->replaceArgument(0, [
+                'cache' => $config['cache'],
+                'adapter' => $config['adapter'],
+            ])
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams)
             ->setPublic(true)
@@ -172,48 +161,23 @@ class OneupFlysystemExtension extends Extension
         return new Reference($id);
     }
 
-    private function getFactories(ContainerBuilder $container): array
+    private function loadFactories(ContainerBuilder $container): void
     {
-        return [
-            $this->getAdapterFactories($container),
-            $this->getCacheFactories($container),
-        ];
+        $this->adapterFactories = $this->getFactories($container, 'oneup_flysystem.adapter_factory');
+        $this->cacheFactories = $this->getFactories($container, 'oneup_flysystem.cache_factory');
     }
 
-    private function getAdapterFactories(ContainerBuilder $container): array
+    private function getFactories(ContainerBuilder $container, string $tag): array
     {
-        if (null !== $this->adapterFactories) {
-            return $this->adapterFactories;
-        }
-
         $factories = [];
-        $services = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
-
+        $services = $container->findTaggedServiceIds($tag);
         foreach (array_keys($services) as $id) {
             /** @var FactoryInterface $factory */
             $factory = $container->get($id);
             $factories[(string) str_replace('-', '_', $factory->getKey())] = $factory;
         }
 
-        return $this->adapterFactories = $factories;
-    }
-
-    private function getCacheFactories(ContainerBuilder $container): array
-    {
-        if (null !== $this->cacheFactories) {
-            return $this->cacheFactories;
-        }
-
-        $factories = [];
-        $services = $container->findTaggedServiceIds('oneup_flysystem.cache_factory');
-
-        foreach (array_keys($services) as $id) {
-            /** @var FactoryInterface $factory */
-            $factory = $container->get($id);
-            $factories[(string) str_replace('-', '_', $factory->getKey())] = $factory;
-        }
-
-        return $this->cacheFactories = $factories;
+        return $factories;
     }
 
     /**
