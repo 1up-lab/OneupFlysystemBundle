@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
+use League\Flysystem\Visibility;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class MemoryAdapterFactory implements AdapterFactoryInterface
+class InMemoryFactory implements AdapterFactoryInterface
 {
     public function getKey(): string
     {
@@ -20,6 +21,7 @@ class MemoryAdapterFactory implements AdapterFactoryInterface
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.memory'))
+            ->replaceArgument(0, $config['defaultVisiblity'])
         ;
     }
 
@@ -27,6 +29,7 @@ class MemoryAdapterFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
+                ->scalarNode('defaultVisiblity')->defaultValue(Visibility::PUBLIC)->end()
             ->end()
         ;
     }

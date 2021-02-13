@@ -21,6 +21,7 @@ oneup_flysystem:
                 passive: ~
 ```
 
+For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/ftp/).
+
 ## More to know
 * [Create and use your filesystem](filesystem_create.md)
-* [Add a cache](filesystem_cache.md)

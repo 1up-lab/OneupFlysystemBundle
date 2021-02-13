@@ -11,14 +11,12 @@ class Kernel extends BaseKernel
 {
     public function registerBundles()
     {
-        $bundles = [
+        return [
             new FrameworkBundle(),
 
             // Test this Bundle
             new OneupFlysystemBundle(),
         ];
-
-        return $bundles;
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader): void

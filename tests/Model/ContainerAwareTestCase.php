@@ -9,10 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ContainerAwareTestCase extends WebTestCase
 {
-    /**
-     * @var KernelBrowser
-     */
-    protected $client;
+    protected KernelBrowser $client;
     protected static $container;
 
     protected function setUp(): void
