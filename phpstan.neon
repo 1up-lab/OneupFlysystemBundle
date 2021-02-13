@@ -1,0 +1,18 @@
+parameters:
+    bootstrapFiles:
+        - %rootDir%/../../../vendor/autoload.php
+
+    excludes_analyse:
+        - src/DependencyInjection/Configuration.php
+        - tests/App/cache
+        - tests/App/logs
+        - tests/App/var
+        - var
+        - vendor
+
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
+
+    ignoreErrors:
+        - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\)\.#'

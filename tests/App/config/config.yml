@@ -1,0 +1,28 @@
+framework:
+    translator: { fallback: en }
+    secret: secret
+    router:
+        resource: "%kernel.project_dir%/config/routing.yml"
+        strict_requirements: "%kernel.debug%"
+    default_locale: en
+    session: ~
+    test: true
+    trusted_hosts: ~
+
+oneup_flysystem:
+    adapters:
+        myadapter:
+            local:
+                location: "%kernel.project_dir%/cache"
+
+    filesystems:
+        myfilesystem:
+            adapter: myadapter
+
+        myfilesystem2:
+            adapter: myadapter
+            visibility: public
+
+        myfilesystem3:
+            adapter: myadapter
+            visibility: private

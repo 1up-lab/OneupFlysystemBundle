@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Adapter factories -->
+        <service id="oneup_flysystem.adapter_factory.local"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\LocalFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.awss3v3"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AwsS3V3Factory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.ftp"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\FtpFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.sftp"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\SftpFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.in_memory"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\InMemoryFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.customadapter"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CustomAdapterFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.async_aws_s3"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AsyncAwsS3Factory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+        <service id="oneup_flysystem.adapter_factory.gitlab"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GitlabFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
+    </services>
+</container>

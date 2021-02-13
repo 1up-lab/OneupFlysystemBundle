@@ -1,31 +1,46 @@
 name: CI
 
 on:
-    pull_request:
+    pull_request: ~
     push:
+        branches:
+            - master
+        tags:
+            - '*'
 
 jobs:
+    coding-style:
+        name: Coding Style
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@2.7.0
+              with:
+                  php-version: 7.4
+                  extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo, zlib
+                  coverage: none
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install the dependencies
+              run: composer install --no-interaction --no-suggest
+            - name: Check the coding style
+              run: vendor/bin/php-cs-fixer fix --diff --dry-run
+            - name: Analyze the code
+              run: vendor/bin/phpstan analyze src/ tests/ --level=max
+
     tests:
         name: PHP ${{ matrix.php }} / SF ^${{ matrix.symfony }}
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
             matrix:
-                php:
-                    - 7.2
-                    - 7.3
-                    - 7.4
-                    - 8.0
-                symfony:
-                    - 3.4
-                    - 4.4
-                    - 5.2
-                    - 5.4
-                exclude:
-                    - { php: 8.0, symfony: 3.4 }
+                php: [7.4, 8.0]
+                symfony: [4.4, 5.0]
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.7.0
               with:
                   php-version: ${{ matrix.php }}
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
@@ -34,18 +49,28 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            -   name: Configure composer
-                if: ${{ matrix.symfony == '3.4' }}
-                run: echo "COMPOSER_FLAGS=--prefer-lowest" >> $GITHUB_ENV
-
-            -   name: Configure composer
-                if: ${{ matrix.symfony == '5.4' }}
-                run: composer config minimum-stability dev
-
             - name: Install the dependencies
               run: |
                 composer require symfony/framework-bundle:^${{ matrix.symfony }}
-                composer update --no-progress --no-suggest --ansi $COMPOSER_FLAGS
-
+                composer install --no-interaction --no-suggest
             - name: Run the unit tests
-              run: ./vendor/bin/phpunit --colors=always
+              run: vendor/bin/phpunit --colors=always
+
+    prefer-lowest:
+        name: Prefer Lowest
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@2.7.0
+              with:
+                  php-version: 7.4
+                  extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
+                  coverage: none
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install the dependencies
+              run: composer update --prefer-lowest --prefer-stable --no-interaction --no-suggest
+            - name: Run the unit tests
+              run: vendor/bin/phpunit --colors=always
