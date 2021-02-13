@@ -37,7 +37,7 @@ class LocalFactory implements AdapterFactoryInterface
                 ->booleanNode('lazy')->defaultValue(false)->end()
                 ->scalarNode('location')->isRequired()->end()
                 ->scalarNode('visibilityConverter')->defaultNull()->end()
-                ->scalarNode('writeFlags')->defaultValue(LOCK_EX)->end()
+                ->scalarNode('writeFlags')->defaultValue(\LOCK_EX)->end()
                 ->scalarNode('linkHandling')->defaultValue(LocalFilesystemAdapter::DISALLOW_LINKS)->end()
                 ->scalarNode('mimeTypeDetector')->defaultNull()->end()
             ->end()
