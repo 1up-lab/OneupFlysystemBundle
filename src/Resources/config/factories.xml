@@ -8,6 +8,9 @@
                <service id="oneup_flysystem.adapter_factory.local" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\LocalFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
+               <service id="oneup_flysystem.adapter_factory.cached" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\CachedFactory">
+                   <tag name="oneup_flysystem.adapter_factory" />
+               </service>
                <service id="oneup_flysystem.adapter_factory.nulladapter" class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\NullAdapterFactory">
                    <tag name="oneup_flysystem.adapter_factory" />
                </service>
