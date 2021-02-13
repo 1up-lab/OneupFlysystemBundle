@@ -35,7 +35,7 @@ class LocalFactory implements AdapterFactoryInterface
             ->children()
                 ->booleanNode('lazy')->defaultValue(false)->end()
                 ->scalarNode('directory')->isRequired()->end()
-                ->scalarNode('writeFlags')->defaultValue(LOCK_EX)->end()
+                ->scalarNode('writeFlags')->defaultValue(\LOCK_EX)->end()
                 ->scalarNode('linkHandling')->defaultValue(Local::DISALLOW_LINKS)->end()
                 ->arrayNode('permissions')
                     ->addDefaultsIfNotSet()
