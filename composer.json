@@ -36,6 +36,7 @@
         "async-aws/flysystem-s3": "^0.4.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "league/flysystem-aws-s3-v3": "^2.0",
+        "league/flysystem-ftp": "^2.0",
         "league/flysystem-memory": "^2.0",
         "league/flysystem-sftp": "^2.0",
         "phpstan/phpstan": "^0.12.10",
