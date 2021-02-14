@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use League\Flysystem\FilesystemAdapter;
+use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\FactoryInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -16,80 +17,81 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class OneupFlysystemExtension extends Extension
 {
-    private ?array $adapterFactories = null;
+    /** @var array<AdapterFactoryInterface> */
+    private array $adapterFactories = [];
 
+    /**
+     * @throws \Exception
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
-        $adapterFactories = $this->getFactories($container);
+        $this->loadFactories($container);
 
-        $configuration = new Configuration($adapterFactories);
+        $configuration = new Configuration($this->adapterFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
 
-        $adapters = [];
-
         foreach ($config['adapters'] as $name => $adapter) {
-            $adapters[$name] = $this->createAdapter($name, $adapter, $container, $adapterFactories);
+            $this->createAdapter($name, $adapter, $container);
         }
 
         foreach ($config['filesystems'] as $name => $filesystem) {
-            $this->createFilesystem($name, $filesystem, $container, $adapters);
+            $this->createFilesystem($name, $filesystem, $container);
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('factories.xml');
 
-        $adapterFactories = $this->getFactories($container);
+        $this->loadFactories($container);
 
-        return new Configuration($adapterFactories);
+        return new Configuration($this->adapterFactories);
     }
 
-    private function createAdapter(string $name, array $config, ContainerBuilder $container, array $factories): string
+    private function createAdapter(string $name, array $config, ContainerBuilder $container): void
     {
         foreach ($config as $key => $adapter) {
-            if (\array_key_exists($key, $factories)) {
-                $id = sprintf('oneup_flysystem.%s_adapter', $name);
-                $factories[$key]->create($container, $id, $adapter);
+            dump($this->adapterFactories);
 
-                return $id;
+            if (\array_key_exists($key, $this->adapterFactories)) {
+                $id = sprintf('oneup_flysystem.%s_adapter', $name);
+                dump('aaaa');
+                $this->adapterFactories[$key]->create($container, $id, $adapter);
+
+                return;
             }
         }
 
         throw new \LogicException(sprintf('The adapter \'%s\' is not configured.', $name));
     }
 
-    private function createFilesystem(string $name, array $config, ContainerBuilder $container, array $adapters): Reference
+    private function createFilesystem(string $name, array $config, ContainerBuilder $container): void
     {
-        if (!\array_key_exists($config['adapter'], $adapters)) {
-            throw new \LogicException(sprintf('The adapter \'%s\' is not defined.', $config['adapter']));
-        }
-
-        $adapter = $adapters[$config['adapter']];
         $id = sprintf('oneup_flysystem.%s_filesystem', $name);
 
         $tagParams = ['key' => $name];
-
         if ($config['mount']) {
             $tagParams['mount'] = $config['mount'];
         }
 
         $options = [];
-
         if (\array_key_exists('visibility', $config)) {
             $options['visibility'] = $config['visibility'];
         }
 
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.filesystem'))
-            ->replaceArgument(0, new Reference($adapter))
+            ->replaceArgument(0, $config['adapter'])
             ->replaceArgument(1, $options)
             ->addTag('oneup_flysystem.filesystem', $tagParams)
             ->setPublic(true)
@@ -116,30 +118,23 @@ class OneupFlysystemExtension extends Extension
 
             $container->registerAliasForArgument($id, FilesystemAdapter::class, $aliasName)->setPublic(false);
         }
-
-        return new Reference($id);
     }
 
-    private function getFactories(ContainerBuilder $container): array
+    private function loadFactories(ContainerBuilder $container): void
     {
-        return $this->getAdapterFactories($container);
+        $this->adapterFactories = $this->getFactories($container, 'oneup_flysystem.adapter_factory');
     }
 
-    private function getAdapterFactories(ContainerBuilder $container): array
+    private function getFactories(ContainerBuilder $container, string $tag): array
     {
-        if (null !== $this->adapterFactories) {
-            return $this->adapterFactories;
-        }
-
         $factories = [];
-        $services = $container->findTaggedServiceIds('oneup_flysystem.adapter_factory');
-
+        $services = $container->findTaggedServiceIds($tag);
         foreach (array_keys($services) as $id) {
             /** @var FactoryInterface $factory */
             $factory = $container->get($id);
             $factories[(string) str_replace('-', '_', $factory->getKey())] = $factory;
         }
 
-        return $this->adapterFactories = $factories;
+        return $factories;
     }
 }
