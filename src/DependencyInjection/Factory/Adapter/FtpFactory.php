@@ -18,9 +18,13 @@ class FtpFactory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, string $id, array $config): void
     {
-        $definition = $container
+        $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.ftp'))
-            ->replaceArgument(0, $config)
+            ->replaceArgument(0, $config['connectionOptions'])
+            ->replaceArgument(1, $config['connectionProvider'])
+            ->replaceArgument(2, $config['connectivityChecker'])
+            ->replaceArgument(3, $config['visibilityConverter'])
+            ->replaceArgument(4, $config['mimeTypeDetector'])
         ;
     }
 
@@ -28,21 +32,11 @@ class FtpFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
-                ->scalarNode('host')->isRequired()->end()
-
-                ->scalarNode('port')->defaultValue(21)->end()
-                ->scalarNode('username')->defaultNull()->end()
-                ->scalarNode('password')->defaultNull()->end()
-                ->scalarNode('root')->defaultNull()->end()
-                ->booleanNode('ssl')->defaultFalse()->end()
-                ->scalarNode('timeout')->defaultValue(90)->end()
-                ->scalarNode('permPrivate')->defaultValue(0000)->end()
-                ->scalarNode('permPublic')->defaultNull(0744)->end()
-                ->booleanNode('passive')->defaultTrue()->end()
-                ->scalarNode('transferMode')->defaultValue(\defined('FTP_BINARY') ? \FTP_BINARY : null)->end()
-                ->scalarNode('systemType')->defaultNull()->end()
-                ->booleanNode('ignorePassiveAddress')->defaultNull()->end()
-                ->booleanNode('recurseManually')->defaultFalse()->end()
+                ->scalarNode('connectionOptions')->isRequired()->end()
+                ->scalarNode('connectionProvider')->defaultNull()->end()
+                ->scalarNode('connectivityChecker')->defaultNull()->end()
+                ->scalarNode('visibilityConverter')->defaultNull()->end()
+                ->scalarNode('mimeTypeDetector')->defaultNull()->end()
             ->end()
         ;
     }

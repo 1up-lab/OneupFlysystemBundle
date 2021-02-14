@@ -24,7 +24,7 @@ class CustomAdapterFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
-            ->variableNode('service')->isRequired()->cannotBeEmpty()->end()
+                ->variableNode('service')->isRequired()->cannotBeEmpty()->end()
             ->end()
         ;
     }
