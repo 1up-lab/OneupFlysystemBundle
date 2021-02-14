@@ -4,34 +4,25 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\Visibility;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    protected $adapterFactories;
-    protected $cacheFactories;
+    protected array $adapterFactories;
 
-    public function __construct(array $adapterFactories, array $cacheFactories)
+    public function __construct(array $adapterFactories)
     {
         $this->adapterFactories = $adapterFactories;
-        $this->cacheFactories = $cacheFactories;
     }
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('oneup_flysystem');
+        $rootNode = $treeBuilder->getRootNode();
 
-        if (method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // BC layer for symfony/config 4.1 and older
-            $rootNode = $treeBuilder->root('oneup_flysystem');
-        }
-
-        $this->addCacheSection($rootNode);
         $this->addAdapterSection($rootNode);
         $this->addFilesystemSection($rootNode);
 
@@ -41,24 +32,6 @@ class Configuration implements ConfigurationInterface
         ;
 
         return $treeBuilder;
-    }
-
-    private function addCacheSection(ArrayNodeDefinition $node): void
-    {
-        $cacheNodeBuilder = $node
-            ->children()
-                ->arrayNode('cache')
-                    ->useAttributeAsKey('name')
-                    ->prototype('array')
-                    ->performNoDeepMerging()
-                    ->children()
-        ;
-
-        foreach ($this->cacheFactories as $name => $factory) {
-            $factoryNode = $cacheNodeBuilder->arrayNode($name)->canBeUnset();
-
-            $factory->addConfiguration($factoryNode);
-        }
     }
 
     private function addAdapterSection(ArrayNodeDefinition $node): void
@@ -83,8 +56,8 @@ class Configuration implements ConfigurationInterface
     private function addFilesystemSection(ArrayNodeDefinition $node): void
     {
         $supportedVisibilities = [
-            AdapterInterface::VISIBILITY_PRIVATE,
-            AdapterInterface::VISIBILITY_PUBLIC,
+            Visibility::PRIVATE,
+            Visibility::PUBLIC,
         ];
 
         $node
@@ -94,53 +67,9 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                     ->children()
-                        ->booleanNode('disable_asserts')
-                            ->defaultFalse()
-                        ->end()
-                        ->arrayNode('plugins')->treatNullLike([])->prototype('scalar')->end()->end()
                         ->scalarNode('adapter')->isRequired()->end()
-                        ->scalarNode('cache')->defaultNull()->end()
                         ->scalarNode('alias')->defaultNull()->end()
                         ->scalarNode('mount')->defaultNull()->end()
-                        ->arrayNode('stream_wrapper')
-                            ->beforeNormalization()
-                                ->ifString()->then(function ($protocol) {
-                                    return ['protocol' => $protocol];
-                                })
-                            ->end()
-                            ->children()
-                                ->scalarNode('protocol')->isRequired()->end()
-                                ->arrayNode('configuration')
-                                    ->children()
-                                        ->arrayNode('permissions')
-                                            ->isRequired()
-                                            ->children()
-                                                ->arrayNode('dir')
-                                                    ->isRequired()
-                                                    ->children()
-                                                        ->integerNode('private')->isRequired()->end()
-                                                        ->integerNode('public')->isRequired()->end()
-                                                    ->end()
-                                                ->end()
-                                                ->arrayNode('file')
-                                                    ->isRequired()
-                                                    ->children()
-                                                        ->integerNode('private')->isRequired()->end()
-                                                        ->integerNode('public')->isRequired()->end()
-                                                    ->end()
-                                                ->end()
-                                            ->end()
-                                        ->end()
-                                        ->arrayNode('metadata')
-                                            ->isRequired()
-                                            ->requiresAtLeastOneElement()
-                                            ->prototype('scalar')->cannotBeEmpty()->end()
-                                        ->end()
-                                        ->integerNode('public_mask')->isRequired()->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
                         ->scalarNode('visibility')
                             ->validate()
                             ->ifNotInArray($supportedVisibilities)

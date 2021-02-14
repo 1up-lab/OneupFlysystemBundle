@@ -7,9 +7,19 @@ In order to run the UnitTests of this bundle, clone it first
 
 After the cloning process, install all vendors by running the corresponding composer command.
 
-    $> php composer.phar update --dev
+    $> composer update --dev
 
-## Run UnitTests
-You can run the unit tests by simply performing the follwowing command.
+## Run PHPUnit
+You can run the unit tests by simply performing the follwowing command:
 
-    $> phpunit
+    $> vendor/bin/phpunit
+
+## Run PHPStan
+You can run the static php analyzer by simply performing the follwowing command:
+
+    $> vendor/bin/phpstan analyze src/ tests/ --level=max
+
+## Run php-cs-fixer
+You can run the php code style fixer by simply performing the follwowing command:
+
+    $> vendor/bin/php-cs-fixer fix
