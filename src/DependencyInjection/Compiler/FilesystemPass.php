@@ -17,24 +17,13 @@ class FilesystemPass implements CompilerPassInterface
         foreach ($configuredFilesystems as $id => $attributes) {
             $filesystems[$id] = new Reference($id);
             $filesystem = $container->getDefinition($id);
-            $config = $filesystem->getArgument(0);
+            dump($filesystem->getArgument(0));
             $adapter = sprintf(
                 'oneup_flysystem.%s_adapter',
-                $config['adapter']
+                $filesystem->getArgument(0)
             );
 
-            if ($config['cache']) {
-                $cache = sprintf(
-                    'oneup_flysystem.%s_cache',
-                    $config['cache']
-                );
-                $adapterDef = $container->getDefinition($adapter . '_cached')
-                    ->replaceArgument(0, new Reference($adapter))
-                    ->replaceArgument(1, new Reference($cache));
-            } else {
-                $adapterDef = new Reference($adapter);
-            }
-            $filesystem->replaceArgument(0, $adapterDef);
+            $filesystem->replaceArgument(0, new Reference($adapter));
 
             if (!$container->hasDefinition('oneup_flysystem.mount_manager')) {
                 return;

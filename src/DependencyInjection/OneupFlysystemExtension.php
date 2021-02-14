@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
 use League\Flysystem\FilesystemAdapter;
+use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\FactoryInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -16,10 +17,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class OneupFlysystemExtension extends Extension
 {
-    /** @var null|array<AdapterFactoryInterface> */
-    private ?array $adapterFactories = null;
+    /** @var array<AdapterFactoryInterface> */
+    private array $adapterFactories = [];
 
-
+    /**
+     * @throws \Exception
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -27,13 +30,11 @@ class OneupFlysystemExtension extends Extension
 
         $this->loadFactories($container);
 
-        $configuration = new Configuration($this->adapterFactories, $cacheFactories);
+        $configuration = new Configuration($this->adapterFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
-
-        $adapters = [];
 
         foreach ($config['adapters'] as $name => $adapter) {
             $this->createAdapter($name, $adapter, $container);
@@ -44,6 +45,9 @@ class OneupFlysystemExtension extends Extension
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -57,10 +61,12 @@ class OneupFlysystemExtension extends Extension
     private function createAdapter(string $name, array $config, ContainerBuilder $container): void
     {
         foreach ($config as $key => $adapter) {
+            dump($this->adapterFactories);
+
             if (\array_key_exists($key, $this->adapterFactories)) {
                 $id = sprintf('oneup_flysystem.%s_adapter', $name);
+                dump('aaaa');
                 $this->adapterFactories[$key]->create($container, $id, $adapter);
-                $this->adapterFactories['cached']->create($container, $id . '_cached', $adapter);
 
                 return;
             }
@@ -69,18 +75,16 @@ class OneupFlysystemExtension extends Extension
         throw new \LogicException(sprintf('The adapter \'%s\' is not configured.', $name));
     }
 
-    private function createFilesystem(string $name, array $config, ContainerBuilder $container): Reference
+    private function createFilesystem(string $name, array $config, ContainerBuilder $container): void
     {
         $id = sprintf('oneup_flysystem.%s_filesystem', $name);
 
         $tagParams = ['key' => $name];
-
         if ($config['mount']) {
             $tagParams['mount'] = $config['mount'];
         }
 
         $options = [];
-
         if (\array_key_exists('visibility', $config)) {
             $options['visibility'] = $config['visibility'];
         }
@@ -114,8 +118,6 @@ class OneupFlysystemExtension extends Extension
 
             $container->registerAliasForArgument($id, FilesystemAdapter::class, $aliasName)->setPublic(false);
         }
-
-        return new Reference($id);
     }
 
     private function loadFactories(ContainerBuilder $container): void

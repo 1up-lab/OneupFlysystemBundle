@@ -5,6 +5,7 @@
         <server name="KERNEL_DIR" value="tests/App" />
         <server name="KERNEL_CLASS" value="Kernel" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled=1" />
+        <env name="ADAPTER" value="myadapter2" />
     </php>
 
     <listeners>

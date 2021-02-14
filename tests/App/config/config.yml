@@ -26,3 +26,6 @@ oneup_flysystem:
         myfilesystem3:
             adapter: myadapter
             visibility: private
+
+        myfilesystem4:
+            adapter: '%env(ADAPTER)%'

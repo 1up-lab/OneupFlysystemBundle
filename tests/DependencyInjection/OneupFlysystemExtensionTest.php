@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 
 use League\Flysystem\Filesystem;
+use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use League\Flysystem\Visibility;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
@@ -129,26 +130,14 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 
     public function testEnvVarConfiguration(): void
     {
-        putenv('ADAPTER=other');
-        putenv('CACHE=memory');
-        $this->loadExtension([
-            'oneup_flysystem' => [
-                'adapters' => [
-                    'local' => ['local' => ['directory' => 'dir']],
-                    'other' => ['memory' => []],
-                ],
-                'filesystems' => [
-                    'myfilesystem' => [
-                        'adapter' => '%env(ADAPTER)%',
-                    ],
-                ],
-            ],
-        ]);
-
         /** @var Filesystem $filesystem */
-        $filesystem = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
-        $adapter = $filesystem->getAdapter();
-        self::assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $adapter);
+        $filesystem = self::$container->getDefinition('oneup_flysystem.myfilesystem4_filesystem');
+        dump($filesystem);
+        $filesystemReflection = new \ReflectionClass($filesystem);
+        $adapterReflection = $filesystemReflection->getProperty('adapter');
+        $adapterReflection->setAccessible(true);
+        dump($adapterReflection->getValue($filesystem));
+        self::assertInstanceOf(InMemoryFilesystemAdapter::class, $adapterReflection->getValue($filesystem));
     }
 
     private function loadExtension(array $config): ContainerBuilder
