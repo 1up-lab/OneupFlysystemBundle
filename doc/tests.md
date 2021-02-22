@@ -7,7 +7,7 @@ In order to run the UnitTests of this bundle, clone it first
 
 After the cloning process, install all vendors by running the corresponding composer command.
 
-    $> composer update --dev
+    $> composer install --dev
 
 ## Run PHPUnit
 You can run the unit tests by simply performing the follwowing command:

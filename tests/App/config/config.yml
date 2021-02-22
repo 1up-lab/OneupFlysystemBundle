@@ -11,18 +11,42 @@ framework:
 
 oneup_flysystem:
     adapters:
-        myadapter:
+        local:
             local:
                 location: "%kernel.project_dir%/cache"
+        memory:
+            memory: ~
+
+        async_aws_s3:
+            async_aws_s3:
+                client: 'test'
+                bucket: 'test'
+
+        custom:
+            custom:
+                service: 'test'
+
+        ftp:
+            ftp:
+                connectionOptions: 'test'
+
+        gitlab:
+            gitlab:
+                client: 'test'
+
+        sftp:
+            sftp:
+                connectionProvider: 'test'
+                root: 'test'
 
     filesystems:
         myfilesystem:
-            adapter: myadapter
+            adapter: local
 
         myfilesystem2:
-            adapter: myadapter
+            adapter: local
             visibility: public
 
         myfilesystem3:
-            adapter: myadapter
+            adapter: local
             visibility: private
