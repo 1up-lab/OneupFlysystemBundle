@@ -25,7 +25,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The FTP adapter requires `"league/flysystem-ftp"`
 * The SFTP adapter requires `"league/flysystem-sftp"`
 * The InMemory adapter requires `"league/flysystem-memory"`
-* The AsyncAwsS3 adapter requires `"async-aws/flysystem-s3"`
+* The AsyncAwsS3 adapter requires `"league/flysystem-async-aws-s3"`
 * The Gitlab adapter requires `"royvoetman/flysystem-gitlab-storage"`
 
 ### Step 2: Enable the bundle
