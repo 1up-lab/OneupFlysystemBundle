@@ -82,7 +82,7 @@ oneup_flysystem:
     adapters:
         myadapter:
             local:
-                directory: "%kernel.root_dir%/cache"
+                location: "%kernel.root_dir%/cache"
 
     filesystems:
         myfilesystem:

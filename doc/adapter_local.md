@@ -9,7 +9,7 @@ oneup_flysystem:
     adapters:
         my_adapter:
             local:
-                directory: "%kernel.root_dir%/../uploads"
+                location: "%kernel.root_dir%/../uploads"
                 lazy: ~ # boolean (default "false")
                 writeFlags: ~
                 linkHandling: ~
