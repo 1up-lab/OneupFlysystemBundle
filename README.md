@@ -25,7 +25,7 @@ Documentation
 
 The entry point of the documentation can be found in the file `Resources/docs/index.md`
 
-[Read the documentation for master](Resources/doc/index.md)
+[Read the documentation for 3.x](Resources/doc/index.md)
 
 
 License
