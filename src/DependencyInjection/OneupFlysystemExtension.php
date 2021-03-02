@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
-use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\FilesystemOperator;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\FactoryInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -114,7 +114,7 @@ class OneupFlysystemExtension extends Extension
                 $aliasName .= 'Filesystem';
             }
 
-            $container->registerAliasForArgument($id, FilesystemAdapter::class, $aliasName)->setPublic(false);
+            $container->registerAliasForArgument($id, FilesystemOperator::class, $aliasName)->setPublic(false);
         }
 
         return new Reference($id);

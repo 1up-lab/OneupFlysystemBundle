@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 
 use League\Flysystem\Filesystem;
+use League\Flysystem\FilesystemOperator;
 use League\Flysystem\Visibility;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
@@ -95,10 +96,13 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
             ],
         ]);
 
-        $aliasName = 'League\Flysystem\FilesystemAdapter $acmeFilesystem';
+        $aliasName = 'League\Flysystem\FilesystemOperator $acmeFilesystem';
 
         self::assertTrue($container->hasAlias($aliasName));
         self::assertSame('oneup_flysystem.acme_filesystem_filesystem', (string) $container->getAlias($aliasName));
+
+        self::assertTrue($container->hasAlias(Filesystem::class));
+        self::assertSame('oneup_flysystem.acme_filesystem_filesystem', (string) $container->getAlias(Filesystem::class));
     }
 
     public function testServiceAliasWithoutFilesystemSuffix(): void
@@ -121,10 +125,22 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
             ],
         ]);
 
-        $aliasName = 'League\Flysystem\FilesystemAdapter $acmeFilesystem';
+        $aliasName = 'League\Flysystem\FilesystemOperator $acmeFilesystem';
 
         self::assertTrue($container->hasAlias($aliasName));
         self::assertSame('oneup_flysystem.acme_filesystem', (string) $container->getAlias($aliasName));
+
+        self::assertTrue($container->hasAlias(Filesystem::class));
+        self::assertSame('oneup_flysystem.acme_filesystem', (string) $container->getAlias(Filesystem::class));
+    }
+
+    public function testServiceAliasInjection(): void
+    {
+        /** @var TestService $testService */
+        $testService = self::$container->get(TestService::class);
+
+        self::assertInstanceOf(TestService::class, $testService);
+        self::assertInstanceOf(Filesystem::class, $testService->filesystem);
     }
 
     private function loadExtension(array $config): ContainerBuilder
@@ -133,5 +149,18 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $extension->load($config, $container = new ContainerBuilder());
 
         return $container;
+    }
+}
+
+/**
+ * @internal
+ */
+final class TestService
+{
+    public FilesystemOperator $filesystem;
+
+    public function __construct(FilesystemOperator $myfilesystem)
+    {
+        $this->filesystem = $myfilesystem;
     }
 }

@@ -50,3 +50,11 @@ oneup_flysystem:
         myfilesystem3:
             adapter: local
             visibility: private
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Oneup\FlysystemBundle\Tests\DependencyInjection\TestService:
+        public: true
