@@ -37,7 +37,7 @@ class AwsS3V3Factory implements AdapterFactoryInterface
             ->children()
                 ->scalarNode('client')->isRequired()->end()
                 ->scalarNode('bucket')->isRequired()->end()
-                ->scalarNode('prefix')->defaultNull()->end()
+                ->scalarNode('prefix')->defaultValue('')->end()
                 ->scalarNode('visibilityConverter')->defaultNull()->end()
                 ->scalarNode('mimeTypeDetector')->defaultNull()->end()
                 ->arrayNode('options')
