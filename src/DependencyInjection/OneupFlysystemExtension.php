@@ -107,15 +107,13 @@ class OneupFlysystemExtension extends Extension
             $alias->setPublic(true);
         }
 
-        if (method_exists($container, 'registerAliasForArgument')) {
-            $aliasName = $name;
+        $aliasName = $name;
 
-            if (!preg_match('~filesystem$~i', $aliasName)) {
-                $aliasName .= 'Filesystem';
-            }
-
-            $container->registerAliasForArgument($id, FilesystemOperator::class, $aliasName)->setPublic(false);
+        if (!preg_match('~filesystem$~i', $aliasName)) {
+            $aliasName .= 'Filesystem';
         }
+
+        $container->registerAliasForArgument($id, FilesystemOperator::class, $aliasName)->setPublic(false);
 
         return new Reference($id);
     }
