@@ -58,11 +58,12 @@ services:
 Dependency Injection is considered a **good practice** since you do not need the container, and you can then refer to it in your class like this:
 
 ```php
-use League\Flysystem\FilesystemInterface;
+
+use League\Flysystem\FilesystemOperator;
 
 class MyService
-{
-    public function __construct(FilesystemInterface $acmeFilesystem)
+{    
+    public function __construct(FilesystemOperator $acmeFilesystem)
     {
         $this->filesystem = $acmeFilesystem;
     }
