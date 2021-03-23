@@ -58,13 +58,21 @@ services:
 Dependency Injection is considered a **good practice** since you do not need the container, and you can then refer to it in your class like this:
 
 ```php
-use League\Flysystem\FilesystemInterface;
+
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class MyService
 {
-    public function __construct(FilesystemInterface $acmeFilesystem)
+    use ContainerAwareTrait;
+    
+    public function getFilesystem()
     {
-        $this->filesystem = $acmeFilesystem;
+        return $this->container->get('acme_filesystem');
+    }
+    
+    public function myFunction() 
+    {
+        $contents = $this->getFilesystem()->read('my_file');
     }
 }
 ```
