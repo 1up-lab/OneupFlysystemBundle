@@ -32,6 +32,10 @@
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\AsyncAwsS3Factory">
             <tag name="oneup_flysystem.adapter_factory"/>
         </service>
+        <service id="oneup_flysystem.adapter_factory.google_cloud_storage"
+                 class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GoogleCloudStorageFactory">
+            <tag name="oneup_flysystem.adapter_factory"/>
+        </service>
         <service id="oneup_flysystem.adapter_factory.gitlab"
                  class="Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter\GitlabFactory">
             <tag name="oneup_flysystem.adapter_factory"/>

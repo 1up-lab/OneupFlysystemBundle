@@ -39,6 +39,10 @@ oneup_flysystem:
                 connectionProvider: 'test'
                 root: 'test'
 
+        googlecloudstorage:
+            googlecloudstorage:
+                bucket: 'test'
+
     filesystems:
         myfilesystem:
             adapter: local

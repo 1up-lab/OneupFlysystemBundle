@@ -41,6 +41,12 @@
             <argument/><!-- Prefix -->
             <argument/><!-- VisibilityConverter -->
         </service>
+        <service id="oneup_flysystem.adapter.googlecloudstorage" class="League\Flysystem\GoogleCloudStorage\GoogleCloudStorageAdapter" abstract="true" public="false">
+            <argument/><!-- Bucket -->
+            <argument/><!-- Prefix -->
+            <argument/><!-- VisibilityHandler -->
+            <argument/><!-- defaultVisibility -->
+        </service>
         <service id="oneup_flysystem.adapter.gitlab" class="RoyVoetman\FlysystemGitlab\GitlabAdapter" abstract="true" public="false">
             <argument/><!-- Client -->
             <argument/><!-- Prefix -->
