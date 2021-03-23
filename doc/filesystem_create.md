@@ -59,20 +59,13 @@ Dependency Injection is considered a **good practice** since you do not need the
 
 ```php
 
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use League\Flysystem\FilesystemOperator;
 
 class MyService
-{
-    use ContainerAwareTrait;
-    
-    public function getFilesystem()
+{    
+    public function __construct(FilesystemOperator $acmeFilesystem)
     {
-        return $this->container->get('acme_filesystem');
-    }
-    
-    public function myFunction() 
-    {
-        $contents = $this->getFilesystem()->read('my_file');
+        $this->filesystem = $acmeFilesystem;
     }
 }
 ```
