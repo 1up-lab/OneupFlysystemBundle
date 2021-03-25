@@ -21,7 +21,7 @@ class FilesystemPass implements CompilerPassInterface
         $filesystems = [];
 
         foreach ($configuredFilesystems as $id => $attributes) {
-            $filesystems[$id] = new Reference($id);
+            $filesystems[$attributes[0]['mount'] ?? $attributes[0]['key'] ?? $id] = new Reference($id);
         }
 
         $mountManager->replaceArgument(0, $filesystems);
