@@ -20,7 +20,7 @@
             <argument/><!-- streamReads -->
         </service>
         <service id="oneup_flysystem.adapter.ftp" class="League\Flysystem\Ftp\FtpAdapter" abstract="true" public="false">
-            <argument/><!-- FtpConnectionOptions -->
+            <argument/><!-- options -->
             <argument/><!-- FtpConnectionProvider -->
             <argument/><!-- ConnectivityChecker -->
             <argument/><!-- VisibilityConverter -->
