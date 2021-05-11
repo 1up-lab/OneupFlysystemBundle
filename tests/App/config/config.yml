@@ -40,8 +40,10 @@ oneup_flysystem:
 
         sftp:
             sftp:
-                connectionProvider: 'test'
-                root: 'test'
+                options:
+                    host: localhost
+                    username: foo
+                root: '/upload'
 
     filesystems:
         myfilesystem:
