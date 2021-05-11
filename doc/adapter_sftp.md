@@ -11,7 +11,7 @@ oneup_flysystem:
                 options:
                     host: 'ftp.domain.com'
                     username: 'foo'
-                root: '/upload'
+                    root: '/upload'
 ```
 
 For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/aws-s3-v3/).

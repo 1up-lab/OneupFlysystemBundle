@@ -20,6 +20,9 @@ class SftpFactory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, string $id, array $config): void
     {
+        $root = $config['options']['root'];
+        unset($config['options']['root']);
+
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.sftp'))
             ->replaceArgument(0, (new Definition(SftpConnectionProvider::class))
@@ -27,7 +30,7 @@ class SftpFactory implements AdapterFactoryInterface
                 ->addArgument($config['options'])
                 ->setShared(false)
             )
-            ->replaceArgument(1, $config['root'])
+            ->replaceArgument(1, $root)
             ->replaceArgument(2, $config['visibilityConverter'])
             ->replaceArgument(3, $config['mimeTypeDetector'])
         ;
@@ -50,9 +53,9 @@ class SftpFactory implements AdapterFactoryInterface
                         ->scalarNode('maxTries')->defaultValue(4)->end()
                         ->scalarNode('hostFingerprint')->defaultNull()->end()
                         ->scalarNode('connectivity checker')->defaultNull()->end()
+                        ->scalarNode('root')->isRequired()->end()
                     ->end()
                 ->end()
-                ->scalarNode('root')->isRequired()->end()
                 ->scalarNode('visibilityConverter')->defaultNull()->end()
                 ->scalarNode('mimeTypeDetector')->defaultNull()->end()
             ->end()

@@ -43,7 +43,7 @@ oneup_flysystem:
                 options:
                     host: localhost
                     username: foo
-                root: '/upload'
+                    root: '/upload'
 
     filesystems:
         myfilesystem:
