@@ -10,10 +10,10 @@ oneup_flysystem:
         my_adapter:
             ftp:
                 options:
-                    host: hostname # required
-                    root: /root/path/ # required
-                    username: username # required
-                    password: password # required
+                    host: 'ftp.hostname.com' # required
+                    root: '/upload' # required
+                    username: 'username' # required
+                    password: 'password' # required
 ```
 
 For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/ftp/).
