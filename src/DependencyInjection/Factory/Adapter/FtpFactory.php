@@ -50,7 +50,7 @@ class FtpFactory implements AdapterFactoryInterface
                         ->scalarNode('timeout')->defaultValue(90)->end()
                         ->booleanNode('utf8')->defaultFalse()->end()
                         ->booleanNode('passive')->defaultTrue()->end()
-                        ->scalarNode('transferMode')->defaultValue(\defined('FTP_BINARY') ? FTP_BINARY : null)->end()
+                        ->scalarNode('transferMode')->defaultValue(\defined('FTP_BINARY') ? \FTP_BINARY : null)->end()
                         ->scalarNode('systemType')->defaultNull()->end()
                         ->booleanNode('ignorePassiveAddress')->defaultNull()->end()
                         ->booleanNode('timestampsOnUnixListingsEnabled')->defaultFalse()->end()
