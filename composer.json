@@ -37,6 +37,7 @@
         "league/flysystem-async-aws-s3": "^2.0",
         "league/flysystem-aws-s3-v3": "^2.0",
         "league/flysystem-ftp": "^2.0",
+        "league/flysystem-google-cloud-storage": "^2.0",
         "league/flysystem-memory": "^2.0",
         "league/flysystem-sftp": "^2.0",
         "phpstan/phpstan": "^0.12.10",
@@ -56,6 +57,7 @@
         "ext-ftp": "Required for FTP and SFTP",
         "league/flysystem-async-aws-s3": "Use flysystem S3 adapter from AsyncAws",
         "league/flysystem-aws-s3-v3": "Use S3 storage with AWS SDK v3",
+        "league/flysystem-google-cloud-storage": "Use Google Cloud Storage Adapter for Flysystem",
         "league/flysystem-sftp": "Allows SFTP server storage via phpseclib",
         "royvoetman/flysystem-gitlab-storage": "Use Gitlab Storage filesystem for Flysystem"
     },

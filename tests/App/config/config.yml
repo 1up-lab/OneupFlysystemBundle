@@ -45,6 +45,10 @@ oneup_flysystem:
                     username: foo
                     root: '/upload'
 
+        googlecloudstorage:
+            googlecloudstorage:
+                bucket: 'test'
+
     filesystems:
         myfilesystem:
             adapter: local
