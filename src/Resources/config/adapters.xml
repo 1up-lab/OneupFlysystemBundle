@@ -27,7 +27,7 @@
             <argument/><!-- MimeTypeDetector -->
         </service>
         <service id="oneup_flysystem.adapter.sftp" class="League\Flysystem\PhpseclibV2\SftpAdapter" abstract="true" public="false">
-            <argument/><!-- ConnectionProvider -->
+            <argument/><!-- options -->
             <argument/><!-- root -->
             <argument/><!-- VisibilityConverter -->
             <argument/><!-- MimeTypeDetector -->
