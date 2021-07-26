@@ -19,7 +19,7 @@ Documentation
 
 The entry point of the documentation can be found in the file `doc/index.md`
 
-[Read the documentation for master](doc/index.md)
+[Read the documentation for the latest release](doc/index.md)
 
 
 Flysystem 1.x
