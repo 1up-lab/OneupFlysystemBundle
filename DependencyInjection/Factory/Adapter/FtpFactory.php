@@ -34,6 +34,7 @@ class FtpFactory implements AdapterFactoryInterface
                 ->scalarNode('root')->defaultNull()->end()
                 ->booleanNode('ssl')->defaultFalse()->end()
                 ->scalarNode('timeout')->defaultValue(90)->end()
+                ->booleanNode('utf8')->defaultFalse()->end()
                 ->scalarNode('permPrivate')->defaultValue(0000)->end()
                 ->scalarNode('permPublic')->defaultNull(0744)->end()
                 ->booleanNode('passive')->defaultTrue()->end()
