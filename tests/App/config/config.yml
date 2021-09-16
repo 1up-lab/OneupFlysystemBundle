@@ -8,7 +8,6 @@ services:
 
     google_cloud_storage_client:
         class: Google\Cloud\Storage\StorageClient
-        public: true
 
 
 framework:
