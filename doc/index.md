@@ -24,6 +24,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
 * The FTP adapter requires `"league/flysystem-ftp"`
 * The SFTP adapter requires `"league/flysystem-sftp"`
+* The Google Cloud Storage adapter requires `"league/flysystem-google-cloud-storage"`
 * The InMemory adapter requires `"league/flysystem-memory"`
 * The AsyncAwsS3 adapter requires `"league/flysystem-async-aws-s3"`
 * The Gitlab adapter requires `"royvoetman/flysystem-gitlab-storage"`
@@ -66,6 +67,7 @@ oneup_flysystem:
 
 There are a bunch of adapters for you to use:
 
+* [GoogleCloudStorage](adapter_google_cloud_storage.md)
 * [AsyncAwsS3](adapter_async_aws_s3.md)
 * [AwsS3](adapter_awss3.md)
 * [Ftp](adapter_ftp.md)
