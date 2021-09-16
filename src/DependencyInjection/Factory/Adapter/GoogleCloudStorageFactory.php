@@ -9,6 +9,8 @@ use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 class GoogleCloudStorageFactory implements AdapterFactoryInterface
 {
@@ -19,9 +21,13 @@ class GoogleCloudStorageFactory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, string $id, array $config): void
     {
+        $bucket = new Definition();
+        $bucket->setFactory([new Reference($config['client']), 'bucket']);
+        $bucket->setArgument(0, $config['bucket']);
+
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.googlecloudstorage'))
-            ->replaceArgument(0, $config['bucket'])
+            ->replaceArgument(0, $bucket)
             ->replaceArgument(1, $config['prefix'])
             ->replaceArgument(2, $config['visibilityHandler'])
             ->replaceArgument(3, $config['defaultVisiblity'])
@@ -32,6 +38,7 @@ class GoogleCloudStorageFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
+            ->scalarNode('client')->isRequired()->end()
             ->scalarNode('bucket')->isRequired()->end()
             ->scalarNode('prefix')->treatNullLike('')->defaultValue('')->end()
             ->scalarNode('visibilityHandler')->defaultNull()->end()

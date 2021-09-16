@@ -42,6 +42,7 @@
             <argument/><!-- VisibilityConverter -->
         </service>
         <service id="oneup_flysystem.adapter.googlecloudstorage" class="League\Flysystem\GoogleCloudStorage\GoogleCloudStorageAdapter" abstract="true" public="false">
+            <argument/><!-- Client -->
             <argument/><!-- Bucket -->
             <argument/><!-- Prefix -->
             <argument/><!-- VisibilityHandler -->

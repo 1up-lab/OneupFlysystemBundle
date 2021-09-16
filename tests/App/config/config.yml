@@ -1,3 +1,16 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Oneup\FlysystemBundle\Tests\DependencyInjection\TestService:
+        public: true
+
+    google_cloud_storage_client:
+        class: Google\Cloud\Storage\StorageClient
+        public: true
+
+
 framework:
     translator: { fallback: en }
     secret: secret
@@ -41,7 +54,9 @@ oneup_flysystem:
 
         googlecloudstorage:
             googlecloudstorage:
+                client: 'google_cloud_storage_client'
                 bucket: 'test'
+                prefix: 'prefix'
 
     filesystems:
         myfilesystem:
@@ -55,10 +70,5 @@ oneup_flysystem:
             adapter: local
             visibility: private
 
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-
-    Oneup\FlysystemBundle\Tests\DependencyInjection\TestService:
-        public: true
+        myfilesystem4:
+            adapter: googlecloudstorage

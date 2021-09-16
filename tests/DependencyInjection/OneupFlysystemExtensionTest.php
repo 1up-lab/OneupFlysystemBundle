@@ -143,6 +143,11 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         self::assertInstanceOf(Filesystem::class, $testService->filesystem);
     }
 
+    public function testGoogleCloudAdapter(): void
+    {
+        $this->assertInstanceOf(Filesystem::class, self::$container->get('oneup_flysystem.myfilesystem4_filesystem'));
+    }
+
     private function loadExtension(array $config): ContainerBuilder
     {
         $extension = new OneupFlysystemExtension();
