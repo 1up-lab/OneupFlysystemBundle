@@ -60,6 +60,10 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $adapters = simplexml_load_string((string) file_get_contents(__DIR__ . '/../../src/Resources/config/adapters.xml'));
 
         foreach ($adapters->children()->children() as $service) {
+            if (null === $service->attributes()) {
+                continue;
+            }
+
             foreach ($service->attributes() as $key => $attribute) {
                 if ('class' === (string) $key) {
                     self::assertTrue(class_exists((string) $attribute), 'Could not load class: ' . $attribute);
@@ -141,6 +145,11 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 
         self::assertInstanceOf(TestService::class, $testService);
         self::assertInstanceOf(Filesystem::class, $testService->filesystem);
+    }
+
+    public function testGoogleCloudAdapter(): void
+    {
+        $this->assertInstanceOf(Filesystem::class, self::$container->get('oneup_flysystem.myfilesystem4_filesystem'));
     }
 
     private function loadExtension(array $config): ContainerBuilder
