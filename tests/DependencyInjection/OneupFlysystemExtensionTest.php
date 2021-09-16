@@ -60,7 +60,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $adapters = simplexml_load_string((string) file_get_contents(__DIR__ . '/../../src/Resources/config/adapters.xml'));
 
         foreach ($adapters->children()->children() as $service) {
-            if (null === $service) {
+            if (null === $service->attributes()) {
                 continue;
             }
 
