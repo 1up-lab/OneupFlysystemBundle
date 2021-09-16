@@ -60,6 +60,10 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $adapters = simplexml_load_string((string) file_get_contents(__DIR__ . '/../../src/Resources/config/adapters.xml'));
 
         foreach ($adapters->children()->children() as $service) {
+            if (null === $service) {
+                continue;
+            }
+
             foreach ($service->attributes() as $key => $attribute) {
                 if ('class' === (string) $key) {
                     self::assertTrue(class_exists((string) $attribute), 'Could not load class: ' . $attribute);
