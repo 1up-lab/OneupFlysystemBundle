@@ -61,8 +61,11 @@ oneup_flysystem:
         my_filesystem:
             adapter: my_adapter
 
-            # optional - defines the default visibility of the filesystem: `public` or `private`(default)
+            # optional - defines the default visibility of files: `public` or `private` (default)
             visibility: private
+
+            # optional - defines the default visibility of directories: `public` or `private` (default)
+            directory_visibility: private
 ```
 
 There are a bunch of adapters for you to use:
