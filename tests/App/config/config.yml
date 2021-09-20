@@ -9,13 +9,12 @@ services:
     google_cloud_storage_client:
         class: Google\Cloud\Storage\StorageClient
 
-
 framework:
     translator: { fallback: en }
     secret: secret
     router:
-        resource: "%kernel.project_dir%/config/routing.yml"
-        strict_requirements: "%kernel.debug%"
+        resource: '%kernel.project_dir%/config/routing.yml'
+        strict_requirements: '%kernel.debug%'
     default_locale: en
     session: ~
     test: true
@@ -25,7 +24,15 @@ oneup_flysystem:
     adapters:
         local:
             local:
-                location: "%kernel.project_dir%/cache"
+                location: '%kernel.project_dir%/cache'
+                permissions:
+                    files:
+                        public: 0644
+                        private: 0600
+                    directories:
+                        public: 0755
+                        private: 0700
+
         memory:
             memory: ~
 
