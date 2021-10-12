@@ -52,7 +52,7 @@ class SftpFactory implements AdapterFactoryInterface
                         ->scalarNode('timeout')->defaultValue(10)->end()
                         ->scalarNode('maxTries')->defaultValue(4)->end()
                         ->scalarNode('hostFingerprint')->defaultNull()->end()
-                        ->scalarNode('connectivity checker')->defaultNull()->end()
+                        ->scalarNode('connectivityChecker')->defaultNull()->end()
                         ->scalarNode('root')->isRequired()->end()
                     ->end()
                 ->end()
