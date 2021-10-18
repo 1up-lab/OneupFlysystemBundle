@@ -27,11 +27,11 @@ oneup_flysystem:
                 location: '%kernel.project_dir%/cache'
                 permissions:
                     files:
-                        public: 0644
-                        private: 0600
+                        public: '0644'
+                        private: '0600'
                     directories:
-                        public: 0755
-                        private: 0700
+                        public: '0755'
+                        private: '0700'
 
         memory:
             memory: ~
