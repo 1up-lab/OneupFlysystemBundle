@@ -10,6 +10,7 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 class SftpFactory implements AdapterFactoryInterface
 {
@@ -22,6 +23,10 @@ class SftpFactory implements AdapterFactoryInterface
     {
         $root = $config['options']['root'];
         unset($config['options']['root']);
+
+        if (null !== $config['options']['connectivityChecker']) {
+            $config['options']['connectivityChecker'] = new Reference($config['options']['connectivityChecker']);
+        }
 
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.sftp'))
