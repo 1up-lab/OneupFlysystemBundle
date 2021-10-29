@@ -23,7 +23,7 @@ class LocalFactory implements AdapterFactoryInterface
     {
         $visibilityConverter = null;
 
-        if (isset($config['visibilityConverter']) && null !== $config['visibilityConverter']) {
+        if (isset($config['permissions']) && null !== $config['permissions']) {
             $visibilityConverter = new Definition(PortableVisibilityConverter::class);
             $visibilityConverter->setFactory([PortableVisibilityConverter::class, 'fromArray']);
             $visibilityConverter->setArgument(0, $config['permissions'] ?? []);
@@ -48,13 +48,13 @@ class LocalFactory implements AdapterFactoryInterface
                 ->scalarNode('location')->isRequired()->end()
                 ->arrayNode('permissions')
                     ->children()
-                        ->arrayNode('files')
+                        ->arrayNode('file')
                             ->children()
                                 ->scalarNode('public')->defaultNull()->end()
                                 ->scalarNode('private')->defaultNull()->end()
                             ->end()
                         ->end()
-                        ->arrayNode('directories')
+                        ->arrayNode('dir')
                             ->children()
                                 ->scalarNode('public')->defaultNull()->end()
                                 ->scalarNode('private')->defaultNull()->end()
@@ -69,3 +69,4 @@ class LocalFactory implements AdapterFactoryInterface
         ;
     }
 }
+
