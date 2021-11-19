@@ -23,7 +23,7 @@ The entry point of the documentation can be found in the file `doc/index.md`
 [Read the documentation for the latest release](doc/index.md)
 
 
-Flysystem 1.x
+Flysystem 3.x
 -------------
 If you're looking for Flysystem 1.x support, check out the [3.x-branch](https://github.com/1up-lab/OneupFlysystemBundle/tree/release/3.x) of this bundle.
 
