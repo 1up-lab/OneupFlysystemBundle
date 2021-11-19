@@ -23,6 +23,7 @@ return static function (ContainerConfigurator $configurator): void
             'my_filesystem' => [
                 'adapter' => 'my_adapter',
                 'visibility' => 'private'
+                'directory_visibility' => 'private'
             ]
         ]
     ]);

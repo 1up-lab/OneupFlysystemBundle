@@ -85,3 +85,10 @@ oneup_flysystem:
 
         myfilesystem4:
             adapter: googlecloudstorage
+
+        myfilesystem5:
+            adapter: local
+
+        myfilesystem6:
+            adapter: local
+            directory_visibility: public

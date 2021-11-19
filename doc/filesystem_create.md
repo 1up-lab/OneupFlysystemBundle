@@ -12,6 +12,7 @@ oneup_flysystem:
             alias: ~
             mount: ~
             visibility: ~
+            directory_visibility: ~
 ```
 
 This will expose a new service for you to use.

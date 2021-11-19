@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\Tests\DependencyInjection;
 
+use Composer\InstalledVersions;
+use League\Flysystem\DirectoryAttributes;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemOperator;
+use League\Flysystem\StorageAttributes;
 use League\Flysystem\Visibility;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
 use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
@@ -35,7 +38,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $filesystem2 = self::$container->get('oneup_flysystem.myfilesystem2_filesystem');
 
         /**
-         * Visibility flag ist set to "private".
+         * Visibility flag is set to "private".
          *
          * @var Filesystem $filesystem3
          */
@@ -52,6 +55,38 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
         $filesystem1->delete('1/meep');
         $filesystem1->delete('2/meep');
         $filesystem1->delete('3/meep');
+    }
+
+    public function testDirectoryVisibilitySettings(): void
+    {
+        if (version_compare((string) InstalledVersions::getVersion('league/flysystem'), '2.3.1', '<')) {
+            $this->markTestSkipped('Flysystem >= 2.3.1 is required (see https://github.com/thephpleague/flysystem/pull/1368).');
+        }
+
+        /**
+         * No directory visibility flag set, default to "private".
+         *
+         * @var Filesystem $filesystem5
+         */
+        $filesystem5 = self::$container->get('oneup_flysystem.myfilesystem5_filesystem');
+
+        /**
+         * Visibility flag is set to "public".
+         *
+         * @var Filesystem $filesystem6
+         */
+        $filesystem6 = self::$container->get('oneup_flysystem.myfilesystem6_filesystem');
+
+        $filesystem5->createDirectory('5');
+        $filesystem6->createDirectory('6');
+
+        /** @var DirectoryAttributes $directory5Attributes */
+        [$directory5Attributes] = $filesystem5->listContents('')->filter(static fn (StorageAttributes $attributes) => $attributes->isDir() && '5' === $attributes->path())->toArray();
+        /** @var DirectoryAttributes $directory6Attributes */
+        [$directory6Attributes] = $filesystem5->listContents('')->filter(static fn (StorageAttributes $attributes) => $attributes->isDir() && '6' === $attributes->path())->toArray();
+
+        self::assertSame(Visibility::PRIVATE, $directory5Attributes->visibility());
+        self::assertSame(Visibility::PUBLIC, $directory6Attributes->visibility());
     }
 
     public function testAdapterAvailability(): void

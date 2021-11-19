@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection;
 
+use League\Flysystem\Config;
 use League\Flysystem\FilesystemOperator;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\FactoryInterface;
 use Symfony\Component\Config\FileLocator;
@@ -84,7 +85,11 @@ class OneupFlysystemExtension extends Extension
         $options = [];
 
         if (\array_key_exists('visibility', $config)) {
-            $options['visibility'] = $config['visibility'];
+            $options[Config::OPTION_VISIBILITY] = $config['visibility'];
+        }
+
+        if (\array_key_exists('directory_visibility', $config)) {
+            $options[Config::OPTION_DIRECTORY_VISIBILITY] = $config['directory_visibility'];
         }
 
         $container
