@@ -14,10 +14,10 @@ oneup_flysystem:
                 writeFlags: ~
                 linkHandling: ~
                 permissions:
-                    files:
+                    file:
                         public: 0644
                         private: 0600
-                    directories:
+                    dir:
                         public: 0755
                         private: 0700
 ```
