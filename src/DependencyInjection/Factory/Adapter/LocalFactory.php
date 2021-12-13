@@ -42,6 +42,8 @@ class LocalFactory implements AdapterFactoryInterface
 
     public function addConfiguration(NodeDefinition $node): void
     {
+        $parseOctal = \Closure::fromCallable([self::class, 'parseOctal']);
+
         $node
             ->children()
                 ->booleanNode('lazy')->defaultValue(false)->end()
@@ -53,18 +55,14 @@ class LocalFactory implements AdapterFactoryInterface
                                 ->integerNode('public')
                                     ->beforeNormalization()
                                         ->ifString()
-                                        ->then(function (string $permission): int {
-                                            return (int) $permission;
-                                        })
+                                        ->then($parseOctal)
                                     ->end()
                                     ->defaultNull()
                                 ->end()
                                 ->integerNode('private')
                                     ->beforeNormalization()
                                         ->ifString()
-                                        ->then(function (string $permission): int {
-                                            return (int) $permission;
-                                        })
+                                        ->then($parseOctal)
                                     ->end()
                                     ->defaultNull()
                                 ->end()
@@ -75,18 +73,14 @@ class LocalFactory implements AdapterFactoryInterface
                                 ->integerNode('public')
                                     ->beforeNormalization()
                                         ->ifString()
-                                        ->then(function (string $permission): int {
-                                            return (int) $permission;
-                                        })
+                                        ->then($parseOctal)
                                     ->end()
                                     ->defaultNull()
                                 ->end()
                                 ->integerNode('private')
                                     ->beforeNormalization()
                                         ->ifString()
-                                        ->then(function (string $permission): int {
-                                            return (int) $permission;
-                                        })
+                                        ->then($parseOctal)
                                     ->end()
                                     ->defaultNull()
                                 ->end()
@@ -99,5 +93,25 @@ class LocalFactory implements AdapterFactoryInterface
                 ->scalarNode('mimeTypeDetector')->defaultNull()->end()
             ->end()
         ;
+    }
+
+    /**
+     * Backward compatibility (BC) between symfony/yaml <= 5.4 and >= 6.0.
+     *
+     * @see https://github.com/symfony/symfony/pull/34813
+     */
+    private static function parseOctal(string $scalar): int
+    {
+        if (!preg_match('/^(?:\+|-)?0o?(?P<value>[0-7_]++)$/', $scalar, $matches)) {
+            throw new \InvalidArgumentException("The scalar \"$scalar\" is not a valid octal number.");
+        }
+
+        $value = str_replace('_', '', $matches['value']);
+
+        if ('-' === $scalar[0]) {
+            return (int) -octdec($value);
+        }
+
+        return (int) octdec($value);
     }
 }
