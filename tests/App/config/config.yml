@@ -24,7 +24,7 @@ oneup_flysystem:
     adapters:
         local:
             local:
-                location: '%kernel.project_dir%/cache'
+                location: '%kernel.cache_dir%/1up'
                 permissions:
                     file:
                         public: 0644
