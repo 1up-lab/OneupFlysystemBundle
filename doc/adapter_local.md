@@ -15,11 +15,11 @@ oneup_flysystem:
                 linkHandling: ~
                 permissions:
                     file:
-                        public: 0644
-                        private: 0600
+                        public: 0o644
+                        private: 0o600
                     dir:
-                        public: 0755
-                        private: 0700
+                        public: 0o755
+                        private: 0o700
 ```
 
 For more details on the `lazy` parameter, take a look at the [Symfony documentation](http://symfony.com/doc/current/components/dependency_injection/lazy_services.html).
