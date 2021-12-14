@@ -1,8 +1,14 @@
 parameters:
+    level: max
+
     bootstrapFiles:
         - %rootDir%/../../../vendor/autoload.php
 
-    excludes_analyse:
+    paths:
+        - src
+        - tests
+
+    excludePaths:
         - src/DependencyInjection/Configuration.php
         - tests/App/cache
         - tests/App/logs

@@ -13,11 +13,11 @@ final class FilesystemPassTest extends ContainerAwareTestCase
     public function testMountIdentifiers(): void
     {
         /** @var MountManager $mountManager */
-        $mountManager = self::$container->get('oneup_flysystem.mount_manager');
+        $mountManager = $this->getContainer()->get('oneup_flysystem.mount_manager');
         /** @var Filesystem $filesystem1 */
-        $filesystem1 = self::$container->get('oneup_flysystem.myfilesystem_filesystem');
+        $filesystem1 = $this->getContainer()->get('oneup_flysystem.myfilesystem_filesystem');
         /** @var Filesystem $filesystem2 */
-        $filesystem2 = self::$container->get('oneup_flysystem.myfilesystem2_filesystem');
+        $filesystem2 = $this->getContainer()->get('oneup_flysystem.myfilesystem2_filesystem');
 
         self::assertFalse($filesystem1->fileExists('foo'));
         self::assertFalse($filesystem2->fileExists('bar'));
