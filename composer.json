@@ -33,7 +33,7 @@
     },
     "require-dev": {
         "ext-simplexml": "*",
-        "friendsofphp/php-cs-fixer": "^3.5",
+        "friendsofphp/php-cs-fixer": "^2.16|^3.5",
         "league/flysystem-async-aws-s3": "^2.0",
         "league/flysystem-aws-s3-v3": "^2.0",
         "league/flysystem-ftp": "^2.0",
