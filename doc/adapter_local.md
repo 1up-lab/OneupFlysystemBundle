@@ -1,6 +1,6 @@
 # Use the local adapter
 
-To use the local adapter which stores files on the same server the Symfony2 instance runs, you have
+To use the local adapter which stores files on the same server the Symfony instance runs, you have
 to provide a directory.
 
 ```yml
