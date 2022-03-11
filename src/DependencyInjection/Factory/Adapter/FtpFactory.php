@@ -55,6 +55,7 @@ class FtpFactory implements AdapterFactoryInterface
                         ->booleanNode('ignorePassiveAddress')->defaultNull()->end()
                         ->booleanNode('timestampsOnUnixListingsEnabled')->defaultFalse()->end()
                         ->booleanNode('recurseManually')->defaultFalse()->end()
+                        ->booleanNode('useListOptions')->defaultTrue()->end()
                     ->end()
                 ->end()
                 ->scalarNode('connectionProvider')->defaultNull()->end()
