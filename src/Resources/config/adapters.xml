@@ -47,6 +47,7 @@
             <argument/><!-- Prefix -->
             <argument/><!-- VisibilityHandler -->
             <argument/><!-- defaultVisibility -->
+            <argument/><!-- mimeTypeDetector -->
         </service>
         <service id="oneup_flysystem.adapter.gitlab" class="RoyVoetman\FlysystemGitlab\GitlabAdapter" abstract="true" public="false">
             <argument/><!-- Client -->
