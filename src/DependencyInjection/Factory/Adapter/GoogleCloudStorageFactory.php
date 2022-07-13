@@ -31,6 +31,7 @@ class GoogleCloudStorageFactory implements AdapterFactoryInterface
             ->replaceArgument(1, $config['prefix'])
             ->replaceArgument(2, $config['visibilityHandler'])
             ->replaceArgument(3, $config['defaultVisiblity'])
+            ->replaceArgument(4, $config['mimeTypeDetector'])
         ;
     }
 
@@ -43,6 +44,7 @@ class GoogleCloudStorageFactory implements AdapterFactoryInterface
             ->scalarNode('prefix')->treatNullLike('')->defaultValue('')->end()
             ->scalarNode('visibilityHandler')->defaultNull()->end()
             ->scalarNode('defaultVisiblity')->defaultValue(Visibility::PRIVATE)->end()
+            ->scalarNode('mimeTypeDetector')->defaultNull()->end()
             ->end()
         ;
     }
