@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
@@ -10,8 +12,6 @@ use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 
 class AzureBlobFactory implements AdapterFactoryInterface
 {
-
- 
     public function getKey(): string
     {
         return 'azureblob';
