@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
-use Symfony\Component\Config\Definition\Builder\NodeDefinition;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ChildDefinition;
-use Symfony\Component\DependencyInjection\Reference;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
+use Symfony\Component\Config\Definition\Builder\NodeDefinition;
+use Symfony\Component\DependencyInjection\ChildDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 class AzureBlobFactory implements AdapterFactoryInterface
 {
@@ -19,7 +19,7 @@ class AzureBlobFactory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, $id, array $config): void
     {
-        $definition = $container
+        $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.azureblob'))
             ->replaceArgument(0, new Reference($config['client']))
             ->replaceArgument(1, $config['container'])
