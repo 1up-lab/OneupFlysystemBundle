@@ -25,7 +25,7 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "league/flysystem": "^2.0 || ^3.0",
         "symfony/config": "^4.4 || ^5.3 || ^6.0",
         "symfony/dependency-injection": "^4.4 || ^5.3 || ^6.0",
