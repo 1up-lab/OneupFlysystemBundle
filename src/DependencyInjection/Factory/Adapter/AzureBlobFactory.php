@@ -17,7 +17,7 @@ class AzureBlobFactory implements AdapterFactoryInterface
         return 'azureblob';
     }
 
-    public function create(ContainerBuilder $container, $id, array $config): void
+    public function create(ContainerBuilder $container, string $id, array $config): void
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.azureblob'))

@@ -26,7 +26,7 @@ class LocalFactory implements AdapterFactoryInterface
         if (isset($config['permissions']) && null !== $config['permissions']) {
             $visibilityConverter = new Definition(PortableVisibilityConverter::class);
             $visibilityConverter->setFactory([PortableVisibilityConverter::class, 'fromArray']);
-            $visibilityConverter->setArgument(0, $config['permissions'] ?? []);
+            $visibilityConverter->setArgument(0, $config['permissions']);
         }
 
         $container
