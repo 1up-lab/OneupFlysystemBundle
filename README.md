@@ -11,6 +11,7 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 * [Google Cloud Storage](https://cloud.google.com/storage)
 * [AsyncAwsS3](https://async-aws.com/)
 * [AwsS3](http://aws.amazon.com/de/sdkforphp/)
+* [AzureBlobStorage](https://azure.microsoft.com/en-us/services/storage/blobs/)
 * [Ftp](http://php.net/manual/en/book.ftp.php)
 * [Local filesystem](http://php.net/manual/en/ref.filesystem.php)
 * [Sftp](http://phpseclib.sourceforge.net/sftp/intro.html)

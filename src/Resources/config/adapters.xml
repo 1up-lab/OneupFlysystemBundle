@@ -53,5 +53,10 @@
             <argument/><!-- Client -->
             <argument/><!-- Prefix -->
         </service>
+        <service id="oneup_flysystem.adapter.azureblob" class="League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter" abstract="true" public="false">
+            <argument /><!-- Client -->
+            <argument /><!-- Container -->
+            <argument /><!-- Prefix -->
+        </service>
     </services>
 </container>

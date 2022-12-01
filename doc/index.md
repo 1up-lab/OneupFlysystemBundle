@@ -28,6 +28,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 * The InMemory adapter requires `"league/flysystem-memory"`
 * The AsyncAwsS3 adapter requires `"league/flysystem-async-aws-s3"`
 * The Gitlab adapter requires `"royvoetman/flysystem-gitlab-storage"`
+* The Azure Blob Storage adapter requires `"league/flysystem-azure-blob-storage"`
 
 ### Step 2: Enable the bundle
 Enable the bundle in the kernel:
@@ -78,6 +79,7 @@ There are a bunch of adapters for you to use:
 * [InMemoryAdapter](adapter_in_memory.md)
 * [Sftp](adapter_sftp.md)
 * [Gitlab](adapter_gitlab.md)
+* [AzureBlobStorage](adapter_azure_blob_storage.md)
 * [Custom](adapter_custom.md)
 
 ### Step 4: Next steps
