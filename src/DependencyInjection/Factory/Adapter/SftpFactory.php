@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Oneup\FlysystemBundle\DependencyInjection\Factory\Adapter;
 
-use League\Flysystem\PhpseclibV2\SftpConnectionProvider;
+use League\Flysystem\PhpseclibV3\SftpConnectionProvider;
 use Oneup\FlysystemBundle\DependencyInjection\Factory\AdapterFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
