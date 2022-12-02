@@ -23,7 +23,7 @@ Composer will now fetch and install this bundle in the vendor directory `vendor/
 
 * The AwsS3v3 adapter requires `"league/flysystem-aws-s3-v3"`
 * The FTP adapter requires `"league/flysystem-ftp"`
-* The SFTP adapter requires `"league/flysystem-sftp"`
+* The SFTP (V3) adapter requires `"league/flysystem-sftp-v3"`
 * The Google Cloud Storage adapter requires `"league/flysystem-google-cloud-storage"`
 * The InMemory adapter requires `"league/flysystem-memory"`
 * The AsyncAwsS3 adapter requires `"league/flysystem-async-aws-s3"`

@@ -14,7 +14,7 @@ oneup_flysystem:
                     root: '/upload'
 ```
 
-For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/sftp/).
+For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/docs/adapter/sftp-v3/).
 
 ## More to know
 * [Create and use your filesystem](filesystem_create.md)
