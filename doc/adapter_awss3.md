@@ -30,8 +30,8 @@ oneup_flysystem:
         acme.flysystem_adapter:
             awss3v3:
                 client: acme.s3_client
-                bucket: ~
-                prefix: ~
+                bucket: 'bucket-name'
+                prefix: 'path/prefix' # Optional path prefix, you can set empty string
 ```
 
 For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/aws-s3-v3/).
@@ -52,8 +52,8 @@ oneup_flysystem:
         acme.flysystem_adapter:
             awss3v3:
                 client: acme.s3_client
-                bucket: foo
-                prefix: ~
+                bucket: 'bucket-name'
+                prefix: 'path/prefix' # Optional path prefix, you can set empty string
                 options:
                     ACL: bucket-owner-full-control
 ```
