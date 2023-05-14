@@ -58,6 +58,7 @@ class Configuration implements ConfigurationInterface
         $supportedVisibilities = [
             Visibility::PRIVATE,
             Visibility::PUBLIC,
+            'noPredefinedVisibility',
         ];
 
         $node
