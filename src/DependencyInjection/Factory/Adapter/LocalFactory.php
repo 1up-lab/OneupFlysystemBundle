@@ -37,6 +37,7 @@ class LocalFactory implements AdapterFactoryInterface
             ->replaceArgument(2, $config['writeFlags'])
             ->replaceArgument(3, $config['linkHandling'])
             ->replaceArgument(4, $config['mimeTypeDetector'])
+            ->replaceArgument(5, $config['lazyRootCreation'])
         ;
     }
 
@@ -91,6 +92,7 @@ class LocalFactory implements AdapterFactoryInterface
                 ->scalarNode('writeFlags')->defaultValue(\LOCK_EX)->end()
                 ->scalarNode('linkHandling')->defaultValue(LocalFilesystemAdapter::DISALLOW_LINKS)->end()
                 ->scalarNode('mimeTypeDetector')->defaultNull()->end()
+                ->scalarNode('lazyRootCreation')->defaultValue(false)->end()
             ->end()
         ;
     }
