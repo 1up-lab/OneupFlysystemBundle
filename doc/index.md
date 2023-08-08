@@ -67,12 +67,6 @@ oneup_flysystem:
 
             # optional - defines the default visibility of directories: `public` or `private` (default)
             directory_visibility: private
-             
-        # example - using environment variable for adapter
-        my_dynamic_filesystem:
-            adapter: '%app.filesystem_dynamic.adapter%'
-            visibility: private
-            directory_visibility: private
 ```
 
 There are a bunch of adapters for you to use:
