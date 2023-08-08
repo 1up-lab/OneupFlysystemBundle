@@ -96,3 +96,9 @@ $filesystem = $container->get('oneup_flysystem.mount_manager')->getFilesystem('p
 ```
 
 Details on the usage of the MountManager can be found in the [Flysystem documentation](https://flysystem.thephpleague.com/docs/advanced/mount-manager/).
+
+## Add caching
+
+In version 1.x of Flysystem you could provide a cache per each adapter. [The cached adapter was not ported to V2 of Flysystem](https://flysystem.thephpleague.com/docs/upgrade-from-1.x/#miscellaneous-changes). 
+
+If you want to use cached adapters, give a try to [lustmored/flysystem-v2-simple-cache-adapter](https://github.com/Lustmored/flysystem-v2-simple-cache-adapter).
