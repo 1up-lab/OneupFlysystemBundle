@@ -29,9 +29,6 @@ class OneupFlysystemExtension extends Extension
         $configuration = new Configuration($adapterFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
-        /** @var array $config */
-        $config = $container->resolveEnvPlaceholders($config, true);
-
         $loader->load('adapters.xml');
         $loader->load('flysystem.xml');
 
