@@ -13,7 +13,7 @@ oneup_flysystem:
                 prefix: ''
 ```
 
-For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/gcs/).
+For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/docs/adapter/google-cloud-storage/).
 
 ## More to know
 
