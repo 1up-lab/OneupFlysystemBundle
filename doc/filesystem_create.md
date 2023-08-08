@@ -8,7 +8,6 @@ oneup_flysystem:
     filesystems:
         acme:
             adapter: my_adapter
-            cache: ~
             alias: ~
             mount: ~
             visibility: ~
