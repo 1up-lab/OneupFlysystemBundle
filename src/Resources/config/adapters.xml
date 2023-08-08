@@ -9,6 +9,7 @@
             <argument/><!-- writeFlags -->
             <argument/><!-- linkHandling -->
             <argument/><!-- MimeTypeDetector -->
+            <argument/><!-- lazyRootCreation -->
         </service>
         <service id="oneup_flysystem.adapter.awss3v3" class="League\Flysystem\AwsS3V3\AwsS3V3Adapter" abstract="true" public="false">
             <argument/><!-- S3ClientInterface -->

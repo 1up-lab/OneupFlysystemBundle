@@ -20,6 +20,7 @@ oneup_flysystem:
                     dir:
                         public: 0o755
                         private: 0o700
+                lazyRootCreation: ~ # boolean (default "false")
 ```
 
 For more details on the `lazy` parameter, take a look at the [Symfony documentation](http://symfony.com/doc/current/components/dependency_injection/lazy_services.html).
