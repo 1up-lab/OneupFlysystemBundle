@@ -25,11 +25,13 @@ class GoogleCloudStorageFactory implements AdapterFactoryInterface
         $bucket->setFactory([new Reference($config['client']), 'bucket']);
         $bucket->setArgument(0, $config['bucket']);
 
+        $visibilityHandler = $config['visibilityHandler'] ? new Definition($config['visibilityHandler']) : null;
+
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.googlecloudstorage'))
             ->replaceArgument(0, $bucket)
             ->replaceArgument(1, $config['prefix'])
-            ->replaceArgument(2, $config['visibilityHandler'])
+            ->replaceArgument(2, $visibilityHandler)
             ->replaceArgument(3, $config['defaultVisiblity'])
             ->replaceArgument(4, $config['mimeTypeDetector'])
         ;
