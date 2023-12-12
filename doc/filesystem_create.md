@@ -74,29 +74,6 @@ class MyService
 and instead you can automatically inject your filesystems by **providing the exact same type-hint as above**, and 
 replace `acme` with the name of your filesystem. Thanks to the ``ContainerBuilder::registerAliasForArgument()`` method!
 
-## Use the Mount Manager
-
-If you provided a mount prefix, you can also access the filesystem through the [MountManager](https://github.com/thephpleague/flysystem/blob/master/src/MountManager.php).
-
-```yml
-oneup_flysystem:
-    adapters:
-        myadapter:
-            local:
-                location: "%kernel.root_dir%/cache"
-
-    filesystems:
-        myfilesystem:
-            adapter: myadapter
-            mount:   prefix
-```
-
-```php
-$filesystem = $container->get('oneup_flysystem.mount_manager')->getFilesystem('prefix');
-```
-
-Details on the usage of the MountManager can be found in the [Flysystem documentation](https://flysystem.thephpleague.com/docs/advanced/mount-manager/).
-
 ## Add caching
 
 In version 1.x of Flysystem you could provide a cache per each adapter. [The cached adapter was not ported to V2 of Flysystem](https://flysystem.thephpleague.com/docs/upgrade-from-1.x/#miscellaneous-changes). 
