@@ -6,7 +6,7 @@ namespace Oneup\FlysystemBundle\Tests\Model;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Container;
 
 class ContainerAwareTestCase extends WebTestCase
 {
@@ -31,7 +31,7 @@ class ContainerAwareTestCase extends WebTestCase
     /**
      * BC layer: to be removed once sf <5.3 will not be supported anymore.
      */
-    protected static function getContainer(): ContainerInterface
+    protected static function getContainer(): Container
     {
         if (\is_callable('parent::getContainer')) {
             return parent::getContainer();
