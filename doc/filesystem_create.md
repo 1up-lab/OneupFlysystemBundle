@@ -76,25 +76,6 @@ replace `acme` with the name of your filesystem. Thanks to the ``ContainerBuilde
 
 ## Use the Mount Manager
 
-If you provided a mount prefix, you can also access the filesystem through the [MountManager](https://github.com/thephpleague/flysystem/blob/master/src/MountManager.php).
-
-```yml
-oneup_flysystem:
-    adapters:
-        myadapter:
-            local:
-                location: "%kernel.root_dir%/cache"
-
-    filesystems:
-        myfilesystem:
-            adapter: myadapter
-            mount:   prefix
-```
-
-```php
-$filesystem = $container->get('oneup_flysystem.mount_manager')->getFilesystem('prefix');
-```
-
 Details on the usage of the MountManager can be found in the [Flysystem documentation](https://flysystem.thephpleague.com/docs/advanced/mount-manager/).
 
 ## Add caching
