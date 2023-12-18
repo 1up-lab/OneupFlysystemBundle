@@ -56,7 +56,7 @@ jobs:
 
             - name: Install the dependencies
               run: |
-                composer require symfony/framework-bundle:^${{ matrix.symfony }}
+                composer require symfony/framework-bundle:^${{ matrix.symfony }} symfony/translation:^${{ matrix.symfony }} symfony/console:^${{ matrix.symfony }} -W
                 composer install --no-interaction --no-suggest
             - name: Run the unit tests
               run: vendor/bin/phpunit --colors=always
