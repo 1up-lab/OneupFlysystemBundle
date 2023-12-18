@@ -34,6 +34,7 @@ class ContainerAwareTestCase extends WebTestCase
     protected static function getContainer(): Container
     {
         if (\is_callable('parent::getContainer')) {
+            /* @phpstan-ignore-next-line */
             return parent::getContainer();
         }
 
