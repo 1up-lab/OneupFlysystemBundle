@@ -51,7 +51,7 @@
         "symfony/phpunit-bridge": "^6.0 || ^7.0",
         "symfony/templating": "^4.4 || ^5.3 || ^6.0 || ^7.0",
         "symfony/translation": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/yaml": "^4.4 || ^5.3 || ^6. || ^7.00"
+        "symfony/yaml": "^4.4 || ^5.3 || ^6.0 || ^7.0"
     },
     "suggest": {
         "ext-fileinfo": "Required for MimeType",
