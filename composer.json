@@ -27,9 +27,9 @@
     "require": {
         "php": "^8.0",
         "league/flysystem": "^2.0 || ^3.0",
-        "symfony/config": "^4.4 || ^5.3 || ^6.0",
-        "symfony/dependency-injection": "^4.4 || ^5.3 || ^6.0",
-        "symfony/http-kernel": "^4.4 || ^5.3 || ^6.0"
+        "symfony/config": "^4.4 || ^5.3 || ^6.0 || ^7.0",
+        "symfony/dependency-injection": "^4.4 || ^5.3 || ^6.0 || ^7.0",
+        "symfony/http-kernel": "^4.4 || ^5.3 || ^6.0 || ^7.0"
     },
     "require-dev": {
         "ext-simplexml": "*",
