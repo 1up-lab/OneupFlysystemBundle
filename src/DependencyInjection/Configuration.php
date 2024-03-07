@@ -11,11 +11,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    protected array $adapterFactories;
-
-    public function __construct(array $adapterFactories)
+    public function __construct(protected array $adapterFactories)
     {
-        $this->adapterFactories = $adapterFactories;
     }
 
     public function getConfigTreeBuilder(): TreeBuilder

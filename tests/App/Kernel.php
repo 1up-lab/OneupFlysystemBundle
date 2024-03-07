@@ -12,10 +12,10 @@ class Kernel extends BaseKernel
     public function registerBundles(): iterable
     {
         return [
-            new FrameworkBundle(),
+            yield new FrameworkBundle(),
 
             // Test this Bundle
-            new OneupFlysystemBundle(),
+            yield new OneupFlysystemBundle(),
         ];
     }
 
