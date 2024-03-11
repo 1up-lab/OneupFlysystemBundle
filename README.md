@@ -10,11 +10,11 @@ The OneupFlysystemBundle provides a [Flysystem](https://github.com/thephpleague/
 
 * [Google Cloud Storage](https://cloud.google.com/storage)
 * [AsyncAwsS3](https://async-aws.com/)
-* [AwsS3](http://aws.amazon.com/de/sdkforphp/)
+* [AwsS3](https://aws.amazon.com/de/sdk-for-php/)
 * [AzureBlobStorage](https://azure.microsoft.com/en-us/services/storage/blobs/)
-* [Ftp](http://php.net/manual/en/book.ftp.php)
-* [Local filesystem](http://php.net/manual/en/ref.filesystem.php)
-* [Sftp](http://phpseclib.sourceforge.net/sftp/intro.html)
+* [Ftp](https://www.php.net/manual/en/book.ftp.php)
+* [Local filesystem](https://www.php.net/manual/en/ref.filesystem.php)
+* [Sftp](https://phpseclib.sourceforge.net/sftp/intro.html)
 
 Documentation
 -------------
@@ -32,10 +32,7 @@ If you're looking for Flysystem 1.x support, check out the [3.x-branch](https://
 License
 -------
 
-This bundle is under the MIT license. See the complete license in the bundle:
-
-    LICENSE
-
+This bundle is under the MIT license. See the [complete license](LICENSE) in the bundle:
 
 Reporting an issue or a feature request
 ---------------------------------------
