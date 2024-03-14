@@ -14,14 +14,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.7.0
+              uses: shivammathur/setup-php@2.30.0
               with:
                   php-version: 8.1
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo, zlib
                   coverage: none
 
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Install the dependencies
               run: composer install --no-interaction --no-suggest
@@ -45,14 +45,14 @@ jobs:
                     php: 8.1
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.7.0
+              uses: shivammathur/setup-php@2.30.0
               with:
                   php-version: ${{ matrix.php }}
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
                   coverage: none
 
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Install the dependencies
               run: |
@@ -66,14 +66,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.7.0
+              uses: shivammathur/setup-php@2.30.0
               with:
                   php-version: 8.1
                   extensions: dom, fileinfo, filter, gd, hash, intl, json, mbstring, pcre, pdo_mysql, zlib
                   coverage: none
 
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Install the dependencies
               run: composer update --prefer-lowest --prefer-stable --no-interaction --no-suggest
