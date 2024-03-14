@@ -21,7 +21,7 @@ class InMemoryFactory implements AdapterFactoryInterface
     {
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.memory'))
-            ->replaceArgument(0, $config['defaultVisiblity'])
+            ->replaceArgument(0, $config['defaultVisibility'])
         ;
     }
 
@@ -29,7 +29,7 @@ class InMemoryFactory implements AdapterFactoryInterface
     {
         $node
             ->children()
-                ->scalarNode('defaultVisiblity')->defaultValue(Visibility::PUBLIC)->end()
+                ->scalarNode('defaultVisibility')->defaultValue(Visibility::PUBLIC)->end()
             ->end()
         ;
     }
