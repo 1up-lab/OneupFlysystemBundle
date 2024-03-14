@@ -25,15 +25,15 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "league/flysystem": "^2.0 || ^3.0",
-        "symfony/config": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/dependency-injection": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/http-kernel": "^4.4 || ^5.3 || ^6.0 || ^7.0"
+        "symfony/config": "^5.4 || ^6.0 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
+        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0"
     },
     "require-dev": {
         "ext-simplexml": "*",
-        "friendsofphp/php-cs-fixer": "^2.16 || ^3.5",
+        "friendsofphp/php-cs-fixer": "^3.51",
         "league/flysystem-async-aws-s3": "^2.0 || ^3.0",
         "league/flysystem-aws-s3-v3": "^2.0 || ^3.0",
         "league/flysystem-ftp": "^2.0 || ^3.0",
@@ -41,17 +41,17 @@
         "league/flysystem-memory": "^2.0 || ^3.0",
         "league/flysystem-sftp-v3": "^2.0 || ^3.0",
         "league/flysystem-azure-blob-storage": "^3.0",
-        "phpstan/phpstan": "^1.4",
-        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9.6.17",
         "royvoetman/flysystem-gitlab-storage": "^2.0 || ^3.0",
-        "symfony/asset": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/browser-kit": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/finder": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/framework-bundle": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/phpunit-bridge": "^6.0 || ^7.0",
-        "symfony/templating": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/translation": "^4.4 || ^5.3 || ^6.0 || ^7.0",
-        "symfony/yaml": "^4.4 || ^5.3 || ^6.0 || ^7.0"
+        "symfony/asset": "^5.4 || ^6.0 || ^7.0",
+        "symfony/browser-kit": "^5.4 || ^6.0 || ^7.0",
+        "symfony/finder": "^5.4 || ^6.0 || ^7.0",
+        "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0",
+        "symfony/phpunit-bridge": "^7.0",
+        "symfony/templating": "^5.4 || ^6.0 || ^7.0",
+        "symfony/translation": "^5.4 || ^6.0 || ^7.0",
+        "symfony/yaml": "^5.4 || ^6.0 || ^7.0"
     },
     "suggest": {
         "ext-fileinfo": "Required for MimeType",

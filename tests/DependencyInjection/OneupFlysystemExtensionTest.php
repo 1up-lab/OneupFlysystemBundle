@@ -11,10 +11,10 @@ use League\Flysystem\FilesystemOperator;
 use League\Flysystem\StorageAttributes;
 use League\Flysystem\Visibility;
 use Oneup\FlysystemBundle\DependencyInjection\OneupFlysystemExtension;
-use Oneup\FlysystemBundle\Tests\Model\ContainerAwareTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class OneupFlysystemExtensionTest extends ContainerAwareTestCase
+class OneupFlysystemExtensionTest extends WebTestCase
 {
     public function testIfTestSuiteLoads(): void
     {
@@ -28,21 +28,21 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
          *
          * @var Filesystem $filesystem1
          */
-        $filesystem1 = $this->getContainer()->get('oneup_flysystem.myfilesystem_filesystem');
+        $filesystem1 = self::getContainer()->get('oneup_flysystem.myfilesystem_filesystem');
 
         /**
          * Visibility flag is set to "public".
          *
          * @var Filesystem $filesystem2
          */
-        $filesystem2 = $this->getContainer()->get('oneup_flysystem.myfilesystem2_filesystem');
+        $filesystem2 = self::getContainer()->get('oneup_flysystem.myfilesystem2_filesystem');
 
         /**
          * Visibility flag is set to "private".
          *
          * @var Filesystem $filesystem3
          */
-        $filesystem3 = $this->getContainer()->get('oneup_flysystem.myfilesystem3_filesystem');
+        $filesystem3 = self::getContainer()->get('oneup_flysystem.myfilesystem3_filesystem');
 
         $filesystem1->write('1/meep', 'meep\'s content');
         $filesystem2->write('2/meep', 'meep\'s content');
@@ -68,14 +68,14 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
          *
          * @var Filesystem $filesystem5
          */
-        $filesystem5 = $this->getContainer()->get('oneup_flysystem.myfilesystem5_filesystem');
+        $filesystem5 = self::getContainer()->get('oneup_flysystem.myfilesystem5_filesystem');
 
         /**
          * Visibility flag is set to "public".
          *
          * @var Filesystem $filesystem6
          */
-        $filesystem6 = $this->getContainer()->get('oneup_flysystem.myfilesystem6_filesystem');
+        $filesystem6 = self::getContainer()->get('oneup_flysystem.myfilesystem6_filesystem');
 
         $filesystem5->createDirectory('5');
         $filesystem6->createDirectory('6');
@@ -186,7 +186,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
     public function testServiceAliasInjection(): void
     {
         /** @var TestService $testService */
-        $testService = $this->getContainer()->get(TestService::class);
+        $testService = self::getContainer()->get(TestService::class);
 
         self::assertInstanceOf(TestService::class, $testService);
         self::assertInstanceOf(Filesystem::class, $testService->filesystem);
@@ -194,7 +194,7 @@ class OneupFlysystemExtensionTest extends ContainerAwareTestCase
 
     public function testGoogleCloudAdapter(): void
     {
-        $this->assertInstanceOf(Filesystem::class, $this->getContainer()->get('oneup_flysystem.myfilesystem4_filesystem'));
+        $this->assertInstanceOf(Filesystem::class, self::getContainer()->get('oneup_flysystem.myfilesystem4_filesystem'));
     }
 
     private function loadExtension(array $config): ContainerBuilder
