@@ -13,8 +13,8 @@ Perform the following steps to install and use the basic functionality of the On
 
 Download the bundle via composer:
 
-```
-$> php composer.phar require oneup/flysystem-bundle
+```sh
+composer require oneup/flysystem-bundle
 ```
 
 Composer will now fetch and install this bundle in the vendor directory `vendor/oneup`
