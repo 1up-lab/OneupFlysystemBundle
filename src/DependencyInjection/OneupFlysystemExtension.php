@@ -57,24 +57,24 @@ class OneupFlysystemExtension extends Extension
     {
         foreach ($config as $key => $adapter) {
             if (\array_key_exists($key, $factories)) {
-                $id = sprintf('oneup_flysystem.%s_adapter', $name);
+                $id = \sprintf('oneup_flysystem.%s_adapter', $name);
                 $factories[$key]->create($container, $id, $adapter);
 
                 return $id;
             }
         }
 
-        throw new \LogicException(sprintf('The adapter \'%s\' is not configured.', $name));
+        throw new \LogicException(\sprintf('The adapter \'%s\' is not configured.', $name));
     }
 
     private function createFilesystem(string $name, array $config, ContainerBuilder $container, array $adapters): Reference
     {
         if (!\array_key_exists($config['adapter'], $adapters)) {
-            throw new \LogicException(sprintf('The adapter \'%s\' is not defined.', $config['adapter']));
+            throw new \LogicException(\sprintf('The adapter \'%s\' is not defined.', $config['adapter']));
         }
 
         $adapter = $adapters[$config['adapter']];
-        $id = sprintf('oneup_flysystem.%s_filesystem', $name);
+        $id = \sprintf('oneup_flysystem.%s_filesystem', $name);
 
         $tagParams = ['key' => $name];
 
