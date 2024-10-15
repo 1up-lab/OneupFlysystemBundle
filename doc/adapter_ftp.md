@@ -6,6 +6,9 @@ You have to provide at least a value for the `host` key.
 ```yml
 # app/config/config.yml
 oneup_flysystem:
+    acme.ftp.portable_visibility_converter:
+        class: League\Flysystem\UnixVisibility\PortableVisibilityConverter
+
     adapters:
         my_adapter:
             ftp:
@@ -14,6 +17,7 @@ oneup_flysystem:
                     root: '/upload' # required
                     username: 'username' # required
                     password: 'password' # required
+                visibilityConverter: acme.ftp.portable_visibility_converter
 ```
 
 For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/ftp/).

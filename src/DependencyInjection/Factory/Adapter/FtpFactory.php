@@ -10,6 +10,7 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 class FtpFactory implements AdapterFactoryInterface
 {
@@ -20,6 +21,8 @@ class FtpFactory implements AdapterFactoryInterface
 
     public function create(ContainerBuilder $container, string $id, array $config): void
     {
+        $visibilityConverter = $config['visibilityConverter'] ? new Reference($config['visibilityConverter']) : null;
+
         $container
             ->setDefinition($id, new ChildDefinition('oneup_flysystem.adapter.ftp'))
             ->replaceArgument(0,
@@ -30,7 +33,7 @@ class FtpFactory implements AdapterFactoryInterface
             )
             ->replaceArgument(1, $config['connectionProvider'])
             ->replaceArgument(2, $config['connectivityChecker'])
-            ->replaceArgument(3, $config['visibilityConverter'])
+            ->replaceArgument(3, $visibilityConverter)
             ->replaceArgument(4, $config['mimeTypeDetector'])
         ;
     }
