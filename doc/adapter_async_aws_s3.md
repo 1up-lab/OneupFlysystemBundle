@@ -8,7 +8,7 @@ the S3 client at [async-aws.com](https://async-aws.com/clients/) or use the
 ```yml
 services:
     acme.async.portable_visibility_converter:
-        class: League\Flysystem\AsyncAwsS3\PortableVisibilityConverter:
+        class: League\Flysystem\AsyncAwsS3\PortableVisibilityConverter
 
     acme.async_s3_client:
         class: AsyncAws\S3\S3Client

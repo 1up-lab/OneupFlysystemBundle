@@ -11,6 +11,9 @@ This version requires you to use the "v4" of the signature.
 
 ```yml
 services:
+    acme.awss3v3.portable_visibility_converter:
+        class: League\Flysystem\AwsS3V3\PortableVisibilityConverter
+
     acme.s3_client:
         class: Aws\S3\S3Client
         arguments:
@@ -32,6 +35,7 @@ oneup_flysystem:
                 client: acme.s3_client
                 bucket: 'bucket-name'
                 prefix: 'path/prefix' # Optional path prefix, you can set empty string
+                visibilityConverter: acme.awss3v3.portable_visibility_converter
 ```
 
 For more details on the other parameters, take a look at the [Flysystem documentation](https://flysystem.thephpleague.com/v2/docs/adapter/aws-s3-v3/).
