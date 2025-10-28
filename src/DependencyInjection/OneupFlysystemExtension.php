@@ -21,11 +21,10 @@ class OneupFlysystemExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container): void
     {
-        if(class_exists(Loader\XMLFileLoader::class)) {
+        if (class_exists(Loader\XMLFileLoader::class)) {
             $loader = new Loader\XMLFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
             $loaderExt = '.xml';
-        }
-        else{
+        } else {
             $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
             $loaderExt = '.php';
         }
@@ -37,8 +36,8 @@ class OneupFlysystemExtension extends Extension
         $configuration = new Configuration($adapterFactories);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader->load('adapters'.$loaderExt);
-        $loader->load('flysystem'.$loaderExt);
+        $loader->load('adapters' . $loaderExt);
+        $loader->load('flysystem' . $loaderExt);
 
         $adapters = [];
 
@@ -53,11 +52,10 @@ class OneupFlysystemExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
-        if(class_exists(Loader\XMLFileLoader::class)) {
+        if (class_exists(Loader\XMLFileLoader::class)) {
             $loader = new Loader\XMLFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
             $loader->load('factories.xml');
-        }
-        else{
+        } else {
             $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
             $loader->load(resource: 'factories.php');
         }
