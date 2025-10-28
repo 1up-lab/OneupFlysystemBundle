@@ -16,5 +16,4 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set('oneup_flysystem.adapter.googlecloudstorage', League\Flysystem\GoogleCloudStorage\GoogleCloudStorageAdapter::class)->public();
     $services->set('oneup_flysystem.adapter.gitlab', RoyVoetman\FlysystemGitlab\GitlabAdapter::class)->public();
     $services->set('oneup_flysystem.adapter.azureblob', League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter::class)->public();
-
 };

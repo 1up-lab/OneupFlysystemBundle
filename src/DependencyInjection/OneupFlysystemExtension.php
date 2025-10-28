@@ -29,7 +29,7 @@ class OneupFlysystemExtension extends Extension
             $loaderExt = '.php';
         }
 
-        $loader->load('factories'.$loaderExt);
+        $loader->load('factories' . $loaderExt);
 
         $adapterFactories = $this->getFactories($container);
 
