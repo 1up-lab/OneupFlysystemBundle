@@ -7,6 +7,17 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
-    $services->set('oneup_flysystem.mount_manager', League\Flysystem\MountManager::class)->public();
-    $services->set('oneup_flysystem.filesystem', League\Flysystem\Filesystem::class)->public()->abstract();
+    $services->set('oneup_flysystem.mount_manager', League\Flysystem\MountManager::class)
+    ->public()
+    ->args([
+        'filesystems',
+    ])
+    ;
+
+    $services->set('oneup_flysystem.filesystem', League\Flysystem\Filesystem::class)->public()->abstract()
+        ->args([
+            'adapter',
+            'config',
+        ])
+    ;
 };
