@@ -10,7 +10,7 @@ parameters:
 
     excludePaths:
         - src/DependencyInjection/Configuration.php
-        - tests/App/var
+        - tests/App/var (?)
         - vendor
 
     reportUnmatchedIgnoredErrors: false
