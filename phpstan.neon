@@ -1,5 +1,5 @@
 parameters:
-    level: max
+    level: 3
 
     bootstrapFiles:
         - %rootDir%/../../../vendor/autoload.php
@@ -10,14 +10,9 @@ parameters:
 
     excludePaths:
         - src/DependencyInjection/Configuration.php
-        - tests/App/cache
-        - tests/App/logs
         - tests/App/var
-        - var
         - vendor
 
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
     reportUnmatchedIgnoredErrors: false
 
     ignoreErrors:
