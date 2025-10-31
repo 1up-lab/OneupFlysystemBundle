@@ -42,7 +42,7 @@
         "league/flysystem-sftp-v3": "^2.0 || ^3.0",
         "league/flysystem-azure-blob-storage": "^3.0",
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^9.6.17",
+        "phpunit/phpunit": "^9.6.29 || ^10.5.58 || ^11.5.43 || ^12.4.2",
         "royvoetman/flysystem-gitlab-storage": "^2.0 || ^3.0",
         "symfony/asset": "^5.4 || ^6.0 || ^7.0",
         "symfony/browser-kit": "^5.4 || ^6.0 || ^7.0",
