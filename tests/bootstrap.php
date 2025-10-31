@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use Symfony\Component\ErrorHandler\ErrorHandler;
+
+ErrorHandler::register(null, false);
+
 if (!($loader = @include __DIR__ . '/../vendor/autoload.php')) {
     echo <<<'EOT'
 You need to install the project dependencies using Composer:
