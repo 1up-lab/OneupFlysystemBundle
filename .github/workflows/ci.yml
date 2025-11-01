@@ -61,8 +61,9 @@ jobs:
               uses: actions/checkout@v5
 
             - name: Install the dependencies
+              env:
+                SYMFONY_REQUIRE: ${{ matrix.symfony }}
               run: |
-                composer require symfony/framework-bundle:^${{ matrix.symfony }} symfony/translation:^${{ matrix.symfony }} symfony/console:^${{ matrix.symfony }} -W
                 composer install --no-interaction --no-suggest
             - name: Run the unit tests
               run: vendor/bin/phpunit --colors=always
