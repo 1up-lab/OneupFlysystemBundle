@@ -27,9 +27,9 @@
     "require": {
         "php": "^8.1",
         "league/flysystem": "^2.0 || ^3.0",
-        "symfony/config": "^5.4 || ^6.0 || ^7.0",
-        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
-        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0"
+        "symfony/config": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0 || ^8.0"
     },
     "require-dev": {
         "ext-simplexml": "*",
@@ -44,13 +44,13 @@
         "phpstan/phpstan": "^2.1.31",
         "phpunit/phpunit": "^9.6.29 || ^10.5.58 || ^11.5.43 || ^12.4.2",
         "royvoetman/flysystem-gitlab-storage": "^2.0 || ^3.0",
-        "symfony/asset": "^5.4 || ^6.0 || ^7.0",
-        "symfony/browser-kit": "^5.4 || ^6.0 || ^7.0",
-        "symfony/finder": "^5.4 || ^6.0 || ^7.0",
-        "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0",
-        "symfony/phpunit-bridge": "^7.0",
-        "symfony/translation": "^5.4 || ^6.0 || ^7.0",
-        "symfony/yaml": "^5.4 || ^6.0 || ^7.0"
+        "symfony/asset": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/browser-kit": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/finder": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/phpunit-bridge": "^7.0 || ^8.0",
+        "symfony/translation": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/yaml": "^5.4 || ^6.0 || ^7.0 || ^8.0"
     },
     "suggest": {
         "ext-fileinfo": "Required for MimeType",
@@ -76,5 +76,7 @@
         "classmap": [
             "tests/App/Kernel.php"
         ]
-    }
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": false
 }
