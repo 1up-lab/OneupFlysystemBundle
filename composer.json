@@ -76,7 +76,5 @@
         "classmap": [
             "tests/App/Kernel.php"
         ]
-    },
-    "minimum-stability": "beta",
-    "prefer-stable": false
+    }
 }
