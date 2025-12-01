@@ -52,12 +52,12 @@ class OneupFlysystemExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
-        if (class_exists(Loader\XmlFileLoader::class)) {
-            $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-            $loader->load('factories.xml');
-        } else {
+        if (class_exists(Loader\PhpFileLoader::class)) {
             $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
             $loader->load(resource: 'factories.php');
+        } else {
+            $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+            $loader->load('factories.xml');
         }
 
         $adapterFactories = $this->getFactories($container);
