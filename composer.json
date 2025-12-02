@@ -32,7 +32,6 @@
         "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0 || ^8.0"
     },
     "require-dev": {
-        "ext-simplexml": "*",
         "friendsofphp/php-cs-fixer": "^3.51",
         "league/flysystem-async-aws-s3": "^2.0 || ^3.0",
         "league/flysystem-aws-s3-v3": "^2.0 || ^3.0",
